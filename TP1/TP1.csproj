@@ -67,7 +67,9 @@
     <Content Include="App_Data\MainBD_log.ldf">
       <DependentUpon>MainBD.mdf</DependentUpon>
     </Content>
+    <Content Include="ChatRoom.aspx" />
     <Content Include="Index.aspx" />
+    <Content Include="LoginsJournal.aspx" />
     <Content Include="Main.Master" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -83,10 +85,19 @@
     <Content Include="Inscription_css.css" />
     <Content Include="Login.aspx" />
     <Content Include="Main.css" />
+    <Content Include="Room.aspx" />
+    <Content Include="ThreadsManager.aspx" />
     <Content Include="TimeOut.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatRoom.aspx.cs">
+      <DependentUpon>ChatRoom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChatRoom.aspx.designer.cs">
+      <DependentUpon>ChatRoom.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EMail.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -112,6 +123,13 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LoginsJournal.aspx.cs">
+      <DependentUpon>LoginsJournal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginsJournal.aspx.designer.cs">
+      <DependentUpon>LoginsJournal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -121,7 +139,21 @@
     </Compile>
     <Compile Include="PersonnesTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Room.aspx.cs">
+      <DependentUpon>Room.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Room.aspx.designer.cs">
+      <DependentUpon>Room.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SqlExpressUtilities.cs" />
+    <Compile Include="ThreadsManager.aspx.cs">
+      <DependentUpon>ThreadsManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ThreadsManager.aspx.designer.cs">
+      <DependentUpon>ThreadsManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TimeOut.aspx.cs">
       <DependentUpon>TimeOut.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
