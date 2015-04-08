@@ -17,6 +17,34 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Profil...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             //((Image)Master.FindControl("PB_Avatar")).ImageUrl = (String)Session["Avatar"];
+
+            LoadUserInfo();
+        }
+        public void LoadUserInfo()
+        {
+            String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
+            String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
+            String sql = @"Select Username,Password,Fullname,Email,Avatar from USERS where Id=" + (Int16)Session["USER_ID"];
+            SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sql);
+                sqlCommand.Connection = DataBase_Connection;
+                DataBase_Connection.Open();
+                SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                dataReader.Read();
+                TB_FullName.Text = dataReader.GetString(0);
+                TB_UserName.Text = dataReader.GetString(1);
+                TB_Password.Text = dataReader.GetString(2);
+                TB_Email.Text = dataReader.GetString(3);
+                IMG_Avatar.ImageUrl = dataReader.GetString(4);
+                DataBase_Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
         }
         public void BTN_Modifier_Click(object sender, EventArgs e)
         {
