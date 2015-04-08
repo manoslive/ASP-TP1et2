@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace TP1
+namespace TP1_Env.Graphique
 {
     public class Global : System.Web.HttpApplication
     {

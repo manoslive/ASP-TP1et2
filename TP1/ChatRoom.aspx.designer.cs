@@ -7,7 +7,7 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace TP1 {
+namespace TP1_Env {
     
     
     public partial class ChatRoom {

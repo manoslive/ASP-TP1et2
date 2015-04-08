@@ -30,6 +30,8 @@ namespace TP1_Env.Graphique
             table_users.Email = TB_Email.Text;
             table_users.Avatar = IMG_Avatar.ImageUrl;
             table_users.Insert();
+            Session["StartTime"] = DateTime.Now;
+            Response.Redirect("Login.aspx");
 
 //            String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
 //            String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
