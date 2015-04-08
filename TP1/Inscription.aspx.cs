@@ -28,12 +28,13 @@ namespace TP1_Env.Graphique
             personnesTable.Username = TB_UserName.Text;
             personnesTable.Password = TB_Password.Text;
             personnesTable.Email = TB_Email.Text;
-            personnesTable.Avatar = "Anomyme";
+            personnesTable.Avatar = IMG_Avatar.ImageUrl;
             //personnesTable.Insert();
 
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
             String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
-            String sql = @"Insert INTO USERS (Username, Password, Fullname Password,Email,Avatar) Values ()" ; ///////////// ici
+            String sql = @"Insert INTO USERS (Username, Password, Fullname,Email,Avatar) 
+                           Values ('" + TB_UserName.Text + "','" + TB_Password.Text + "','" + TB_FullName.Text + "','" + TB_Email.Text + "','" + IMG_Avatar.ImageUrl + "')";
             SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
 
             try
@@ -41,22 +42,14 @@ namespace TP1_Env.Graphique
                 SqlCommand sqlCommand = new SqlCommand(sql);
                 sqlCommand.Connection = DataBase_Connection;
                 DataBase_Connection.Open();
-                SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                dataReader.Read();
-                Session["User_ID"] = dataReader.GetInt32(1);
-                if (TB_Password.Text == dataReader.GetString(0))
-                    ClientAlert(this, "Login est un succes!");
-                else
-                    ClientAlert(this, "Mot de passe incorrect!");
-
-                dataReader.Close();
+                sqlCommand.ExecuteNonQuery();
+                Session["StartTime"] = DateTime.Now;
+                Response.Redirect("Login.aspx");
             }
             catch (Exception ex)
             {
                 Response.Write(ex.Message);
             }
-            Session["StartTime"] = DateTime.Now;
-            Response.Redirect("Login.aspx");
         }
         public void BTN_Annuler_Click(object sender, EventArgs e)
         {
