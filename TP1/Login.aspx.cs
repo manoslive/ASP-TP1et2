@@ -33,8 +33,12 @@ namespace TP1_Env.Graphique
                 dataReader.Read();
                 Session["Username"] = dataReader.GetString(1);
                 Session["Avatar"] = dataReader.GetString(2);
-                if(TB_Password.Text == dataReader.GetString(0))
+                if (TB_Password.Text == dataReader.GetString(0))
+                {
                     ClientAlert(this, "Login est un succes!");
+                    Session["StartTime"] = DateTime.Now;
+                    Response.Redirect("Index.aspx");
+                }
                 else
                     ClientAlert(this, "Mot de passe incorrect!");
 

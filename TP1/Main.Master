@@ -41,7 +41,7 @@
 
                     </td>
                     <td>
-                        <asp:Image ID="PB_Avatar" src="\Images\Anonymous.png" width="50" height="50" runat="server"/>
+                        <asp:Image ID="PB_Avatar" ImageUrl="~/Images/Anonymous.png" width="50" height="50" runat="server"/>
                     </td>
                 </tr>
             </table>
