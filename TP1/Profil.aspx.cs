@@ -47,32 +47,33 @@ namespace TP1_Env.Graphique
         }
         public void BTN_Modifier_Click(object sender, EventArgs e)
         {
-            //PersonnesTable personnesTable = new PersonnesTable((string)Application["MainBD"], this);
-            //personnesTable.Fullname = TB_FullName.Text;
-            //personnesTable.Username = TB_UserName.Text;
-            //personnesTable.Password = TB_Password.Text;
-            //personnesTable.Email = TB_Email.Text;
-            //personnesTable.Avatar = IMG_Avatar.ImageUrl;
-            ////personnesTable.Insert();
-//            String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
-//            String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
-//            String sql = @"Update USERS (Username, Password, Fullname,Email,Avatar) 
-//                           Values ('" + TB_UserName.Text + "','" + TB_Password.Text + "','" + TB_FullName.Text + "','" + TB_Email.Text + "','" + IMG_Avatar.ImageUrl + "')";
-//            SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
+            TableUsers modifierUser = new TableUsers((string)Application["MainBD"], this);
+            modifierUser.ID = (Int64)Session["USER_ID"];
+            modifierUser.Fullname = TB_FullName.Text;
+            modifierUser.Username = TB_UserName.Text;
+            modifierUser.Password = TB_Password.Text;
+            modifierUser.Email = TB_Email.Text;
+            modifierUser.Avatar = IMG_Avatar.ImageUrl;
+            modifierUser.Update();
+            //String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
+            //String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
+            //String sql = @"Update USERS SET Username='" + TB_UserName.Text + "', Password='" + TB_Password.Text + "', Fullname= '"+ TB_FullName.Text +"',Email='"+ TB_Email.Text + "',Avatar= '"+IMG_Avatar.ImageUrl+ "'";
+            //SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
 
-            try
-            {
-                //SqlCommand sqlCommand = new SqlCommand(sql);
-                //sqlCommand.Connection = DataBase_Connection;
-                //DataBase_Connection.Open();
-                //sqlCommand.ExecuteNonQuery();
-                //Session["StartTime"] = DateTime.Now;
-                //Response.Redirect("Login.aspx");
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex.Message);
-            }
+            //try
+            //{
+            //    SqlCommand sqlCommand = new SqlCommand(sql);
+            //    sqlCommand.Connection = DataBase_Connection;
+            //    DataBase_Connection.Open();
+            //    sqlCommand.ExecuteNonQuery();
+            //    Session["StartTime"] = DateTime.Now;
+            //    Response.Redirect("Index.aspx");
+            //    DataBase_Connection.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Response.Write(ex.Message);
+            //}
         }
         public void BTN_Annuler_Click(object sender, EventArgs e)
         {
