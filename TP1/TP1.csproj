@@ -137,7 +137,11 @@
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
-    <Compile Include="PersonnesTable.cs" />
+    <Compile Include="TableLogins.cs" />
+    <Compile Include="TableThreads.cs" />
+    <Compile Include="TableThreadsAccess.cs" />
+    <Compile Include="TableThreadsMessages.cs" />
+    <Compile Include="TableUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.aspx.cs">
       <DependentUpon>Room.aspx</DependentUpon>

@@ -18,7 +18,7 @@ namespace TP1_Env.Graphique
         public PersonnesTable(String connexionString, System.Web.UI.Page Page)
             : base(connexionString, Page)
         {
-            SQLTableName = "PERSONNES";
+            SQLTableName = "USERS";
         }
         public override void GetValues()
         {
