@@ -23,14 +23,13 @@ namespace TP1_Env.Graphique
         }
         public void BTN_Inscription_Click(object sender, EventArgs e)
         {
-            PersonnesTable personnesTable = new PersonnesTable((string)Application["MainBD"], this);
-            personnesTable.Fullname = TB_FullName.Text;
-            personnesTable.Username = TB_UserName.Text;
-            personnesTable.Password = TB_Password.Text;
-            personnesTable.Email = TB_Email.Text;
-            personnesTable.Avatar = IMG_Avatar.ImageUrl;
-            //personnesTable.Insert();
-
+            //PersonnesTable personnesTable = new PersonnesTable((string)Application["MainBD"], this);
+            //personnesTable.Fullname = TB_FullName.Text;
+            //personnesTable.Username = TB_UserName.Text;
+            //personnesTable.Password = TB_Password.Text;
+            //personnesTable.Email = TB_Email.Text;
+            //personnesTable.Avatar = IMG_Avatar.ImageUrl;
+            ////personnesTable.Insert();
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
             String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
             String sql = @"Insert INTO USERS (Username, Password, Fullname,Email,Avatar) 
