@@ -17,8 +17,8 @@ namespace TP1_Env.Graphique
         }
         protected void Deconnection()
         {
-            RecordLogin();
-            ((PersonnesTable)Session["User"]).Online = 0;
+            //RecordLogin();
+            //((PersonnesTable)Session["User"]).Online = 0;
             ((PersonnesTable)Session["User"]).Update();
             Session.Abandon();
             Response.Redirect("Login.aspx");
