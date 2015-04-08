@@ -15,14 +15,19 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             ((Image)Master.FindControl("PB_Avatar")).ImageUrl = (String)Session["Avatar"];
         }
-        protected void EnregistrementSession()
+        protected void EnregistrementLogin()
         {
-
+            // Enregistrer le login + logout (faire une classe dérivée commme personnestable pour logins)
         }
+        protected void GetIP()
+        {
+            // Obtient l'adresse IP
+        }
+
         protected void Deconnection()
         {
-            EnregistrementSession();
-            //((PersonnesTable)Session["User"]).Online = 0;
+            EnregistrementLogin();
+            ((PersonnesTable)Session["User"]).Online = 0;
             ((PersonnesTable)Session["User"]).Update();
             Session.Abandon();
             Response.Redirect("Login.aspx");
@@ -38,11 +43,6 @@ namespace TP1_Env.Graphique
             Session["StartTime"] = DateTime.Now;
             Response.Redirect("Room.aspx");
         }
-        protected void BTN_Discutions_Click(object sender, EventArgs e)
-        {
-            Session["StartTime"] = DateTime.Now;
-            Response.Redirect("LoginsJournal.aspx");
-        }
         protected void BTN_ChatRoom_Click(object sender, EventArgs e)
         {
             Session["StartTime"] = DateTime.Now;
@@ -51,12 +51,12 @@ namespace TP1_Env.Graphique
         protected void BTN_LoginsJournal_Click(object sender, EventArgs e)
         {
             Session["StartTime"] = DateTime.Now;
-            Response.Redirect("Profil.aspx");
+            Response.Redirect("LoginsJournal.aspx");
         }
         protected void BTN_Deconnection_Click(object sender, EventArgs e)
         {
             Session["StartTime"] = DateTime.Now;
-            Response.Redirect("Profil.aspx");
+            Deconnection();
         }
     }
 }

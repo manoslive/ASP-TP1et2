@@ -52,11 +52,8 @@ div.ui-datepicker {
     background-color: lightblue;
 }
  .submitBTN{
-     width:200px;
      padding:0px;
-     height:24px;
-     
- }
+}
 
  .label {
     font-weight: 600;

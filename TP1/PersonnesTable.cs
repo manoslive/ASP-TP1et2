@@ -9,6 +9,7 @@ namespace TP1_Env.Graphique
     public class PersonnesTable : SqlExpressWrapper
     {
         public long ID { get; set; }
+        public int Online { get; set; }
         public String Fullname { get; set; }
         public String Username { get; set; }
         public String Password { get; set; }
@@ -30,11 +31,11 @@ namespace TP1_Env.Graphique
         }
         public override void Insert()
         {
-            InsertRecord(Username, Password, Fullname, Email, Avatar);
+            InsertRecord(Username, Password, Fullname, Email, Avatar, Online);
         }
         public override void Update()
         {
-            UpdateRecord(ID, Username, Password, Fullname, Email, Avatar);
+            UpdateRecord(ID, Username, Password, Fullname, Email, Avatar, Online);
         }
     }
 }

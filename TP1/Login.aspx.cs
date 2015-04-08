@@ -36,6 +36,8 @@ namespace TP1_Env.Graphique
                 if (TB_Password.Text == dataReader.GetString(0))
                 {
                     ClientAlert(this, "Login est un succes!");
+                    ((PersonnesTable)Session["Users"]).Online = 1;
+                    ((PersonnesTable)Session["Users"]).Update();
                     Session["StartTime"] = DateTime.Now;
                     Response.Redirect("Index.aspx");
                 }
@@ -77,7 +79,7 @@ namespace TP1_Env.Graphique
                 DataBase_Connection.Open();
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
 
-                if(dataReader.Read())
+                if (dataReader.Read())
                 {
                     eMail.To = dataReader.GetString(0);
                     eMail.Subject = "Mot de passe oublié";
@@ -96,7 +98,7 @@ namespace TP1_Env.Graphique
                     ClientAlert(this, "Username introuvable!");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Response.Write(ex.Message);
             }
