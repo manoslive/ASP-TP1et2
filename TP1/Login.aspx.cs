@@ -51,8 +51,8 @@ namespace TP1_Env.Graphique
                 if (TB_Password.Text == dataReader.GetString(0))
                 {
                     ClientAlert(this, "Login est un succes!");
-                    ((TableUsers)Session["Users"]).Online = 1;
-                    ((TableUsers)Session["Users"]).Update();
+                    //((TableUsers)Session["Users"]).Online = 1;
+                    //((TableUsers)Session["Users"]).Update();
                     Session["StartTime"] = DateTime.Now;
                     Response.Redirect("Index.aspx");
                 }
