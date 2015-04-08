@@ -41,7 +41,7 @@ namespace TP1_Env.Graphique
             }
         }
         protected void TimeOut()
-        {//
+        {
             string resultat="";
             DateTime sessionStart = (DateTime)Session["StartTime"];
             DateTime sessionEnd = DateTime.Now;

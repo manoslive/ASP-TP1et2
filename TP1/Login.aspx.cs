@@ -21,7 +21,7 @@ namespace TP1_Env.Graphique
         {
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
             String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
-            String sql = @"Select PASSWORD, ID, AVATAR From USERS where UserName = '" + TB_UserName.Text + "'";
+            String sql = @"Select PASSWORD, USERNAME, AVATAR From USERS where UserName = '" + TB_UserName.Text + "'";
             SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
 
             try
@@ -31,7 +31,7 @@ namespace TP1_Env.Graphique
                 DataBase_Connection.Open();
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
                 dataReader.Read();
-                Session["User_ID"] = dataReader.GetInt32(1);
+                Session["Username"] = dataReader.GetString(1);
                 Session["Avatar"] = dataReader.GetString(2);
                 if(TB_Password.Text == dataReader.GetString(0))
                     ClientAlert(this, "Login est un succes!");
