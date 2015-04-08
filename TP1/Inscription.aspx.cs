@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 
 namespace TP1_Env.Graphique
 {
@@ -20,24 +21,52 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Inscription...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = "Anomyme";
         }
-            public void BTN_Inscription_Click(object sender, EventArgs e)
-            {
-                PersonnesTable personnesTable = new PersonnesTable((string)Application["MainBD"], this);
-                personnesTable.Fullname = TB_FullName.Text;
-                personnesTable.Username = TB_UserName.Text;
-                personnesTable.Password = TB_Password.Text;
-                personnesTable.Email = TB_Email.Text;
-                personnesTable.Avatar = "Anomyme";
-                personnesTable.Insert();
-                Session["StartTime"] = DateTime.Now;
-                Response.Redirect("Login.aspx");
-            }
-            public void BTN_Annuler_Click(object sender, EventArgs e)
-            {
-                Session["StartTime"] = DateTime.Now;
-                Response.Redirect("Login.aspx");
-            }
+        public void BTN_Inscription_Click(object sender, EventArgs e)
+        {
+            PersonnesTable personnesTable = new PersonnesTable((string)Application["MainBD"], this);
+            personnesTable.Fullname = TB_FullName.Text;
+            personnesTable.Username = TB_UserName.Text;
+            personnesTable.Password = TB_Password.Text;
+            personnesTable.Email = TB_Email.Text;
+            personnesTable.Avatar = "Anomyme";
+            //personnesTable.Insert();
 
+            String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
+            String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
+            String sql = @"Insert INTO USERS (Username, Password, Fullname Password,Email,Avatar) Values ()" ; ///////////// ici
+            SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sql);
+                sqlCommand.Connection = DataBase_Connection;
+                DataBase_Connection.Open();
+                SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                dataReader.Read();
+                Session["User_ID"] = dataReader.GetInt32(1);
+                if (TB_Password.Text == dataReader.GetString(0))
+                    ClientAlert(this, "Login est un succes!");
+                else
+                    ClientAlert(this, "Mot de passe incorrect!");
+
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+            Session["StartTime"] = DateTime.Now;
+            Response.Redirect("Login.aspx");
+        }
+        public void BTN_Annuler_Click(object sender, EventArgs e)
+        {
+            Session["StartTime"] = DateTime.Now;
+            Response.Redirect("Login.aspx");
+        }
+        public static void ClientAlert(System.Web.UI.Page page, string message)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "alert", "alert('" + message + "');", true);
+        }
 
         protected void CV_UserName_ServerValidate(object source, ServerValidateEventArgs args)
         {
