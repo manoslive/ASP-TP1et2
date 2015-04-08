@@ -31,11 +31,11 @@ namespace TP1_Env.Graphique
         }
         public override void Insert()
         {
-            InsertRecord(Username, Password, Fullname, Email, Avatar, Online);
+            InsertRecord(Username, Password, Fullname, Email, Avatar);
         }
         public override void Update()
         {
-            UpdateRecord(ID, Username, Password, Fullname, Email, Avatar, Online);
+            UpdateRecord(ID, Username, Password, Fullname, Email, Avatar);
         }
     }
 }
