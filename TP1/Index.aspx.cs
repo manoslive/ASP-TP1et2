@@ -37,7 +37,7 @@ namespace TP1_Env.Graphique
         {
             EnregistrementLogin();
             //((TableUsers)Session["User"]).Online = 0;
-            ((TableUsers)Session["User"]).Update();
+            //((TableUsers)Session["User"]).Update();
             Session.Abandon();
             Response.Redirect("Login.aspx");
         }

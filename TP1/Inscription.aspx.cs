@@ -138,9 +138,4 @@ namespace TP1_Env.Graphique
             args.IsValid = (TB_Captcha.Text == (string)Session["captcha"]);//
         } 
     }
-
-
-
-
-
 }
