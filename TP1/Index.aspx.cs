@@ -13,7 +13,9 @@ namespace TP1
         {
             // Session["StartTime"] = DateTime.Now;
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Accueil...";
-            ((Label)Master.FindControl("LB_Nom_Usager")).Text = "Anomyme";
+            ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
+            // ICI
+            ((Image)Master.FindControl("PB_Avatar")). = (String)Session["Avatar"];
         }
     }
 }
