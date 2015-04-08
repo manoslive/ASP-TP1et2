@@ -15,10 +15,14 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             ((Image)Master.FindControl("PB_Avatar")).ImageUrl = (String)Session["Avatar"];
         }
+        protected void EnregistrementSession()
+        {
+
+        }
         protected void Deconnection()
         {
-            RecordLogin();
-            ((PersonnesTable)Session["User"]).Online = 0;
+            EnregistrementSession();
+            //((PersonnesTable)Session["User"]).Online = 0;
             ((PersonnesTable)Session["User"]).Update();
             Session.Abandon();
             Response.Redirect("Login.aspx");
