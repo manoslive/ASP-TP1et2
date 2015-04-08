@@ -201,13 +201,6 @@
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td>
-                        <asp:Button ID="BTN_Submit" runat="server"
-                                    Text="Soumettre ..."
-                                    ValidationGroup="Subscribe_Validation"
-                                    OnClick="BTN_Submit_Click" />
-                        
-                    </td>
                 </tr>
             </table>
         </div>
