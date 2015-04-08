@@ -229,3 +229,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# base de données SQL
+*.mdf
+*.ldf
