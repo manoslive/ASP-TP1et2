@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace TP1
+namespace TP1_Env.Graphique
 {
     public partial class ChatRoom : System.Web.UI.Page
     {
