@@ -17,14 +17,13 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Profil...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             //((Image)Master.FindControl("PB_Avatar")).ImageUrl = (String)Session["Avatar"];
-
             LoadUserInfo();
         }
         public void LoadUserInfo()
         {
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
             String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
-            String sql = @"Select Username,Password,Fullname,Email,Avatar from USERS where Id=" + (Int16)Session["USER_ID"];
+            String sql = @"Select Username,Password,Fullname,Email,Avatar from USERS where Id=" + (Int64)Session["USER_ID"];
             SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
 
             try
@@ -55,11 +54,11 @@ namespace TP1_Env.Graphique
             //personnesTable.Email = TB_Email.Text;
             //personnesTable.Avatar = IMG_Avatar.ImageUrl;
             ////personnesTable.Insert();
-            //String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
-            //String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
-            //String sql = @"Insert INTO USERS (Username, Password, Fullname,Email,Avatar) 
-            //               Values ('" + TB_UserName.Text + "','" + TB_Password.Text + "','" + TB_FullName.Text + "','" + TB_Email.Text + "','" + IMG_Avatar.ImageUrl + "')";
-            //SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
+//            String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
+//            String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
+//            String sql = @"Update USERS (Username, Password, Fullname,Email,Avatar) 
+//                           Values ('" + TB_UserName.Text + "','" + TB_Password.Text + "','" + TB_FullName.Text + "','" + TB_Email.Text + "','" + IMG_Avatar.ImageUrl + "')";
+//            SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
 
             try
             {
@@ -67,8 +66,8 @@ namespace TP1_Env.Graphique
                 //sqlCommand.Connection = DataBase_Connection;
                 //DataBase_Connection.Open();
                 //sqlCommand.ExecuteNonQuery();
-                Session["StartTime"] = DateTime.Now;
-                Response.Redirect("Login.aspx");
+                //Session["StartTime"] = DateTime.Now;
+                //Response.Redirect("Login.aspx");
             }
             catch (Exception ex)
             {
