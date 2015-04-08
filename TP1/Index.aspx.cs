@@ -36,7 +36,7 @@ namespace TP1_Env.Graphique
         protected void Deconnection()
         {
             EnregistrementLogin();
-            ((TableUsers)Session["User"]).Online = 0;
+            //((TableUsers)Session["User"]).Online = 0;
             ((TableUsers)Session["User"]).Update();
             Session.Abandon();
             Response.Redirect("Login.aspx");
