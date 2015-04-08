@@ -19,6 +19,20 @@ namespace TP1_Env.Graphique
         }
         public void BTN_Login_Click(object sender, EventArgs e)
         {
+            /////////////////////////////////////////////////
+            //
+            // Changer ici pour utiliser la classe tableusers
+            //
+            /////////////////////////////////////////////////
+
+            // Nous créons ici une instance de TableUsers pour cette session
+            Session["Utilisateur"] = new PersonnesTable((String)Application["MainBD"], this);
+            // Je cherche comment affecter le username à cette session
+
+            // Nous créons une instance de TableLogins pour cette session
+            Session["Login"] = new TableLogins((String)Application["MainBD"], this);
+
+            ///////////////////////////////////////Douteux.com////////////////////////////////////////////
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
             String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
             String sql = @"Select PASSWORD, USERNAME, AVATAR From USERS where UserName = '" + TB_UserName.Text + "'";
@@ -50,6 +64,7 @@ namespace TP1_Env.Graphique
             {
                 Response.Write(ex.Message);
             }
+            //////////////////////////////////////fin de douteux.com//////////////////////////////////////
         }
         public void BTN_Inscription_Click(object sender, EventArgs e)
         {

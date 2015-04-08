@@ -17,11 +17,20 @@ namespace TP1_Env.Graphique
         }
         protected void EnregistrementLogin()
         {
-            // Enregistrer le login + logout (faire une classe dérivée commme personnestable pour logins)
+            TableLogins logins = (TableLogins)Session["Logins"];
+            PersonnesTable users = (PersonnesTable)Session["Utilisateur"];
+
+
         }
-        protected void GetIP()
+        protected string GetIP()
         {
-            // Obtient l'adresse IP
+            string ipList = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            if (!string.IsNullOrEmpty(ipList))
+                return ipList.Split(',')[0];
+            string ip = Request.ServerVariables["REMOTE_ADDR"];
+            if (ip == "::1")
+                ip = "localhost";
+            return ip;
         }
 
         protected void Deconnection()
