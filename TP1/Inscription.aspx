@@ -78,7 +78,7 @@
                         <asp:Label for="TB_Password1" runat="server" Text="Confirmation du mot de passe"></asp:Label>
                     </td>
                     <td>
-                        <asp:TextBox ID="TB_Password1" runat="server" CssClass="TextBox"></asp:TextBox>
+                        <asp:TextBox ID="TB_Password1" runat="server" CssClass="TextBox" TextMode="Password"></asp:TextBox>
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="RFV_TB_Password1" runat="server"
