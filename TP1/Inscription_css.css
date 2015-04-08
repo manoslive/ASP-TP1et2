@@ -1,0 +1,31 @@
+﻿.left_content {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+#right_content {
+    width: 50%;
+    height: 100%;
+    display:inline-block;
+}
+
+#right_top_content {
+    width: 100%;
+    height: 50%;
+    display:inline-block;
+}
+
+#right_bottom_content {
+    height: 50%;
+}
+
+#content {
+    width: 75%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#Lefty{
+    text-align:left;
+}
