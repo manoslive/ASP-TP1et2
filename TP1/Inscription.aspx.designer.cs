@@ -193,15 +193,6 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.CustomValidator CV_Captcha;
         
         /// <summary>
-        /// Contrôle BTN_Submit.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTN_Submit;
-        
-        /// <summary>
         /// Contrôle Subscribe_Validation.
         /// </summary>
         /// <remarks>
