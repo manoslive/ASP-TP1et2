@@ -27,7 +27,6 @@ namespace TP1_Env.Graphique
                 personnesTable.Username = TB_UserName.Text;
                 personnesTable.Password = TB_Password.Text;
                 personnesTable.Email = TB_Email.Text;
-                //dsadsadasd
                 personnesTable.Avatar = "Anomyme";
                 personnesTable.Insert();
                 Session["StartTime"] = DateTime.Now;
