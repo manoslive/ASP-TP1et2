@@ -18,7 +18,7 @@ namespace TP1_Env.Graphique
         protected void EnregistrementLogin()
         {
             TableLogins logins = (TableLogins)Session["Logins"];
-            PersonnesTable users = (PersonnesTable)Session["Utilisateur"];
+            TableUsers users = (TableUsers)Session["Utilisateur"];
 
 
         }
@@ -36,8 +36,8 @@ namespace TP1_Env.Graphique
         protected void Deconnection()
         {
             EnregistrementLogin();
-            ((PersonnesTable)Session["User"]).Online = 0;
-            ((PersonnesTable)Session["User"]).Update();
+            ((TableUsers)Session["User"]).Online = 0;
+            ((TableUsers)Session["User"]).Update();
             Session.Abandon();
             Response.Redirect("Login.aspx");
         }

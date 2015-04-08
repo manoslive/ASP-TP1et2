@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace TP1_Env.Graphique
 {
-    public class PersonnesTable : SqlExpressWrapper
+    public class TableUsers : SqlExpressWrapper
     {
         public long ID { get; set; }
         public int Online { get; set; }
@@ -15,7 +15,7 @@ namespace TP1_Env.Graphique
         public String Password { get; set; }
         public String Email { get; set; }
         public String Avatar { get; set; }
-        public PersonnesTable(String connexionString, System.Web.UI.Page Page)
+        public TableUsers(String connexionString, System.Web.UI.Page Page)
             : base(connexionString, Page)
         {
             SQLTableName = "USERS";

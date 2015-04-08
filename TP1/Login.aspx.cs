@@ -26,8 +26,9 @@ namespace TP1_Env.Graphique
             /////////////////////////////////////////////////
 
             // Nous créons ici une instance de TableUsers pour cette session
-            Session["Utilisateur"] = new PersonnesTable((String)Application["MainBD"], this);
+            Session["Utilisateur"] = new TableUsers((String)Application["MainBD"], this);
             // Je cherche comment affecter le username à cette session
+            // ??????????
 
             // Nous créons une instance de TableLogins pour cette session
             Session["Login"] = new TableLogins((String)Application["MainBD"], this);
@@ -50,8 +51,8 @@ namespace TP1_Env.Graphique
                 if (TB_Password.Text == dataReader.GetString(0))
                 {
                     ClientAlert(this, "Login est un succes!");
-                    ((PersonnesTable)Session["Users"]).Online = 1;
-                    ((PersonnesTable)Session["Users"]).Update();
+                    ((TableUsers)Session["Users"]).Online = 1;
+                    ((TableUsers)Session["Users"]).Update();
                     Session["StartTime"] = DateTime.Now;
                     Response.Redirect("Index.aspx");
                 }
