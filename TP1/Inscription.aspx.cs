@@ -23,6 +23,8 @@ namespace TP1_Env.Graphique
         }
         public void BTN_Inscription_Click(object sender, EventArgs e)
         {
+
+            VerifierExistanceUser();
             TableUsers table_users = new TableUsers((string)Application["MainBD"], this);
             table_users.Fullname = TB_FullName.Text;
             table_users.Username = TB_UserName.Text;
@@ -52,6 +54,10 @@ namespace TP1_Env.Graphique
 //            {
 //                Response.Write(ex.Message);
 //            }
+        }
+        public void VerifierExistanceUser(int userID)
+        {
+
         }
         public void BTN_Annuler_Click(object sender, EventArgs e)
         {

@@ -6,9 +6,9 @@ using System.Data.SqlClient;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 
-namespace TP1_Env.Graphique
+namespace SqlExpressUtilities
 {
-    public delegate System.Web.UI.WebControls.WebControl ContentDelegate();
+    public delegate System.Web.UI.WebControls.WebControl CellContentDelegate();
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // SqlExpressWrapper version beta
@@ -27,27 +27,30 @@ namespace TP1_Env.Graphique
     public class SqlExpressWrapper
     {
         // objet de connection
-        SqlConnection connection=null;
+        SqlConnection connection;
         // chaine de connection
         string connexionString;
         // Objet de lecture issue de la dernière requête SQL
         public SqlDataReader reader;
         // Objet Page de classe "Web Form" donnant accès à l'objet Application, Session et Response, etc.
-        System.Web.UI.Page Page;
+        public System.Web.UI.Page Page;
         // Nom de la table
         public String SQLTableName = "";
         // Liste des valeur des champs lors de la lecture de la requête 
         public List<string> FieldsValues = new List<string>();
         // Liste des noms des champs de la table en cours de lecture
         public List<string> FieldsNames = new List<string>();
+        public List<string> ColumnTitles = new List<string>();
+        public List<bool> ColumnsSortEnable = new List<bool>();
+
         // Liste des types des champs de la table en cours de lecture
         public List<Type> FieldsTypes = new List<Type>();
-        public List<bool> FieldsVisibility = new List<bool>();
+        public List<bool> ColumnsVisibility = new List<bool>();
 
         // Liste des délégates chargés de construire contenu personnalisé pour les champs
-        public List<ContentDelegate> ContentDelegates = new List<ContentDelegate>();
-
-        // contructeur obligatoire auquel il faut fournir la chaine de connection et l'objet Page
+        public List<CellContentDelegate> CellsContentDelegate = new List<CellContentDelegate>();
+        
+         // contructeur obligatoire auquel il faut fournir la chaine de connection et l'objet Page
         public SqlExpressWrapper(String connexionString, System.Web.UI.Page Page)
         {
             this.Page = Page;
@@ -74,14 +77,88 @@ namespace TP1_Env.Graphique
             return endOfReader;
         }
 
-        public virtual void InitVisibility()
+        public virtual void InitColumnsVisibility()
         {
-            FieldsVisibility.Clear();
+            ColumnsVisibility.Clear();
             for (int f = 0; f < FieldsNames.Count; f++)
             {
-                FieldsVisibility.Add(true);
+                ColumnsVisibility.Add(true);
             }
         }
+        public virtual void InitColumnsTitles()
+        {
+            ColumnTitles.Clear();
+            for (int f = 0; f < FieldsNames.Count; f++)
+            {
+                ColumnTitles.Add(FieldsNames[f]);
+            }
+        }
+
+        public virtual void InitColumnsSortEnable()
+        {
+            ColumnsSortEnable.Clear();
+            for (int f = 0; f < FieldsNames.Count; f++)
+            {
+                ColumnsSortEnable.Add(true);
+            }
+        }
+
+        public virtual void InitCellsContentDelegate()
+        {
+            CellsContentDelegate.Clear();
+            for (int f = 0; f < FieldsNames.Count; f++)
+            {
+                if (f == 0)
+                    // Gestion du contenu à produire pour le champ ID
+                    CellsContentDelegate.Add(IDContentDelegate);
+                else
+                    CellsContentDelegate.Add(null);
+            }
+        }
+
+        private bool Valid(int index, int count)
+        {
+            return ((index >= 0) && (index < count));
+        }
+
+        public void SetColumnVisibility(String fieldName, bool visibility)
+        {
+            SetColumnVisibility(IndexOf(fieldName), visibility);
+        }
+        public void SetColumnVisibility(int fieldIndex, bool visibility)
+        {
+            if (Valid(fieldIndex, ColumnsVisibility.Count))
+                ColumnsVisibility[fieldIndex] = visibility;
+        }
+        public void SetColumnTitle(String fieldName, String title)
+        {
+            SetColumnTitle(IndexOf(fieldName), title);
+        }
+        public void SetColumnTitle(int fieldIndex, String title)
+        {
+            if (Valid(fieldIndex, ColumnTitles.Count))
+                ColumnTitles[fieldIndex] = title;
+        }
+        public void SetColumnSortEnable(String fieldName, bool enable)
+        {
+            SetColumnSortEnable(IndexOf(fieldName), enable);
+        }
+        public void SetColumnSortEnable(int fieldIndex, bool enable)
+        {
+            if (Valid(fieldIndex, ColumnsSortEnable.Count))
+                ColumnsSortEnable[fieldIndex] = enable;
+        }
+        public void SetCellContentDelegate(String fieldName, CellContentDelegate ccd)
+        {
+            SetCellContentDelegate(IndexOf(fieldName), ccd);
+        }
+
+        public void SetCellContentDelegate(int fieldIndex, CellContentDelegate ccd)
+        {
+            if (Valid(fieldIndex, CellsContentDelegate.Count))
+                CellsContentDelegate[fieldIndex] = ccd;
+        }
+        
         // Extraire les noms et types des champs 
         void GetFieldsNameAndType()
         {
@@ -89,28 +166,15 @@ namespace TP1_Env.Graphique
             {
                 FieldsNames.Clear();
                 FieldsTypes.Clear();
-                ContentDelegates.Clear();
-
+                
                 for (int f = 0; f < reader.FieldCount; f++)
                 {
                     FieldsNames.Add(reader.GetName(f));
                     FieldsTypes.Add(reader.GetFieldType(f));
-
-                    if (f == 0)
-                        // Gestion du contenu à produire pour le champ ID
-                        ContentDelegates.Add(IDContentDelegate);
-                    else
-                        ContentDelegates.Add(null);
-                }
+                } 
             }
-            InitVisibility();
         }
 
-        public void SetVisibility(int fieldIndex, bool visibility)
-        {
-            if (fieldIndex < FieldsVisibility.Count)
-                FieldsVisibility[fieldIndex] = visibility;
-        }
         public virtual void GetValues()
         {
             // Doit être surcharché par les classes dérivées
@@ -120,7 +184,10 @@ namespace TP1_Env.Graphique
         public bool Next()
         {
             bool more = NextRecord();
-            if (more) GetValues();
+            if (more)
+                GetValues();
+            else
+                EndQuerySQL();
             return more;
         }
 
@@ -148,15 +215,22 @@ namespace TP1_Env.Graphique
             reader = sqlcmd.ExecuteReader();
             // Saisir les noms et types des champs de la table impliquée dans la requête
             GetFieldsNameAndType();
+
+            InitColumnsVisibility();
+            InitColumnsTitles();
+            InitColumnsSortEnable();
+            InitCellsContentDelegate();
+
             // retourner le nombre d'enregistrements générés
             return reader.RecordsAffected;
-
+           
         }
 
         // Conclure la dernière requête
         public void EndQuerySQL()
         {
             // Fermer la connection
+            if (connection.State != System.Data.ConnectionState.Closed)
             connection.Close();
             // Débloquer l'objet Page.Application afin que d'autres session puissent
             // accéder à leur tour à la base de données
@@ -164,7 +238,7 @@ namespace TP1_Env.Graphique
         }
 
         // Extraire tous les enregistrements
-        public bool SelectAll(string orderBy = "")
+        public virtual bool SelectAll(string orderBy = "")
         {
             string sql = "SELECT * FROM " + SQLTableName;
             if (orderBy != "")
@@ -183,6 +257,22 @@ namespace TP1_Env.Graphique
             return reader.HasRows;
         }
 
+        public bool SelectByFieldName(String FieldName, object value)
+        {
+            string SQL = "SELECT * FROM " + SQLTableName + " WHERE " + FieldName + " = ";
+            Type type = value.GetType();
+            if (SQLHelper.IsNumericType(type))
+                SQL += value.ToString().Replace(',', '.');
+            else
+                if (type == typeof(DateTime))
+                    SQL += "'" + SQLHelper.DateSQLFormat((DateTime)value) + "'";
+                else
+                    SQL += "'" + SQLHelper.PrepareForSql(value.ToString()) + "'";
+            QuerySQL(SQL);
+            if (reader.HasRows)
+                Next();
+            return reader.HasRows;
+        }
         // Mise à jour de l'enregistrement
         public virtual void Update()
         {
@@ -216,7 +306,7 @@ namespace TP1_Env.Graphique
         {
             String SQL = "UPDATE " + SQLTableName + " ";
             SQL += "SET ";
-            int nb_fields = FieldsNames.Count();
+            int nb_fields = FieldsValues.Length;
             for (int i = 1; i < nb_fields; i++)
             {
                 SQL += "[" + FieldsNames[i] + "] = ";
@@ -293,10 +383,10 @@ namespace TP1_Env.Graphique
             EndQuerySQL();
 
             string sql = "INSERT INTO " + SQLTableName + "(";
-            for (int i = 1; i < FieldsNames.Count; i++)
+            for (int i = 1; i < FieldsValues.Length+1; i++)
             {
                 sql += FieldsNames[i];
-                if (i < FieldsNames.Count - 1)
+                if (i < FieldsValues.Length)
                     sql += ", ";
                 else
                     sql += ") VALUES (";
@@ -346,7 +436,7 @@ namespace TP1_Env.Graphique
         private Panel PN_GridView = null;
         public virtual void MakeGridView(Panel PN_GridView, String EditPage)
         {
-
+           
             // converver le panneau parent (utilisé dans certaines méthodes de cette classe)
             this.PN_GridView = PN_GridView;
             Page.Session["EditPage"] = EditPage;
@@ -357,59 +447,63 @@ namespace TP1_Env.Graphique
 
                 // Construction de l'entête de la GridView
                 TableRow tr = new TableRow();
-                for (int i = 0; i < FieldsNames.Count; i++)
+                for (int columnIndex = 0; columnIndex < ColumnTitles.Count; columnIndex++)
                 {
-                    if (FieldsVisibility[i])
+                    if (ColumnsVisibility[columnIndex])
                     {
                         TableCell td = new TableCell();
                         tr.Cells.Add(td);
                         Label LBL_Header = new Label();
-                        LBL_Header.Text = "<b>" + FieldsNames[i] + "</b>";
-                        ImageButton BTN_Sort = new ImageButton();
-                        // assignation du delegate du clic (voir sa définition plus bas dans le code)
-                        BTN_Sort.Click += new ImageClickEventHandler(SortField_Click);
-                        // IMPORTANT!!!
-                        // il faut placer dans le répertoire Images du projet l'icône qui représente un tri
-                        BTN_Sort.ImageUrl = @"~/Images/Sort.png";
-                        // afin de bien reconnaitre quel champ il faudra trier on construit ici un ID
-                        // pour le bouton
-                        BTN_Sort.ID = "Sort_" + FieldsNames[i];
-                        td.Controls.Add(BTN_Sort);
+                        LBL_Header.Text = "<b>" + ColumnTitles[columnIndex] + "</b>";
+
+                        if (ColumnsSortEnable[columnIndex])
+                        {
+                            ImageButton BTN_Sort = new ImageButton();
+                            // assignation du delegate du clic (voir sa définition plus bas dans le code)
+                            BTN_Sort.Click += new ImageClickEventHandler(SortField_Click);
+                            // IMPORTANT!!!
+                            // il faut placer dans le répertoire Images du projet l'icône qui représente un tri
+                            BTN_Sort.ImageUrl = @"~/Images/Sort.png";
+                            // afin de bien reconnaitre quel champ il faudra trier on construit ici un ID
+                            // pour le bouton
+                            BTN_Sort.ID = "Sort_" + FieldsNames[columnIndex];
+                            td.Controls.Add(BTN_Sort);
+                        }
                         td.Controls.Add(LBL_Header);
                     }
                 }
                 Grid.Rows.Add(tr);
-
+               
                 // Construction des rangées de la GridView
                 while (Next())
                 {
                     tr = new TableRow();
-                    for (int i = 0; i < FieldsValues.Count; i++)
+                    for (int fieldIndex = 0; fieldIndex < FieldsValues.Count; fieldIndex++)
                     {
-                        if (FieldsVisibility[i])
+                        if (ColumnsVisibility[fieldIndex])
                         {
                             TableCell td = new TableCell();
-                            if (ContentDelegates[i] != null)
+                            if (CellsContentDelegate[fieldIndex] != null)
                             {
                                 // construction spécialisée du contenu d'une cellule
                                 // définie dans les sous classes
-                                td.Controls.Add(ContentDelegates[i]());
+                                td.Controls.Add(CellsContentDelegate[fieldIndex]());
                             }
                             else
                             {
-                                Type type = FieldsTypes[i];
+                                Type type = FieldsTypes[fieldIndex];
                                 if (SQLHelper.IsNumericType(type))
                                 {
-                                    td.Text = FieldsValues[i].ToString();
+                                    td.Text = FieldsValues[fieldIndex].ToString();
                                     // IMPORTANT! Il faut inclure dans la section style
                                     // une classe numeric qui impose l'alignement à droite
                                     td.CssClass = "numeric";
                                 }
                                 else
                                     if (type == typeof(DateTime))
-                                        td.Text = DateTime.Parse(FieldsValues[i]).ToShortDateString();
+                                        td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToShortDateString();
                                     else
-                                        td.Text = SQLHelper.FromSql(FieldsValues[i]);
+                                        td.Text = SQLHelper.FromSql(FieldsValues[fieldIndex]);
                             }
                             tr.Cells.Add(td);
                         }
@@ -418,8 +512,9 @@ namespace TP1_Env.Graphique
                 }
             }
             PN_GridView.Controls.Clear();
-            if (Grid != null)
+            if (Grid!=null)
                 PN_GridView.Controls.Add(Grid);
+            EndQuerySQL();
         }
 
         // Spécialisation de la construction de contenu des cellules de tableau html
@@ -474,7 +569,7 @@ namespace TP1_Env.Graphique
             // rediriger la session vers la "Web Form" désignée pour l'édition
             // de l'enregistement d'id Selected_ID
             Page.Session["Selected_ID"] = ID;
-            if (Page.Session["EditPage"] != null)
+            if (Page.Session["EditPage"]!=null)
                 Page.Response.Redirect((String)Page.Session["EditPage"]);
         }
     }

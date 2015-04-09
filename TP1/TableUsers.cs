@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlExpressUtilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -36,6 +37,10 @@ namespace TP1_Env.Graphique
         public override void Update()
         {
             UpdateRecord(ID, Username, Password, Fullname, Email, Avatar);
+        }
+        public bool userExists(string leUser)
+        {
+            return SelectByFieldName(leUser, Username);
         }
     }
 }
