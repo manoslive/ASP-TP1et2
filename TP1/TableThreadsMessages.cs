@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SqlExpressUtilities;
 
 namespace TP1_Env.Graphique
 {

@@ -23,41 +23,31 @@ namespace TP1_Env.Graphique
         }
         public void BTN_Inscription_Click(object sender, EventArgs e)
         {
-
-            VerifierExistanceUser();
-            TableUsers table_users = new TableUsers((string)Application["MainBD"], this);
-            table_users.Fullname = TB_FullName.Text;
-            table_users.Username = TB_UserName.Text;
-            table_users.Password = TB_Password.Text;
-            table_users.Email = TB_Email.Text;
-            table_users.Avatar = IMG_Avatar.ImageUrl;
-            table_users.Insert();
-            Session["StartTime"] = DateTime.Now;
-            Response.Redirect("Login.aspx");
-
-//            String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
-//            String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
-//            String sql = @"Insert INTO USERS (Username, Password, Fullname,Email,Avatar) 
-//                           Values ('" + TB_UserName.Text + "','" + TB_Password.Text + "','" + TB_FullName.Text + "','" + TB_Email.Text + "','" + IMG_Avatar.ImageUrl + "')";
-//            SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
-
-//            try
-//            {
-//                SqlCommand sqlCommand = new SqlCommand(sql);
-//                sqlCommand.Connection = DataBase_Connection;
-//                DataBase_Connection.Open();
-//                sqlCommand.ExecuteNonQuery();
-//                Session["StartTime"] = DateTime.Now;
-//                Response.Redirect("Login.aspx");
-//            }
-//            catch (Exception ex)
-//            {
-//                Response.Write(ex.Message);
-//            }
+            if(!VerifierExistanceUser(TB_UserName.Text))
+            {
+                TableUsers table_users = new TableUsers((string)Application["MainBD"], this);
+                table_users.Fullname = TB_FullName.Text;
+                table_users.Username = TB_UserName.Text;
+                table_users.Password = TB_Password.Text;
+                table_users.Email = TB_Email.Text;
+                table_users.Avatar = IMG_Avatar.ImageUrl;
+                table_users.Insert();
+                Session["StartTime"] = DateTime.Now;
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                ClientAlert(this, "Le Username est déjà utilisé!");
+            }
         }
-        public void VerifierExistanceUser(int userID)
+        public bool VerifierExistanceUser(string userName)
         {
-
+            bool userExist = false;
+            TableUsers leUser = new TableUsers((String)Application["MainBD"],this);
+            leUser.Username = userName;
+            if (leUser.userExists())
+                userExist = true;
+            return userExist;
         }
         public void BTN_Annuler_Click(object sender, EventArgs e)
         {

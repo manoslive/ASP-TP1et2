@@ -38,9 +38,10 @@ namespace TP1_Env.Graphique
         {
             UpdateRecord(ID, Username, Password, Fullname, Email, Avatar);
         }
-        public bool userExists(string leUser)
+        public bool userExists()
         {
-            return SelectByFieldName(leUser, Username);
+            string feildName = "USERNAME";
+            return SelectByFieldName(feildName, Username);
         }
     }
 }
