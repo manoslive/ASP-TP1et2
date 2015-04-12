@@ -7,7 +7,7 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace TP1_Env {
+namespace TP1_Env.Graphique {
     
     
     public partial class ThreadsManager {

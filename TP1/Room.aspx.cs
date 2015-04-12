@@ -25,13 +25,14 @@ namespace TP1_Env.Graphique
         }
         protected void BTN_Retour_Click(object sender, EventArgs e)
         {
+            Session["StartTime"] = DateTime.Now;
             Response.Redirect("Index.aspx");
         }
         protected void AfficherGridView()
         {
             TableUsers table = new TableUsers((String)Application["MainBD"], this);
             table.SelectAll();
-            table.MakeGridView(PN_GridView, "");
+            table.MakeGridView(PN_GridView, "");//Jai du mettre une ligne en commentaire(dans SQLExpressUtilities) pour que sa fonctionne, a vérifier!
             table.EndQuerySQL();
         }
     }

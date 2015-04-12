@@ -33,7 +33,7 @@ namespace TP1_Env.Graphique
             // Nous créons une instance de TableLogins pour cette session
             Session["Login"] = new TableLogins((String)Application["MainBD"], this);
 
-            ///////////////////////////////////////Douteux.com////////////////////////////////////////////
+            ///////////////////////////////////////Douteux.com//Javou.ca//////////////////////////////////////////
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
             String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
             String sql = @"Select PASSWORD, USERNAME, AVATAR, ID From USERS where UserName = '" + TB_UserName.Text + "'";
@@ -55,6 +55,7 @@ namespace TP1_Env.Graphique
                     //((TableUsers)Session["Users"]).Online = 1;
                     //((TableUsers)Session["Users"]).Update();
                     Session["StartTime"] = DateTime.Now;
+                    Session["USER_LOGIN"] = DateTime.Now;
                     Response.Redirect("Index.aspx");
                 }
                 else

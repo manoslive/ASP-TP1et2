@@ -17,10 +17,17 @@ namespace TP1_Env.Graphique
         }
         protected void EnregistrementLogin()
         {
-            TableLogins logins = (TableLogins)Session["Logins"];
+            Session["USER_LOGOUT"] = DateTime.Now;
+            //TableLogins logins = (TableLogins)Session["Logins"]; //Erreur, sa dit qu'il n'est jamais créé
+            TableLogins logins = new TableLogins((String)Application["MainBD"], this);
             TableUsers users = (TableUsers)Session["Utilisateur"];
 
             // À terminer
+            logins.User_ID = (Int64)Session["USER_ID"];
+            logins.Login_Date = (DateTime)Session["USER_LOGIN"];
+            logins.Logout_Date = (DateTime)Session["USER_LOGOUT"];
+            logins.IP = GetIP();
+            logins.Insert();
         }
         protected string GetIP()
         {
