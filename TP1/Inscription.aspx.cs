@@ -16,6 +16,7 @@ namespace TP1_Env.Graphique
         {
             if (!Page.IsPostBack)
             {
+                IMG_Avatar.ImageUrl = "~/Images/Anonymous.png";
                 Session["captcha"] = BuildCaptcha();
             }
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Inscription...";

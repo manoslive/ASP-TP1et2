@@ -2,7 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="Inscription_css.css" />
-    <script>
+    <script type="text/javascript" src="ClientFormUtilities.js"></script>
+<%--    <script>
         function PreLoadImage(e) {
             var imageTarget = document.getElementById("IMG_Avatar");
             var input = document.getElementById("AvatarUpload");
@@ -16,7 +17,7 @@
             }
             return true;
         }
-    </script>
+    </script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
     <div id="content" style="margin: auto; width: 50%;height: 100%; background-color: lightgray; padding: 20px; border: 5px ridge; border-style: ridge;">
@@ -207,15 +208,15 @@
         <asp:ValidationSummary ID="Subscribe_Validation" runat="server" ValidationGroup="Subscribe_Validation" />
             </div>
             <div id="right_bottom_content">
-                <table c>
+                <table>
                     <tr>
                         <td>
-                            <asp:Image ID="IMG_Avatar" ImageAlign="Right" Width="200" runat="server" ImageUrl="~/Images/Anonymous.png" />
+                            <asp:Image ID="IMG_Avatar" ImageAlign="Right" ClientIDMode="Static" runat="server" />
                         </td>
                     </tr>
                     <tr>
                         <td id="Lefty">
-                            <asp:FileUpload ID="AvatarUpload" onchange="PreLoadImage();" runat="server"></asp:FileUpload>
+                            <asp:FileUpload ID="AvatarUpload" onchange="PreLoadImage();" runat="server" ClientIDMode="Static"/>
                         </td>
                     </tr>
                 </table>

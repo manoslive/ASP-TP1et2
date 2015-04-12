@@ -68,6 +68,7 @@
       <DependentUpon>MainBD.mdf</DependentUpon>
     </Content>
     <Content Include="ChatRoom.aspx" />
+    <Content Include="ClientFormUtilities.js" />
     <Content Include="Index.aspx" />
     <Content Include="LoginsJournal.aspx" />
     <Content Include="Main.Master" />

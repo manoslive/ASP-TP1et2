@@ -29,3 +29,8 @@
 #Lefty{
     text-align:left;
 }
+
+#IMG_Avatar {
+    height: 150px;
+    width: 150px;
+}

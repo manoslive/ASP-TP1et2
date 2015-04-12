@@ -19,5 +19,16 @@ namespace TP1_Env.Graphique
         {
             Session["StartTime"] = DateTime.Now;
         }
+        protected void Session_End(object sender, EventArgs e)
+        {
+            if ((TableLogins)Session["Utilisateur"] != null)
+            {
+                ////////////////////// TODO /////////////////////
+                /// Mettre à jour ici la date/heure de logoff ///
+                /////////////////////////////////////////////////
+                ((TableLogins)Session["Utilisateur"]).Update();
+                ((TableLogins)Session["Utilisateur"]).EndQuerySQL();
+            }
+        }
     }
 }
