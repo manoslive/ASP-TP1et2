@@ -20,7 +20,7 @@
     </script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
-    <div id="content" style="margin: auto; width: 50%;height: 100%; background-color: lightgray; padding: 20px; border: 5px ridge; border-style: ridge;">
+    <div id="content">
         <div id="left_content" class="left_content"">
             <table>
                 <tr>
@@ -145,13 +145,18 @@
                     </td>
                     <td></td>
                 </tr>
-            </table>
-            <br />
-            <asp:ValidationSummary ID="ValidationSummary" runat="server"
+                <tr>
+                    <td>
+                <asp:ValidationSummary ID="ValidationSummary" runat="server"
                 HeaderText="Sommaire des erreurs <hr/>"
                 DisplayMode="BulletList"
                 EnableClientScript="true"
                 ValidationGroup="VG_Login" />
+                    &nbsp;
+                        </td>
+                </tr>
+            </table>
+            <br />
         </div>
         <div id="right_content">
             <div id="right_top_content">
