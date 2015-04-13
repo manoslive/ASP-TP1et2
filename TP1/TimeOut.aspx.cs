@@ -15,6 +15,7 @@ namespace TP1_Env.Graphique
         }
         public void BTN_Login_Click(object sender, EventArgs e)
         {
+            Session["StartTime"] = DateTime.Now;
             Response.Redirect("Login.aspx");     
         }
     }

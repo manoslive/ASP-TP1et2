@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="Main.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
-    <div style="margin: auto; width: 300px; background-color: lightgray; padding: 20px; border: 5px ridge; border-style: ridge;">
+    <div style="margin: auto; width: 300px; background-color: lightgray; padding: 15px 10px 0px 10px; border: 5px ridge; border-style: ridge; border-color:#00238c">
         <table>
             <tr>
                 <td>
@@ -30,6 +30,7 @@
                 <td>
                     <asp:TextBox ID="TB_Password" runat="server" CssClass="TextBox" TextMode="Password"></asp:TextBox>
                 </td>
+                
                 <td>
                     <asp:RequiredFieldValidator ID="RFV_TB_Password" runat="server"
                         Text="!"
