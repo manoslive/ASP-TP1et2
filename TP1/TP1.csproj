@@ -70,8 +70,10 @@
     <Content Include="ChatRoom.aspx" />
     <Content Include="ClientFormUtilities.js" />
     <Content Include="Index.aspx" />
+    <Content Include="Index.css" />
     <Content Include="Login.css" />
     <Content Include="LoginsJournal.aspx" />
+    <Content Include="LoginsJournal.css" />
     <Content Include="Main.Master" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -89,6 +91,7 @@
     <Content Include="Main.css" />
     <Content Include="Profil.aspx" />
     <Content Include="Room.aspx" />
+    <Content Include="Room.css" />
     <Content Include="ThreadsManager.aspx" />
     <Content Include="TimeOut.aspx" />
     <Content Include="Web.config" />

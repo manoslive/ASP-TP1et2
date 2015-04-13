@@ -1,20 +1,4 @@
-﻿.mainDiv{
-    margin: auto; 
-    width: 300px; 
-    background-color: lightgray; 
-    padding: 15px 10px 0px 10px; 
-    border: 5px ridge; 
-    border-style: ridge; 
-    border-color:#00238c
-}
-.textbox, input.ident, input.masked {
-    width: 124px;
-    height: 16px;
-    padding: 2px;
-    font-size: 14px;
-}
-
-.submitBTN {
+﻿.submitBTN {
 	-moz-box-shadow: 0px 0px 0px 2px #5873bf;
 	-webkit-box-shadow: 0px 0px 0px 2px #5873bf;
 	box-shadow: 0px 0px 0px 2px #5873bf;
@@ -38,7 +22,7 @@
 	padding:2px 26px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #0d286b;
-    width: 70%;
+    width: 10% !important;
 }
 .submitBTN:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #619de6), color-stop(1, #033ea3));
@@ -53,4 +37,10 @@
 .submitBTN:active {
 	position:relative;
 	top:1px;
+}
+.panelLogs{
+    border:5px solid black;
+    overflow:auto;
+    width:80%;
+    height:80%;
 }
