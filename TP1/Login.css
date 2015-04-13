@@ -3,9 +3,10 @@
     width: 300px; 
     background-color: lightgray; 
     padding: 15px 10px 0px 10px; 
-    border: 5px ridge; 
-    border-style: ridge; 
-    border-color:#00238c
+    border-radius: 11px 11px 11px 11px;
+    -moz-border-radius: 11px 11px 11px 11px;
+    -webkit-border-radius: 11px 11px 11px 11px;
+    border: 5px double #120096;
 }
 .textbox, input.ident, input.masked {
     width: 124px;
