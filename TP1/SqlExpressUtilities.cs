@@ -487,7 +487,7 @@ namespace SqlExpressUtilities
                             {
                                 // construction spécialisée du contenu d'une cellule
                                 // définie dans les sous classes
-                                //td.Controls.Add(CellsContentDelegate[fieldIndex]());///////////jai mis ca en commentaire pour le faire fonctionner
+                                td.Controls.Add(CellsContentDelegate[fieldIndex]());///////////jai mis ca en commentaire pour le faire fonctionner
                             }                                                                   //il n'aime pas les id
                             else
                             {

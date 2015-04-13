@@ -27,5 +27,9 @@ namespace TP1_Env.Graphique
         {
             UpdateRecord(ID, User_ID, Login_Date, Logout_Date, IP);
         }
+        public void SelectAllLogs()
+        {
+            SelectAll();
+        }
     }
 }
