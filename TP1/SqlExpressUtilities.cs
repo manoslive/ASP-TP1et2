@@ -256,7 +256,14 @@ namespace SqlExpressUtilities
                 Next();
             return reader.HasRows;
         }
-
+        public bool SelectLogs(long UserID, DateTime Login, DateTime Logout, string IP)
+        {
+            string sql = "SELECT USER_ID, LOGIN_DATE, LOGOUT_DATE, IP FROM " + SQLTableName;
+            QuerySQL(sql);
+            if (reader.HasRows)
+                Next();
+            return reader.HasRows;
+        }
         public bool SelectByFieldName(String FieldName, object value)
         {
             string SQL = "SELECT * FROM " + SQLTableName + " WHERE " + FieldName + " = ";

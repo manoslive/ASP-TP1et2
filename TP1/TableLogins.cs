@@ -33,7 +33,7 @@ namespace TP1_Env.Graphique
         }
         public void SelectAllLogs()
         {
-
+            SelectLogs(User_ID, Login_Date, Logout_Date, IP);
         }
     }
 }
