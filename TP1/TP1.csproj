@@ -70,6 +70,7 @@
     <Content Include="ChatRoom.aspx" />
     <Content Include="ClientFormUtilities.js" />
     <Content Include="Index.aspx" />
+    <Content Include="Login.css" />
     <Content Include="LoginsJournal.aspx" />
     <Content Include="Main.Master" />
     <Content Include="packages.config" />

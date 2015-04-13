@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="TP1_Env.Graphique.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="Main.css" />
+    <link rel="stylesheet" href="Login.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
     <div style="margin: auto; width: 300px; background-color: lightgray; padding: 15px 10px 0px 10px; border: 5px ridge; border-style: ridge; border-color:#00238c">
