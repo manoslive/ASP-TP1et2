@@ -145,14 +145,13 @@
                     </td>
                     <td></td>
                 </tr>
-                            <asp:ValidationSummary ID="ValidationSummary" runat="server"
+            </table>
+            <br />
+            <asp:ValidationSummary ID="ValidationSummary" runat="server"
                 HeaderText="Sommaire des erreurs <hr/>"
                 DisplayMode="BulletList"
                 EnableClientScript="true"
                 ValidationGroup="VG_Login" />
-            </table>
-            <br />
-
         </div>
         <div id="right_content">
             <div id="right_top_content">
