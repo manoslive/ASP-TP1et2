@@ -507,7 +507,11 @@ namespace SqlExpressUtilities
                                     td.CssClass = "numeric";
                                 }
                                 else
-                                    if (type == typeof(DateTime))
+                                    if (FieldsValues[fieldIndex].ToString() == "True")
+                                        td.Text = "<img src=\"/Images/OnLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">";
+                                    else if (FieldsValues[fieldIndex].ToString() == "False")
+                                        td.Text = "<img src=\"/Images/OffLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">";
+                                    else if (type == typeof(DateTime))
                                         td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToString(); //.ToShortDateString()
                                     else
                                         td.Text = SQLHelper.FromSql(FieldsValues[fieldIndex]);
