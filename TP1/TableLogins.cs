@@ -31,9 +31,14 @@ namespace TP1_Env.Graphique
         {
             UpdateRecord(ID, User_ID, Login_Date, Logout_Date, IP);
         }
-        public void SelectAllLogs()
+        public void SelectAllLogs() //Test , n'est pas utilisé
         {
             SelectLogs(User_ID, Login_Date, Logout_Date, IP);
+        }
+        public override void InitColumnsVisibility()
+        {
+            base.InitColumnsVisibility();
+            SetColumnVisibility("Id",false);
         }
     }
 }

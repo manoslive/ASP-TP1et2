@@ -31,7 +31,7 @@ namespace TP1_Env.Graphique
         protected void AfficherGridView()
         {
             TableLogins table = new TableLogins((String)Application["MainBD"], this);
-            table.SelectAllLogs();
+            table.SelectAll();
             table.MakeGridView(PN_GridView, "");
             table.EndQuerySQL();
         }

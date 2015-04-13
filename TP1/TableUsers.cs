@@ -49,5 +49,10 @@ namespace TP1_Env.Graphique
             FieldsNames.Add("Enligne");
             UpdateRecord(ID, Enligne);
         }
+        public override void InitColumnsVisibility()
+        {
+            base.InitColumnsVisibility();
+            SetColumnVisibility("Id", false);
+        }
     }
 }
