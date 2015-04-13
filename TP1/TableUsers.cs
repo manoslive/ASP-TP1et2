@@ -10,7 +10,7 @@ namespace TP1_Env.Graphique
     public class TableUsers : SqlExpressWrapper
     {
         public long ID { get; set; }
-        public int Online { get; set; }
+        public bool Enligne { get; set; }
         public String Fullname { get; set; }
         public String Username { get; set; }
         public String Password { get; set; }
@@ -42,6 +42,12 @@ namespace TP1_Env.Graphique
         {
             string feildName = "USERNAME";
             return SelectByFieldName(feildName, Username);
+        }
+        public void userEnligne()
+        {
+            FieldsNames.Add("ID");
+            FieldsNames.Add("Enligne");
+            UpdateRecord(ID, Enligne);
         }
     }
 }

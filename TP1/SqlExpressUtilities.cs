@@ -501,7 +501,7 @@ namespace SqlExpressUtilities
                                 }
                                 else
                                     if (type == typeof(DateTime))
-                                        td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToShortDateString();
+                                        td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToString(); //.ToShortDateString()
                                     else
                                         td.Text = SQLHelper.FromSql(FieldsValues[fieldIndex]);
                             }
