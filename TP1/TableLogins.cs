@@ -18,7 +18,6 @@ namespace TP1_Env.Graphique
         {
             SQLTableName = "LOGINS";
         }
-
         public override void Insert()
         {
             InsertRecord(User_ID, Login_Date, Logout_Date, IP);
