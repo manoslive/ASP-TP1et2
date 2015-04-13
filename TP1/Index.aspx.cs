@@ -22,6 +22,11 @@ namespace TP1_Env.Graphique
             TableLogins logins = new TableLogins((String)Application["MainBD"], this);
             TableUsers users = (TableUsers)Session["Utilisateur"];
 
+            // Rendre l'usager Offline
+            users.ID = (Int64)Session["USER_ID"];
+            users.Enligne = false;
+            users.userEnligne();
+
             // Insertion du nouveau log
             logins.User_ID = (Int64)Session["USER_ID"];
             logins.Login_Date = (DateTime)Session["USER_LOGIN"];

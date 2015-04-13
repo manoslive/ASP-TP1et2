@@ -27,6 +27,7 @@ namespace TP1_Env.Graphique
 
             // Nous créons ici une instance de TableUsers pour cette session
             Session["Utilisateur"] = new TableUsers((String)Application["MainBD"], this);
+            TableUsers usager = new TableUsers((String)Application["MainBD"], this);
             // Je cherche comment affecter le username à cette session
             // ??????????
 
@@ -56,6 +57,9 @@ namespace TP1_Env.Graphique
                     //((TableUsers)Session["Users"]).Update();
                     Session["StartTime"] = DateTime.Now;
                     Session["USER_LOGIN"] = DateTime.Now;
+                    usager.ID = (Int64)Session["USER_ID"];
+                    usager.Enligne = true;
+                    usager.userEnligne();
                     Response.Redirect("Index.aspx");
                 }
                 else
