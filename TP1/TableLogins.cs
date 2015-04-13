@@ -29,7 +29,7 @@ namespace TP1_Env.Graphique
         }
         public void SelectAllLogs()
         {
-            SelectAll();
+            
         }
     }
 }
