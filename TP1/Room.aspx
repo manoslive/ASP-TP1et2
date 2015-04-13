@@ -4,5 +4,5 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
     <asp:Button ID="BTN_Retour" runat="server" Text="Retour" CssClass="SubmitButton" OnClick="BTN_Retour_Click"/>
-    <asp:Panel ID="PN_GridView" CssClass="gridview" runat="server"/>
+    <asp:Panel ID="PN_GridView" CssClass="panelLogs" runat="server"/>
 </asp:Content>

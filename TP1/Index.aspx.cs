@@ -22,7 +22,7 @@ namespace TP1_Env.Graphique
             TableLogins logins = new TableLogins((String)Application["MainBD"], this);
             TableUsers users = (TableUsers)Session["Utilisateur"];
 
-            // À terminer
+            // Insertion du nouveau log
             logins.User_ID = (Int64)Session["USER_ID"];
             logins.Login_Date = (DateTime)Session["USER_LOGIN"];
             logins.Logout_Date = (DateTime)Session["USER_LOGOUT"];
