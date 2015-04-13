@@ -1,19 +1,19 @@
 ﻿.left_content {
-    width: 50%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
     float: left;
 }
 
 #right_content {
     width: 50%;
-    height: 100%;
-    display:inline-block;
+    /*height: 100%;*/
+    display: inline-block;
 }
 
 #right_top_content {
-    width: 100%;
-    height: 50%;
-    display:inline-block;
+    width: inherit;
+    height: inherit;
+    display: inline-block;
 }
 
 #right_bottom_content {
@@ -21,13 +21,15 @@
 }
 
 #content {
-    width: 75%;
+    width: auto;
     height: 100%;
+    /*width: 75%;*/
+    /*height: 100%;*/
     margin: 0 auto;
 }
 
-#Lefty{
-    text-align:left;
+#Lefty {
+    text-align: left;
 }
 
 #IMG_Avatar {
