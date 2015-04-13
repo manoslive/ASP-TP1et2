@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="Inscription_css.css" />
     <script type="text/javascript" src="ClientFormUtilities.js"></script>
-<%--    <script>
+    <%--    <script>
         function PreLoadImage(e) {
             var imageTarget = document.getElementById("IMG_Avatar");
             var input = document.getElementById("AvatarUpload");
@@ -20,8 +20,8 @@
     </script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
-    <div id="content" style="margin: auto; width: 50%;height: 100%; background-color: lightgray; padding: 20px; border: 5px ridge; border-style: ridge;">
-        <div id="left_content" class="left_content"">
+    <div id="content">
+        <div id="left_content" class="left_content">
             <table>
                 <tr>
                     <td>
@@ -143,69 +143,72 @@
                             CssClass="submitBTN"
                             OnClick="BTN_Annuler_Click" />
                     </td>
+                </tr>
+                <tr>
                     <td></td>
+                    <td>
+                            <asp:ValidationSummary ID="ValidationSummary" runat="server"
+                                HeaderText="Sommaire des erreurs <hr/>"
+                                DisplayMode="BulletList"
+                                EnableClientScript="true"
+                                ValidationGroup="VG_Login" />
+                    </td>
                 </tr>
             </table>
             <br />
-            <asp:ValidationSummary ID="ValidationSummary" runat="server"
-                HeaderText="Sommaire des erreurs <hr/>"
-                DisplayMode="BulletList"
-                EnableClientScript="true"
-                ValidationGroup="VG_Login" />
         </div>
         <div id="right_content">
             <div id="right_top_content">
-        <div>
-            <table>
-                <tr>    
-                    <td colspan="2">
-                        <asp:UpdatePanel ID="PN_Captcha" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
-                        <table>
-                            <tr>
-                                <td>
-                                    &nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <asp:ImageButton    ID="RegenarateCaptcha" runat="server" 
-                                                        ImageUrl="~/Images/RegenerateCaptcha.png" 
-                                                        CausesValidation="False" 
-                                                        onclick="RegenarateCaptcha_Click" 
-                                                        ValidationGroup="Subscribe_Validation" 
-                                                        width="48"
-                                                        ToolTip="Regénérer le captcha..." />  
-                                    </td>
+                <div>
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <asp:UpdatePanel ID="PN_Captcha" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <table>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:ImageButton ID="RegenarateCaptcha" runat="server"
+                                                        ImageUrl="~/Images/RegenerateCaptcha.png"
+                                                        CausesValidation="False"
+                                                        OnClick="RegenarateCaptcha_Click"
+                                                        ValidationGroup="Subscribe_Validation"
+                                                        Width="48"
+                                                        ToolTip="Regénérer le captcha..." />
+                                                </td>
 
-                                    <td>
-                                        <asp:Image ID="IMGCaptcha" imageurl="~/captcha.png" runat="server" />
-                                    </td>
-                                </tr>
-                        </table>
-                        </ContentTemplate>
-                        </asp:UpdatePanel>
-                    </td>      
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <asp:TextBox ID="TB_Captcha" runat="server" MaxLength="5" ></asp:TextBox>
-                        <asp:CustomValidator    ID="CV_Captcha" runat="server" 
-                                                ErrorMessage="Code captcha incorrect!" 
-                                                ValidationGroup="Subscribe_Validation"
-                                                Text="!" 
-                                                ControlToValidate="TB_Captcha" 
-                                                onservervalidate="CV_Captcha_ServerValidate" 
-                                                ValidateEmptyText="True">
-                                                </asp:CustomValidator>
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                </tr>
-            </table>
-        </div>
-        <asp:ValidationSummary ID="Subscribe_Validation" runat="server" ValidationGroup="Subscribe_Validation" />
+                                                <td>
+                                                    <asp:Image ID="IMGCaptcha" ImageUrl="~/captcha.png" runat="server" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <asp:TextBox ID="TB_Captcha" runat="server" MaxLength="5"></asp:TextBox>
+                                <asp:CustomValidator ID="CV_Captcha" runat="server"
+                                    ErrorMessage="Code captcha incorrect!"
+                                    ValidationGroup="Subscribe_Validation"
+                                    Text="!"
+                                    ControlToValidate="TB_Captcha"
+                                    OnServerValidate="CV_Captcha_ServerValidate"
+                                    ValidateEmptyText="True">
+                                </asp:CustomValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+                <asp:ValidationSummary ID="Subscribe_Validation" runat="server" ValidationGroup="Subscribe_Validation" />
             </div>
             <div id="right_bottom_content">
                 <table>
@@ -216,7 +219,7 @@
                     </tr>
                     <tr>
                         <td id="Lefty">
-                            <asp:FileUpload ID="AvatarUpload" onchange="PreLoadImage();" runat="server" ClientIDMode="Static"/>
+                            <asp:FileUpload ID="AvatarUpload" onchange="PreLoadImage();" runat="server" ClientIDMode="Static" />
                         </td>
                     </tr>
                 </table>

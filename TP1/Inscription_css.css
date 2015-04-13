@@ -21,9 +21,18 @@
 }
 
 #content {
+    /*
     width: 75%;
     height: 100%;
     margin: 0 auto;
+    */
+    width: 75%;
+    height:100%;
+    margin: auto; 
+    background-color: lightgray; 
+    padding: 20px; 
+    border: 5px ridge; 
+    border-style: ridge;
 }
 
 #Lefty{
