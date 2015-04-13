@@ -7,13 +7,13 @@
 #right_content {
     width: inherit;
     height: inherit%;
-    display:inline-block;
+    display: inline-block;
 }
 
 #right_top_content {
     width: inherit;
     height: inherit;
-    display:inline-block;
+    display: inline-block;
 }
 
 #right_bottom_content {
@@ -26,17 +26,17 @@
     height: 100%;
     margin: 0 auto;
     */
-    width: 75%;
-    height:100%;
-    margin: auto; 
-    background-color: lightgray; 
-    padding: 20px; 
-    border: 5px ridge; 
+    /*width: 75%;*/
+    /*height: 100%;*/
+    margin: auto;
+    background-color: lightgray;
+    padding: 20px;
+    border: 5px ridge;
     border-style: ridge;
 }
 
-#Lefty{
-    text-align:left;
+#Lefty {
+    text-align: left;
 }
 
 #IMG_Avatar {

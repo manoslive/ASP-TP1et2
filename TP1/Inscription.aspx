@@ -3,21 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="Inscription_css.css" />
     <script type="text/javascript" src="ClientFormUtilities.js"></script>
-    <%--    <script>
-        function PreLoadImage(e) {
-            var imageTarget = document.getElementById("IMG_Avatar");
-            var input = document.getElementById("AvatarUpload");
-            if (imageTarget != null) {
-                var fReader = new FileReader();
-                fReader.readAsDataURL(input.files[0]);
-                fReader.onloadend = function (event) {
-                    // the event.target.result contains the image data 
-                    imageTarget.src = event.target.result;
-                }
-            }
-            return true;
-        }
-    </script>--%>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
     <div id="content">
