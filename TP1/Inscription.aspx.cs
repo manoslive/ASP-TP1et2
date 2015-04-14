@@ -31,6 +31,19 @@ namespace TP1_Env.Graphique
                 table_users.Username = TB_UserName.Text;
                 table_users.Password = TB_Password.Text;
                 table_users.Email = TB_Email.Text;
+                if (AvatarUpload.HasFile)
+                {
+                    String avatarPath = AvatarUpload.FileName;
+                    String avatarMapPath;
+                    avatarMapPath = Server.MapPath(@"\Images\" + avatarPath);
+                    AvatarUpload.SaveAs(avatarMapPath);
+                    IMG_Avatar.ImageUrl = "~/Images/" + avatarPath;
+                    table_users.Avatar = IMG_Avatar.ImageUrl;
+                }
+                else
+                {
+                    table_users.Avatar = "~/Images/Anonymous.png";
+                }
                 table_users.Avatar = IMG_Avatar.ImageUrl;
                 table_users.Insert();
                 Session["StartTime"] = DateTime.Now;
