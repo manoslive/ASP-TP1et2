@@ -15,214 +15,216 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             ((Image)Master.FindControl("PB_Avatar")).ImageUrl = (String)Session["Avatar"];
             AfficherMessages();
+            AfficherUtilisateursParticipants();
+            AfficherBoutonsSujet();
 
         }
         private void AfficherBoutonsSujet()
         {
-            //TableThreadsAccess access = new TableThreadsAccess((String)Application["MainDB"], this);
-            //TableThreads thread = new TableThreads((String)Application["MainBD"], this);
+            TableThreadsAccess access = new TableThreadsAccess((String)Application["MainDB"], this);
+            TableThreads thread = new TableThreads((String)Application["MainBD"], this);
 
-            //Table table = new Table();
-            //TableRow tr;
-            //TableCell td;
+            Table table = new Table();
+            TableRow tr;
+            TableCell td;
 
-            //if (access.SelectByFieldName("USER_ID", ((TableUsers)Session["User"]).ID))
-            //{
+            if (access.SelectByFieldName("USER_ID", ((TableUsers)Session["User"]).ID))
+            {
 
-            //    do
-            //    {
-            //        thread.SelectByID(access.Threads_ID.ToString());
-            //        thread.EndQuerySQL();
+                do
+                {
+                    thread.SelectByID(access.Threads_ID.ToString());
+                    thread.EndQuerySQL();
 
-            //        tr = new TableRow();
-            //        td = new TableCell();
+                    tr = new TableRow();
+                    td = new TableCell();
 
-            //        Button btn = new Button();
-            //        btn.ID = "ThreadButton_" + thread.ID.ToString();
-            //        btn.Text = thread.Title;
-            //        btn.Click += BTN_Thread_Click;
-            //        td.Controls.Add(btn);
-            //        tr.Cells.Add(td);
+                    Button btn = new Button();
+                    btn.ID = "ThreadButton_" + thread.ID.ToString();
+                    btn.Text = thread.Title;
+                    btn.Click += BTN_Thread_Click;
+                    td.Controls.Add(btn);
+                    tr.Cells.Add(td);
 
-            //        table.Rows.Add(tr);
-            //    } while (access.Next());
-            //}
+                    table.Rows.Add(tr);
+                } while (access.Next());
+            }
 
 
-            //access.EndQuerySQL();
+            access.EndQuerySQL();
 
-            //access.SelectByFieldName("USER_ID", 0);
+            access.SelectByFieldName("USER_ID", 0);
 
-            //do
-            //{
-            //    thread.SelectByID(access.Threads_ID.ToString());
-            //    thread.EndQuerySQL();
+            do
+            {
+                thread.SelectByID(access.Threads_ID.ToString());
+                thread.EndQuerySQL();
 
-            //    tr = new TableRow();
-            //    td = new TableCell();
+                tr = new TableRow();
+                td = new TableCell();
 
-            //    Button btn = new Button();
-            //    btn.ID = "ThreadButton_" + thread.ID.ToString();
-            //    btn.Text = thread.Title;
-            //    btn.Click += BTN_Thread_Click;
-            //    td.Controls.Add(btn);
-            //    tr.Cells.Add(td);
+                Button btn = new Button();
+                btn.ID = "ThreadButton_" + thread.ID.ToString();
+                btn.Text = thread.Title;
+                btn.Click += BTN_Thread_Click;
+                td.Controls.Add(btn);
+                tr.Cells.Add(td);
 
-            //    table.Rows.Add(tr);
-            //} while (access.Next());
+                table.Rows.Add(tr);
+            } while (access.Next());
 
-            //access.EndQuerySQL();
-            //PN_Threads.Controls.Clear();
-            //PN_Threads.Controls.Add(table);
+            access.EndQuerySQL();
+            PN_Threads.Controls.Clear();
+            PN_Threads.Controls.Add(table);
         }
         private void AfficherTousUtilisateurs()
         {
-            //TableUsers users = new TableUsers((String)Application["MainBD"], this);
-            //users.SelectAll("ONLINE DESC");
+            TableUsers users = new TableUsers((String)Application["MainBD"], this);
+            users.SelectAll("ONLINE DESC");
 
-            //Table table = new Table();
-            //TableRow tr;
-            //TableCell td;
+            Table table = new Table();
+            TableRow tr;
+            TableCell td;
 
-            //while (users.Next())
-            //{
-            //    tr = new TableRow();
-            //    td = new TableCell();
+            while (users.Next())
+            {
+                tr = new TableRow();
+                td = new TableCell();
 
-            //    Image img = new Image();
-            //    img.Height = img.Width = 25;
-            //    // img.ImageUrl = users.EnLigne != 0 ? "~/Images/OnLine.png" : "~/Images/OffLine.png";
-            //    td.Controls.Add(img);
-            //    tr.Cells.Add(td);
+                Image img = new Image();
+                img.Height = img.Width = 25;
+                img.ImageUrl = users.Enligne != false ? "~/Images/OnLine.png" : "~/Images/OffLine.png";
+                td.Controls.Add(img);
+                tr.Cells.Add(td);
 
-            //    td = new TableCell();
-            //    img = new Image();
-            //    img.Height = img.Width = 25;
-            //    img.ImageUrl = users.Avatar != "" ? "~/Avatars/" + users.Avatar + ".png" : "~/Images/Anonymous.png";
-            //    td.Controls.Add(img);
-            //    tr.Cells.Add(td);
+                td = new TableCell();
+                img = new Image();
+                img.Height = img.Width = 25;
+                img.ImageUrl = users.Avatar != "" ? "~/Avatars/" + users.Avatar + ".png" : "~/Images/Anonymous.png";
+                td.Controls.Add(img);
+                tr.Cells.Add(td);
 
-            //    td = new TableCell();
-            //    td.Text = users.Fullname;
-            //    tr.Cells.Add(td);
+                td = new TableCell();
+                td.Text = users.Fullname;
+                tr.Cells.Add(td);
 
-            //    table.Rows.Add(tr);
-            //}
+                table.Rows.Add(tr);
+            }
 
-            //users.EndQuerySQL();
-            //PN_Users.Controls.Clear();
-            //PN_Users.Controls.Add(table);
+            users.EndQuerySQL();
+            PN_Users.Controls.Clear();
+            PN_Users.Controls.Add(table);
         }
-        private void AfficherUtilisateursInvites()
+        private void AfficherUtilisateursParticipants()
         {
-            //TableThreadsAccess access = new TableThreadsAccess((String)Application["MainBD"], this);
-            //if (Session["CurrentThread"] != null &&
-            //    access.SelectByFieldName("THREAD_ID", (String)Session["CurrentThread"]))
-            //{
-            //    access.EndQuerySQL();
+            TableThreadsAccess access = new TableThreadsAccess((String)Application["MainBD"], this);
+            if (Session["CurrentThread"] != null &&
+                access.SelectByFieldName("THREAD_ID", (String)Session["CurrentThread"]))
+            {
+                access.EndQuerySQL();
 
-            //    if (access.User_ID == 0)
-            //        AfficherTousUtilisateurs();
-            //    else
-            //        AfficherUtilisateur();
-            //}
+                if (access.User_ID == 0)
+                    AfficherTousUtilisateurs();
+                else
+                    AfficherUtilisateur();
+            }
         }
         private void AfficherUtilisateur()
         {
-            //TableThreadsAccess access = new TableThreadsAccess((String)Application["MainDB"], this);
-            //access.SelectByFieldName("THREAD_ID", (String)Session["CurrentThread"]);
+            TableThreadsAccess access = new TableThreadsAccess((String)Application["MainDB"], this);
+            access.SelectByFieldName("THREAD_ID", (String)Session["CurrentThread"]);
 
 
-            //TableUsers users = new TableUsers((String)Application["MainDB"], this);
+            TableUsers users = new TableUsers((String)Application["MainDB"], this);
 
-            //Table table = new Table();
-            //TableRow tr;
-            //TableCell td;
+            Table table = new Table();
+            TableRow tr;
+            TableCell td;
 
-            //do
-            //{
-            //    users.SelectByID(access.User_ID.ToString());
-            //    users.EndQuerySQL();
+            do
+            {
+                users.SelectByID(access.User_ID.ToString());
+                users.EndQuerySQL();
 
-            //    tr = new TableRow();
-            //    td = new TableCell();
+                tr = new TableRow();
+                td = new TableCell();
 
-            //    Image img = new Image();
-            //    img.Height = img.Width = 25;
-            //    img.ImageUrl = users.EnLigne != false ? "~/Images/OnLine.png" : "~/Images/OffLine.png";
-            //    td.Controls.Add(img);
-            //    tr.Cells.Add(td);
+                Image img = new Image();
+                img.Height = img.Width = 25;
+                img.ImageUrl = users.Enligne != false ? "~/Images/OnLine.png" : "~/Images/OffLine.png";
+                td.Controls.Add(img);
+                tr.Cells.Add(td);
 
-            //    td = new TableCell();
-            //    img = new Image();
-            //    img.Height = img.Width = 25;
-            //    img.ImageUrl = users.Avatar != "" ? "~/Avatars/" + users.Avatar + ".png" : "~/Images/Anonymous.png";
-            //    td.Controls.Add(img);
-            //    tr.Cells.Add(td);
+                td = new TableCell();
+                img = new Image();
+                img.Height = img.Width = 25;
+                img.ImageUrl = users.Avatar != "" ? "~/Avatars/" + users.Avatar + ".png" : "~/Images/Anonymous.png";
+                td.Controls.Add(img);
+                tr.Cells.Add(td);
 
-            //    td = new TableCell();
-            //    td.Text = users.Fullname;
-            //    tr.Cells.Add(td);
+                td = new TableCell();
+                td.Text = users.Fullname;
+                tr.Cells.Add(td);
 
-            //    table.Rows.Add(tr);
-            //} while (access.Next());
+                table.Rows.Add(tr);
+            } while (access.Next());
 
-            //access.EndQuerySQL();
-            //PN_Users.Controls.Clear();
-            //PN_Users.Controls.Add(table);
+            access.EndQuerySQL();
+            PN_Users.Controls.Clear();
+            PN_Users.Controls.Add(table);
         }
         private void AfficherMessages()
         {
-            //TableThreadsMessages messages = new TableThreadsMessages((String)Application["MainDB"], this);
-            //if (Session["CurrentThread"] != null &&
-            //    messages.SelectByFieldName("THREAD_ID", (String)Session["CurrentThread"]))
-            //{
-            //    TableUsers user = new TableUsers((String)Application["MainBD"], this);
+            TableThreadsMessages messages = new TableThreadsMessages((String)Application["MainDB"], this);
+            if (Session["CurrentThread"] != null &&
+                messages.SelectByFieldName("THREAD_ID", (String)Session["CurrentThread"]))
+            {
+                TableUsers user = new TableUsers((String)Application["MainBD"], this);
 
-            //    Table table = new Table();
-            //    TableRow tr;
-            //    TableCell td;
+                Table table = new Table();
+                TableRow tr;
+                TableCell td;
 
-            //    do
-            //    {
-            //        tr = new TableRow();
-            //        td = new TableCell();
+                do
+                {
+                    tr = new TableRow();
+                    td = new TableCell();
 
-            //        user.SelectByID(messages.User_ID.ToString());
+                    user.SelectByID(messages.User_ID.ToString());
 
-            //        // Avatar
-            //        Image img = new Image();
-            //        img.ImageUrl = user.Avatar != "" ? "~/Avatars/" + user.Avatar + ".png" : "~/Images/Anonymous.png";
-            //        img.Width = img.Height = 40;
-            //        td.Controls.Add(img);
-            //        tr.Cells.Add(td);
+                    // Avatar
+                    Image img = new Image();
+                    img.ImageUrl = user.Avatar != "" ? "~/Avatars/" + user.Avatar + ".png" : "~/Images/Anonymous.png";
+                    img.Width = img.Height = 40;
+                    td.Controls.Add(img);
+                    tr.Cells.Add(td);
 
-            //        // Nom et Date
-            //        td = new TableCell();
-            //        string date = messages.Date_Of_Creation.ToShortDateString() + " " + messages.Date_Of_Creation.ToShortTimeString();
-            //        string content = user.Fullname + "<br/>" + date + "<br/>";
-            //        td.Controls.Add(new LiteralControl(content));
-            //        tr.Cells.Add(td);
+                    // Nom et Date
+                    td = new TableCell();
+                    string date = messages.Date_Of_Creation.ToShortDateString() + " " + messages.Date_Of_Creation.ToShortTimeString();
+                    string content = user.Fullname + "<br/>" + date + "<br/>";
+                    td.Controls.Add(new LiteralControl(content));
+                    tr.Cells.Add(td);
 
-            //        // Edit buttons
-            //        td = new TableCell();
-            //        if (user.ID == ((TableUsers)Session["User"]).ID)
-            //        {
-            //            td.Controls.Add(CreerBoutonDelete(messages.ID.ToString()));
-            //        }
-            //        tr.Cells.Add(td);
+                    // Edit buttons
+                    td = new TableCell();
+                    if (user.ID == ((TableUsers)Session["User"]).ID)
+                    {
+                        td.Controls.Add(CreerBoutonDelete(messages.ID.ToString()));
+                    }
+                    tr.Cells.Add(td);
 
-            //        // Message
-            //        td = new TableCell();
-            //        td.Text = messages.Message;
-            //        tr.Cells.Add(td);
+                    // Message
+                    td = new TableCell();
+                    td.Text = messages.Message;
+                    tr.Cells.Add(td);
 
-            //        table.Rows.Add(tr);
-            //    } while (messages.Next());
+                    table.Rows.Add(tr);
+                } while (messages.Next());
 
-            //    PN_Messages.Controls.Clear();
-            //    PN_Messages.Controls.Add(table);
-            //}
+                PN_Messages.Controls.Clear();
+                PN_Messages.Controls.Add(table);
+            }
         }
         private void EnvoyerMessage()
         {
@@ -235,61 +237,61 @@ namespace TP1_Env.Graphique
         }
         private void AfficherBoutonSujet()
         {
-            //TableThreadsAccess access = new TableThreadsAccess((String)Application["MainBD"], this);
-            //TableThreads thread = new TableThreads((String)Application["MainBD"], this);
+            TableThreadsAccess access = new TableThreadsAccess((String)Application["MainBD"], this);
+            TableThreads thread = new TableThreads((String)Application["MainBD"], this);
 
-            //Table table = new Table();
-            //TableRow tr;
-            //TableCell td;
+            Table table = new Table();
+            TableRow tr;
+            TableCell td;
 
-            //if (access.SelectByFieldName("USER_ID", ((TableUsers)Session["User"]).ID))
-            //{
+            if (access.SelectByFieldName("USER_ID", ((TableUsers)Session["User"]).ID))
+            {
 
-            //    do
-            //    {
-            //        thread.SelectByID(access.Threads_ID.ToString());
-            //        thread.EndQuerySQL();
+                do
+                {
+                    thread.SelectByID(access.Threads_ID.ToString());
+                    thread.EndQuerySQL();
 
-            //        tr = new TableRow();
-            //        td = new TableCell();
+                    tr = new TableRow();
+                    td = new TableCell();
 
-            //        Button btn = new Button();
-            //        btn.ID = "ThreadButton_" + thread.ID.ToString();
-            //        btn.Text = thread.Title;
-            //        btn.Click += BTN_Thread_Click;
-            //        td.Controls.Add(btn);
-            //        tr.Cells.Add(td);
+                    Button btn = new Button();
+                    btn.ID = "ThreadButton_" + thread.ID.ToString();
+                    btn.Text = thread.Title;
+                    btn.Click += BTN_Thread_Click;
+                    td.Controls.Add(btn);
+                    tr.Cells.Add(td);
 
-            //        table.Rows.Add(tr);
-            //    } while (access.Next());
-            //}
+                    table.Rows.Add(tr);
+                } while (access.Next());
+            }
 
 
-            //access.EndQuerySQL();
+            access.EndQuerySQL();
 
-            //access.SelectByFieldName("USER_ID", 0);
+            access.SelectByFieldName("USER_ID", 0);
 
-            //do
-            //{
-            //    thread.SelectByID(access.Threads_ID.ToString());
-            //    thread.EndQuerySQL();
+            do
+            {
+                thread.SelectByID(access.Threads_ID.ToString());
+                thread.EndQuerySQL();
 
-            //    tr = new TableRow();
-            //    td = new TableCell();
+                tr = new TableRow();
+                td = new TableCell();
 
-            //    Button btn = new Button();
-            //    btn.ID = "ThreadButton_" + thread.ID.ToString();
-            //    btn.Text = thread.Title;
-            //    btn.Click += BTN_Thread_Click;
-            //    td.Controls.Add(btn);
-            //    tr.Cells.Add(td);
+                Button btn = new Button();
+                btn.ID = "ThreadButton_" + thread.ID.ToString();
+                btn.Text = thread.Title;
+                btn.Click += BTN_Thread_Click;
+                td.Controls.Add(btn);
+                tr.Cells.Add(td);
 
-            //    table.Rows.Add(tr);
-            //} while (access.Next());
+                table.Rows.Add(tr);
+            } while (access.Next());
 
-            //access.EndQuerySQL();
-            //PN_Threads.Controls.Clear();
-            //PN_Threads.Controls.Add(table);
+            access.EndQuerySQL();
+            PN_Threads.Controls.Clear();
+            PN_Threads.Controls.Add(table);
         }
         protected void TimerChatroom_Tick(object sender, EventArgs e)
         {
@@ -297,29 +299,29 @@ namespace TP1_Env.Graphique
         }
         private ImageButton CreerBoutonDelete(String messageId)
         {
-            //ImageButton btn = new ImageButton();
+            ImageButton btn = new ImageButton();
             btn.ID = "BTN_Delete_" + messageId;
             btn.ImageUrl = @"~/Images/delete.jpg";
             btn.Width = btn.Height = 26;
             btn.Click += BTN_Delete_Click;
 
-            //return btn;
+            return btn;
         }
         protected void BTN_Thread_Click(object sender, EventArgs e)
         {
-            //String threadId = ((Button)sender).ID;
+            String threadId = ((Button)sender).ID;
 
-            //threadId = threadId.Replace("ThreadButton_", "");
+            threadId = threadId.Replace("ThreadButton_", "");
 
-            //Session["CurrentThread"] = threadId;
+            Session["CurrentThread"] = threadId;
 
-            //TableThreads thread = new TableThreads((String)Application["MainBD"], this);
-            //thread.SelectByID(threadId);
-            //LBL_Title.Text = thread.Title;
-            //thread.EndQuerySQL();
+            TableThreads thread = new TableThreads((String)Application["MainBD"], this);
+            thread.SelectByID(threadId);
+            LBL_Title.Text = thread.Title;
+            thread.EndQuerySQL();
 
-            //AfficherMessages();
-            //AfficherUtilisateursInvites();
+            AfficherMessages();
+            AfficherUtilisateursParticipants();
         }
         protected void BTN_Back_Click(object sender, EventArgs e)
         {

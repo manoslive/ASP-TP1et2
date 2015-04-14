@@ -60,7 +60,7 @@ namespace TP1_Env.Graphique
         {
             FieldsNames.Add("ID");
             FieldsNames.Add("Enligne");
-            UpdateRecord(ID, EnLigne);
+            UpdateRecord(ID, Enligne);
         }
         public override void InitColumnsVisibility()
         {
