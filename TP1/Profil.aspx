@@ -165,7 +165,7 @@
                     </tr>
                     <tr>
                         <td id="Lefty">
-                            <asp:FileUpload ID="AvatarUpload" onchange="PreLoadImage();" runat="server"></asp:FileUpload>
+                            <asp:FileUpload ID="AvatarUpload" onchange="PreLoadImage();" runat="server" ClientIDMode="Static"></asp:FileUpload>
                         </td>
                     </tr>
                 </table>

@@ -10,7 +10,7 @@ namespace TP1_Env.Graphique
     public class TableUsers : SqlExpressWrapper
     {
         public long ID { get; set; }
-        public bool Enligne { get; set; }
+        public bool EnLigne { get; set; }
         public String Fullname { get; set; }
         public String Username { get; set; }
         public String Password { get; set; }
@@ -47,7 +47,7 @@ namespace TP1_Env.Graphique
         {
             FieldsNames.Add("ID");
             FieldsNames.Add("Enligne");
-            UpdateRecord(ID, Enligne);
+            UpdateRecord(ID, EnLigne);
         }
         public override void InitColumnsVisibility()
         {

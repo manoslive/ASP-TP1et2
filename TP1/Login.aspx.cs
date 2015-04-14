@@ -58,7 +58,7 @@ namespace TP1_Env.Graphique
                     Session["StartTime"] = DateTime.Now;
                     Session["USER_LOGIN"] = DateTime.Now;
                     usager.ID = (Int64)Session["USER_ID"];
-                    usager.Enligne = true;
+                    usager.EnLigne = true;
                     usager.userEnligne();
                     Response.Redirect("Index.aspx");
                 }

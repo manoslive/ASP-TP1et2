@@ -24,7 +24,7 @@ namespace TP1_Env.Graphique
 
             // Rendre l'usager Offline
             users.ID = (Int64)Session["USER_ID"];
-            users.Enligne = false;
+            users.EnLigne = false;
             users.userEnligne();
 
             // Insertion du nouveau log
