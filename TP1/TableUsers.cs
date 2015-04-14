@@ -10,7 +10,8 @@ namespace TP1_Env.Graphique
     public class TableUsers : SqlExpressWrapper
     {
         public long ID { get; set; }
-        public bool EnLigne { get; set; }
+        public bool Enligne { get; set; }
+        public bool Room { get; set; }
         public String Fullname { get; set; }
         public String Username { get; set; }
         public String Password { get; set; }
@@ -19,16 +20,28 @@ namespace TP1_Env.Graphique
         public TableUsers(String connexionString, System.Web.UI.Page Page)
             : base(connexionString, Page)
         {
+            Room = false;
             SQLTableName = "USERS";
         }
         public override void GetValues()
         {
+            if(Room)
+            {
+                Enligne = Convert.ToBoolean(FieldsValues[0]);
+                Username = FieldsValues[1];
+                Fullname = FieldsValues[2];
+                Email = FieldsValues[3];
+                Avatar = FieldsValues[4];
+            }
+            else
+            {
             ID = long.Parse(FieldsValues[0]);
             Fullname = FieldsValues[1];
             Username = FieldsValues[2];
             Password = FieldsValues[3];
             Email = FieldsValues[4];
             Avatar = FieldsValues[5];
+        }
         }
         public override void Insert()
         {
@@ -53,6 +66,10 @@ namespace TP1_Env.Graphique
         {
             base.InitColumnsVisibility();
             SetColumnVisibility("Id", false);
+        }
+        public void SelectRoom()
+        {
+            SelectAllRoom();
         }
     }
 }
