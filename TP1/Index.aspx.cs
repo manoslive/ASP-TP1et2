@@ -15,6 +15,7 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             ((Image)Master.FindControl("PB_Avatar")).ImageUrl = (String)Session["Avatar"];
             Session["PAGE"] = "Index";
+            Quitter = true;
         }
         protected void EnregistrementLogin()
         {

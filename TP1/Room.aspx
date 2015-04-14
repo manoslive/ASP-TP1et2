@@ -1,7 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Room.aspx.cs" Inherits="TP1_Env.Graphique.Room" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Room.aspx.cs" Inherits="TP1_Env.Graphique.Room" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="Room.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script lang="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $(window).bind("beforeunload", function () {
+                return confirm("Êtes-vous sur de vouloir quitter la page?");
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
     <div class="room">
