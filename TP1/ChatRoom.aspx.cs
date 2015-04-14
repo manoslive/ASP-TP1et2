@@ -21,8 +21,8 @@ namespace TP1_Env.Graphique
         }
         private void AfficherBoutonsSujet()
         {
-            TableThreadsAccess access = new TableThreadsAccess((String)Application["MainDB"], this);
-            TableThreads thread = new TableThreads((String)Application["MainBD"], this);
+            TableThreadsAccess access = new TableThreadsAccess((String)Application["MainBD"], this);
+             TableThreads thread = new TableThreads((String)Application["MainBD"], this);
 
             Table table = new Table();
             TableRow tr;
@@ -33,7 +33,7 @@ namespace TP1_Env.Graphique
 
                 do
                 {
-                    thread.SelectByID(access.Threads_ID.ToString());
+                    thread.SelectByID(access.Thread_ID.ToString());
                     thread.EndQuerySQL();
 
                     tr = new TableRow();
@@ -57,7 +57,7 @@ namespace TP1_Env.Graphique
 
             do
             {
-                thread.SelectByID(access.Threads_ID.ToString());
+                thread.SelectByID(access.Thread_ID.ToString());
                 thread.EndQuerySQL();
 
                 tr = new TableRow();
@@ -100,7 +100,7 @@ namespace TP1_Env.Graphique
                 td = new TableCell();
                 img = new Image();
                 img.Height = img.Width = 25;
-                img.ImageUrl = users.Avatar != "" ? "~/Avatars/" + users.Avatar + ".png" : "~/Images/Anonymous.png";
+                img.ImageUrl = users.Avatar != "" ? "~/Images/" + users.Avatar + ".png" : "~/Images/Anonymous.png";
                 td.Controls.Add(img);
                 tr.Cells.Add(td);
 
@@ -158,7 +158,7 @@ namespace TP1_Env.Graphique
                 td = new TableCell();
                 img = new Image();
                 img.Height = img.Width = 25;
-                img.ImageUrl = users.Avatar != "" ? "~/Avatars/" + users.Avatar + ".png" : "~/Images/Anonymous.png";
+                img.ImageUrl = users.Avatar != "" ? "~/Images/" + users.Avatar + ".png" : "~/Images/Anonymous.png";
                 td.Controls.Add(img);
                 tr.Cells.Add(td);
 
@@ -175,7 +175,7 @@ namespace TP1_Env.Graphique
         }
         private void AfficherMessages()
         {
-            TableThreadsMessages messages = new TableThreadsMessages((String)Application["MainDB"], this);
+            TableThreadsMessages messages = new TableThreadsMessages((String)Application["MainBD"], this);
             if (Session["CurrentThread"] != null &&
                 messages.SelectByFieldName("THREAD_ID", (String)Session["CurrentThread"]))
             {
@@ -194,7 +194,7 @@ namespace TP1_Env.Graphique
 
                     // Avatar
                     Image img = new Image();
-                    img.ImageUrl = user.Avatar != "" ? "~/Avatars/" + user.Avatar + ".png" : "~/Images/Anonymous.png";
+                    img.ImageUrl = user.Avatar != "" ? "~/Images/" + user.Avatar + ".png" : "~/Images/Anonymous.png";
                     img.Width = img.Height = 40;
                     td.Controls.Add(img);
                     tr.Cells.Add(td);
@@ -249,7 +249,7 @@ namespace TP1_Env.Graphique
 
                 do
                 {
-                    thread.SelectByID(access.Threads_ID.ToString());
+                    thread.SelectByID(access.Thread_ID.ToString());
                     thread.EndQuerySQL();
 
                     tr = new TableRow();
@@ -273,7 +273,7 @@ namespace TP1_Env.Graphique
 
             do
             {
-                thread.SelectByID(access.Threads_ID.ToString());
+                thread.SelectByID(access.Thread_ID.ToString());
                 thread.EndQuerySQL();
 
                 tr = new TableRow();
@@ -301,7 +301,7 @@ namespace TP1_Env.Graphique
         {
             ImageButton btn = new ImageButton();
             btn.ID = "BTN_Delete_" + messageId;
-            btn.ImageUrl = @"~/Images/delete.jpg";
+            btn.ImageUrl = @"~/Images/Delete.bmp";
             btn.Width = btn.Height = 26;
             btn.Click += BTN_Delete_Click;
 
