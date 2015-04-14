@@ -25,23 +25,28 @@ namespace TP1_Env.Graphique
         }
         public override void GetValues()
         {
-            if(Room)
-            {
-                Enligne = Convert.ToBoolean(FieldsValues[0]);
-                Username = FieldsValues[1];
-                Fullname = FieldsValues[2];
-                Email = FieldsValues[3];
-                Avatar = FieldsValues[4];
-            }
-            else
-            {
-            ID = long.Parse(FieldsValues[0]);
-            Fullname = FieldsValues[1];
-            Username = FieldsValues[2];
-            Password = FieldsValues[3];
-            Email = FieldsValues[4];
-            Avatar = FieldsValues[5];
-        }
+            Enligne = Convert.ToBoolean(FieldsValues[0]);
+            Username = FieldsValues[1];
+            Fullname = FieldsValues[2];
+            Email = FieldsValues[3];
+            Avatar = FieldsValues[4];
+            //if(Room)
+            //{
+            //    Enligne = Convert.ToBoolean(FieldsValues[0]);
+            //    Username = FieldsValues[1];
+            //    Fullname = FieldsValues[2];
+            //    Email = FieldsValues[3];
+            //    Avatar = FieldsValues[4];
+            //}
+            //else
+            //{
+            //    ID = long.Parse(FieldsValues[0]);
+            //    Fullname = FieldsValues[1];
+            //    Username = FieldsValues[2];
+            //    Password = FieldsValues[3];
+            //    Email = FieldsValues[4];
+            //    Avatar = FieldsValues[5];
+            //}
         }
         public override void Insert()
         {

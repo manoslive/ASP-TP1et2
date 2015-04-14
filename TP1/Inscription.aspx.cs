@@ -21,6 +21,7 @@ namespace TP1_Env.Graphique
             }
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Inscription...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = "Anomyme";
+            Session["PAGE"] = "Inscription";
         }
         public void BTN_Inscription_Click(object sender, EventArgs e)
         {

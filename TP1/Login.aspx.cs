@@ -16,6 +16,7 @@ namespace TP1_Env.Graphique
         {
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Login...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = "Anomyme";
+            Session["PAGE"] = "Login";
         }
         public void BTN_Login_Click(object sender, EventArgs e)
         {
