@@ -82,8 +82,8 @@ namespace TP1_Env.Graphique
         {
             EMail eMail = new EMail();
 
-            eMail.From = "shaun.11.cooper@gmail.com";
-            eMail.Password = "ShaunCooper11"; // EY! regarde pas mon password ! :D
+            eMail.From = "projetaspmaster@gmail.com";
+            eMail.Password = "0123456789aA"; // EY! regarde pas mon password ! :D
             eMail.SenderName = "Shaun ou Emmanuel";
             eMail.Host = "smtp.gmail.com";
             eMail.HostPort = 587;
