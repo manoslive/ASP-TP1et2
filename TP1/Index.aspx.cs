@@ -20,7 +20,7 @@ namespace TP1_Env.Graphique
             Session["USER_LOGOUT"] = DateTime.Now;
             //TableLogins logins = (TableLogins)Session["Logins"]; //Erreur, sa dit qu'il n'est jamais créé
             TableLogins logins = new TableLogins((String)Application["MainBD"], this);
-            TableUsers users = (TableUsers)Session["Utilisateur"];
+            TableUsers users = (TableUsers)Session["User"];
 
             // Rendre l'usager Offline
             users.ID = (Int64)Session["USER_ID"];
