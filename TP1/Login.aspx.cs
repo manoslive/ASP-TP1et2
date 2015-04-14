@@ -26,7 +26,7 @@ namespace TP1_Env.Graphique
             /////////////////////////////////////////////////
 
             // Nous créons ici une instance de TableUsers pour cette session
-            Session["Utilisateur"] = new TableUsers((String)Application["MainBD"], this);
+            Session["User"] = new TableUsers((String)Application["MainBD"], this);
             TableUsers usager = new TableUsers((String)Application["MainBD"], this);
             // Je cherche comment affecter le username à cette session
             // ??????????
@@ -34,7 +34,7 @@ namespace TP1_Env.Graphique
             // Nous créons une instance de TableLogins pour cette session
             Session["Login"] = new TableLogins((String)Application["MainBD"], this);
 
-            ///////////////////////////////////////Douteux.com//Javou.ca//////////////////////////////////////////
+            ///// TO DO - METTRE DANS LA CLASSE /////
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
             String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
             String sql = @"Select PASSWORD, USERNAME, AVATAR, ID From USERS where UserName = '" + TB_UserName.Text + "'";
@@ -71,7 +71,6 @@ namespace TP1_Env.Graphique
             {
                 Response.Write(ex.Message);
             }
-            //////////////////////////////////////fin de douteux.com//////////////////////////////////////
         }
         public void BTN_Inscription_Click(object sender, EventArgs e)
         {

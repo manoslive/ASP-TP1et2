@@ -35,13 +35,13 @@ namespace TP1_Env.Graphique
             }
             else
             {
-                ID = long.Parse(FieldsValues[0]);
-                Fullname = FieldsValues[1];
-                Username = FieldsValues[2];
-                Password = FieldsValues[3];
-                Email = FieldsValues[4];
-                Avatar = FieldsValues[5];
-            }
+            ID = long.Parse(FieldsValues[0]);
+            Fullname = FieldsValues[1];
+            Username = FieldsValues[2];
+            Password = FieldsValues[3];
+            Email = FieldsValues[4];
+            Avatar = FieldsValues[5];
+        }
         }
         public override void Insert()
         {
