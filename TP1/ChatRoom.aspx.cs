@@ -131,11 +131,11 @@ namespace TP1_Env.Graphique
         }
         private void AfficherUtilisateur()
         {
-            TableThreadsAccess access = new TableThreadsAccess((String)Application["MainDB"], this);
+            TableThreadsAccess access = new TableThreadsAccess((String)Application["MainBD"], this);
             access.SelectByFieldName("THREAD_ID", (String)Session["CurrentThread"]);
 
 
-            TableUsers users = new TableUsers((String)Application["MainDB"], this);
+            TableUsers users = new TableUsers((String)Application["MainBD"], this);
 
             Table table = new Table();
             TableRow tr;
