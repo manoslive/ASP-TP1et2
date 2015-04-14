@@ -3,9 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script lang="javascript" type="text/javascript">
+        var Quit = 1;
+        function VeutQuitter()
+        {
+            Quit = 0;
+        }
+
         $(document).ready(function () {
             $(window).bind("beforeunload", function () {
-                if (Boolean())
+                if (Quit == 1)
                     return confirm("Êtes-vous sur de vouloir quitter la page?");
             });
         });
@@ -18,7 +24,7 @@
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td>
-                    <asp:Button ID="BTN_Profil" runat="server" Text="Gérer votre profil..." class="indexBTN" OnClick="BTN_Profil_Click" />
+                    <asp:Button ID="BTN_Profil" runat="server" Text="Gérer votre profil..." OnClientClick="VeutQuitter()" class="indexBTN" OnClick="BTN_Profil_Click" />
                 </td>
             </tr>
             <tr>

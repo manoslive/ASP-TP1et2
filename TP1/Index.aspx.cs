@@ -20,7 +20,7 @@ namespace TP1_Env.Graphique
                 Server.Transfer("Login.aspx");
 
             Session["PAGE"] = "Index";
-            Quitter = true;
+            
         }
         protected void EnregistrementLogin()
         {
@@ -62,6 +62,7 @@ namespace TP1_Env.Graphique
         protected void BTN_Profil_Click(object sender, EventArgs e)
         {
             Session["StartTime"] = DateTime.Now;
+            
             Response.Redirect("Profil.aspx");
         }
         protected void BTN_Room_Click(object sender, EventArgs e)
