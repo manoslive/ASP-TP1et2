@@ -31,7 +31,7 @@ namespace TP1_Env.Graphique
         protected void AfficherGridView()
         {
             TableLogins table = new TableLogins((String)Application["MainBD"], this);
-            table.ID = (Int64)Session["USER_ID"];
+            table.User_ID = (Int64)Session["USER_ID"];
             table.SelectAllLogs();
             table.MakeGridView(PN_GridView, "");
             table.EndQuerySQL();

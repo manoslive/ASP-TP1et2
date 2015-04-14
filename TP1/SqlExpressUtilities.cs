@@ -258,8 +258,8 @@ namespace SqlExpressUtilities
         }
         public void SelectLogs(long ID)
         {
-            string sql = "SELECT l.USER_ID, l.LOGIN_DATE, l.LOGOUT_DATE, l.IP, u.USERNAME, u.FULLNAME, u.EMAIL, u.AVATAR FROM " + SQLTableName + 
-                         " l INNER JOIN Users u ON l.USER_ID = u.Id where u.Id = " + ID;
+            string sql = "SELECT l.USER_ID, l.LOGIN_DATE, l.LOGOUT_DATE, l.IP, u.USERNAME, u.FULLNAME, u.EMAIL, u.AVATAR FROM " + SQLTableName +
+                         " l INNER JOIN Users u ON l.USER_ID = u.Id where u.Id=" + ID;
             QuerySQL(sql);
         }
         public bool SelectByFieldName(String FieldName, object value)
@@ -494,20 +494,17 @@ namespace SqlExpressUtilities
                         if (ColumnsVisibility[fieldIndex])
                         {
                             TableCell td = new TableCell();
-                            if (CellsContentDelegate[fieldIndex] != null)
-                            {
+                            //if (CellsContentDelegate[fieldIndex] != null)
+                            //{
                                 //Pour les usagers enligne ou horsligne
-                                if (FieldsValues[fieldIndex].ToString() == "True")
-                                    td.Text = "<img src=\"/Images/OnLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">";
-                                else if (FieldsValues[fieldIndex].ToString() == "False")
-                                    td.Text = "<img src=\"/Images/OffLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">";
+
 
                                 // construction spécialisée du contenu d'une cellule
                                 // définie dans les sous classes
                                 //td.Controls.Add(CellsContentDelegate[fieldIndex]());///////////jai mis ca en commentaire pour le faire fonctionner
-                            }                                                                   
-                            else
-                            {
+                            //}                                                                   
+                            //else
+                            //{
                                 Type type = FieldsTypes[fieldIndex];
                                 if (SQLHelper.IsNumericType(type))
                                 {
@@ -517,7 +514,11 @@ namespace SqlExpressUtilities
                                     td.CssClass = "numeric";
                                 }
                                 else
-                                    if(FieldsValues[fieldIndex].StartsWith("~"))
+                                    if (FieldsValues[fieldIndex].ToString() == "True")
+                                        td.Text = "<img src=\"/Images/OnLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">";
+                                    else if (FieldsValues[fieldIndex].ToString() == "False")
+                                        td.Text = "<img src=\"/Images/OffLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">";
+                                    else if(FieldsValues[fieldIndex].StartsWith("~"))
                                     {
                                         image = FieldsValues[fieldIndex].Substring(1, FieldsValues[fieldIndex].Length-1);
                                         td.Text = "<img src=" + image + " alt=Avatar style=width:25px;height:25px; >";
@@ -526,7 +527,7 @@ namespace SqlExpressUtilities
                                         td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToString(); //.ToShortDateString()
                                     else
                                         td.Text = SQLHelper.FromSql(FieldsValues[fieldIndex]);
-                            }
+                            //}
                             tr.Cells.Add(td);
                         }
                         Grid.Rows.Add(tr);
