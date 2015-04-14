@@ -14,6 +14,11 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Accueil...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             ((Image)Master.FindControl("PB_Avatar")).ImageUrl = (String)Session["Avatar"];
+
+            // Empêcher l'accès sans nom d'usager
+            if (Session.IsNewSession)
+                Server.Transfer("Login.aspx");
+
             Session["PAGE"] = "Index";
         }
         protected void EnregistrementLogin()
@@ -72,6 +77,11 @@ namespace TP1_Env.Graphique
         {
             Session["StartTime"] = DateTime.Now;
             Response.Redirect("LoginsJournal.aspx");
+        }
+        protected void BTN_ThreadsManager_Click(object sender, EventArgs e)
+        {
+            Session["StartTime"] = DateTime.Now;
+            Response.Redirect("ThreadsManager.aspx");
         }
         protected void BTN_Deconnection_Click(object sender, EventArgs e)
         {

@@ -29,7 +29,7 @@ namespace TP1_Env.Graphique
             // Nous créons ici une instance de TableUsers pour cette session
             Session["User"] = new TableUsers((String)Application["MainBD"].ToString(), this);
             TableUsers usager = new TableUsers((String)Application["MainBD"], this);
-            ((TableUsers)Session["User"]).SelectByFieldName("USERNAME", TB_UserName.Text);
+            //((TableUsers)Session["User"]).SelectByFieldName("USERNAME", TB_UserName.Text);
             // Je cherche comment affecter le username à cette session
             // ??????????
 
