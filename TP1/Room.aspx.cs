@@ -31,9 +31,11 @@ namespace TP1_Env.Graphique
         protected void AfficherGridView()
         {
             TableUsers table = new TableUsers((String)Application["MainBD"], this);
-            table.SelectAll();
+            table.Room = true;
+            table.SelectRoom();
             table.MakeGridView(PN_GridView, "");//Jai du mettre une ligne en commentaire(dans SQLExpressUtilities) pour que sa fonctionne, a vérifier!
             table.EndQuerySQL();
+            table.Room = false;
         }
     }
 }
