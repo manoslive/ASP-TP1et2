@@ -15,6 +15,7 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Journal des visites...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             ((Image)Master.FindControl("PB_Avatar")).ImageUrl = (String)Session["Avatar"];
+            Session["PAGE"] = "Journal";
 
             // Empêcher l'accès sans nom d'usager
             if (Session.IsNewSession)

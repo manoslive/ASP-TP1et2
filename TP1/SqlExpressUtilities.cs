@@ -240,7 +240,20 @@ namespace SqlExpressUtilities
         // Extraire tous les enregistrements
         public virtual bool SelectAll(string orderBy = "")
         {
-            string sql = "SELECT * FROM " + SQLTableName;
+            string sql = "";
+            if(Page.Session["PAGE"] == "Room")
+            {
+                sql = "SELECT Enligne, Username, Fullname, Email, Avatar FROM " + SQLTableName;
+            }
+            else if(Page.Session["PAGE"] == "Journal")
+            {
+                sql = "SELECT l.USER_ID, l.LOGIN_DATE, l.LOGOUT_DATE, l.IP, u.USERNAME, u.FULLNAME, u.EMAIL, u.AVATAR FROM " + SQLTableName +
+                         " l INNER JOIN Users u ON l.USER_ID = u.Id where u.Id=" + Page.Session["USER_ID"];
+            }
+            else
+            {
+                sql = "SELECT * FROM " + SQLTableName;
+            }
             if (orderBy != "")
                 sql += " ORDER BY " + orderBy;
             QuerySQL(sql);
