@@ -18,7 +18,7 @@
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td>
-                    <asp:Button ID="BTN_Profil" runat="server" Text="Gérer votre profil..." class="indexBTN" OnClick="BTN_Profil_Click"/>
+                    <asp:Button ID="BTN_Profil" runat="server" Text="Gérer votre profil..." class="indexBTN" OnClick="BTN_Profil_Click" />
                 </td>
             </tr>
             <tr>
@@ -27,8 +27,13 @@
                     <asp:Button ID="BTN_Room" runat="server" Text="Usagers en ligne..." class="indexBTN" OnClick="BTN_Room_Click" />
                 </td>
             </tr>
-
-                        <tr>
+            <tr>
+                <td class="auto-style1">&nbsp;</td>
+                <td>
+                    <asp:Button ID="BTN_ThreadsManager" runat="server" Text="Gestion des sujets de conversation" class="indexBTN" OnClick="BTN_ThreadsManager_Click" />
+                </td>
+            </tr>
+            <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td>
                     <asp:Button ID="BTN_ChatRoom" runat="server" Text="Salle de discussion..." class="indexBTN" OnClick="BTN_ChatRoom_Click" />

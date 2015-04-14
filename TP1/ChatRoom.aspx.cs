@@ -17,6 +17,7 @@ namespace TP1_Env.Graphique
             AfficherMessages();
             AfficherUtilisateursParticipants();
             AfficherBoutonsSujet();
+            Session["PAGE"] = "ChatRoom";
 
         }
         private void AfficherBoutonsSujet()
