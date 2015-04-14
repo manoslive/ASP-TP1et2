@@ -33,7 +33,7 @@ namespace TP1_Env.Graphique
         }
         public void SelectAllLogs() //Test , n'est pas utilisé
         {
-            SelectLogs(User_ID, Login_Date, Logout_Date, IP);
+            SelectLogs(User_ID);
         }
         public override void InitColumnsVisibility()
         {

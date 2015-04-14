@@ -256,13 +256,11 @@ namespace SqlExpressUtilities
                 Next();
             return reader.HasRows;
         }
-        public bool SelectLogs(long UserID, DateTime Login, DateTime Logout, string IP)
+        public void SelectLogs(long ID)
         {
-            string sql = "SELECT USER_ID, LOGIN_DATE, LOGOUT_DATE, IP FROM " + SQLTableName;
+            string sql = "SELECT l.USER_ID, l.LOGIN_DATE, l.LOGOUT_DATE, l.IP, u.USERNAME, u.FULLNAME, u.EMAIL, u.AVATAR FROM " + SQLTableName + 
+                         " l INNER JOIN Users u ON l.USER_ID = u.Id where u.Id = " + ID;
             QuerySQL(sql);
-            if (reader.HasRows)
-                Next();
-            return reader.HasRows;
         }
         public bool SelectByFieldName(String FieldName, object value)
         {
