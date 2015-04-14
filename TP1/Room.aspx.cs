@@ -32,9 +32,11 @@ namespace TP1_Env.Graphique
         protected void AfficherGridView()
         {
             TableUsers table = new TableUsers((String)Application["MainBD"], this);
+            table.Room = true;
             table.SelectRoom();
             table.MakeGridView(PN_GridView, "");
             table.EndQuerySQL();
+            table.Room = false;
         }
     }
 }

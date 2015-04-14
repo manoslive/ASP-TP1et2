@@ -139,15 +139,6 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.Button BTN_Annuler;
         
         /// <summary>
-        /// Contrôle ValidationSummary.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
-        
-        /// <summary>
         /// Contrôle PN_Captcha.
         /// </summary>
         /// <remarks>
@@ -193,6 +184,15 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.CustomValidator CV_Captcha;
         
         /// <summary>
+        /// Contrôle RFV_TB_Captcha.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFV_TB_Captcha;
+        
+        /// <summary>
         /// Contrôle Subscribe_Validation.
         /// </summary>
         /// <remarks>
@@ -218,5 +218,14 @@ namespace TP1_Env.Graphique {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload AvatarUpload;
+        
+        /// <summary>
+        /// Contrôle ValidationSummary.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
     }
 }

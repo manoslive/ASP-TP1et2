@@ -25,28 +25,27 @@ namespace TP1_Env.Graphique
         }
         public override void GetValues()
         {
-            Enligne = Convert.ToBoolean(FieldsValues[0]);
-            Username = FieldsValues[1];
-            Fullname = FieldsValues[2];
-            Email = FieldsValues[3];
-            Avatar = FieldsValues[4];
-            //if(Room)
-            //{
-            //    Enligne = Convert.ToBoolean(FieldsValues[0]);
-            //    Username = FieldsValues[1];
-            //    Fullname = FieldsValues[2];
-            //    Email = FieldsValues[3];
-            //    Avatar = FieldsValues[4];
-            //}
-            //else
-            //{
-            //    ID = long.Parse(FieldsValues[0]);
-            //    Fullname = FieldsValues[1];
-            //    Username = FieldsValues[2];
-            //    Password = FieldsValues[3];
-            //    Email = FieldsValues[4];
-            //    Avatar = FieldsValues[5];
-            //}
+            if (Page.Session["PAGE"].ToString() == "Room" || Page.Session["PAGE"].ToString() == "Journal")
+                Room = true;
+            else
+                Room = false;
+            if (Room)
+            {
+                Enligne = Convert.ToBoolean(FieldsValues[0]);
+                Username = FieldsValues[1];
+                Fullname = FieldsValues[2];
+                Email = FieldsValues[3];
+                Avatar = FieldsValues[4];
+            }
+            else
+            {
+                ID = long.Parse(FieldsValues[0]);
+                Fullname = FieldsValues[1];
+                Username = FieldsValues[2];
+                Password = FieldsValues[3];
+                Email = FieldsValues[4];
+                Avatar = FieldsValues[5];
+            }
         }
         public override void Insert()
         {
@@ -65,7 +64,7 @@ namespace TP1_Env.Graphique
         {
             FieldsNames.Add("ID");
             FieldsNames.Add("Enligne");
-            UpdateRecord(ID, Enligne);
+            UpdateRecordEnligne(ID, Enligne);
         }
         public override void InitColumnsVisibility()
         {

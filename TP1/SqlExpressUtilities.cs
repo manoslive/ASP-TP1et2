@@ -241,11 +241,11 @@ namespace SqlExpressUtilities
         public virtual bool SelectAll(string orderBy = "")
         {
             string sql = "";
-            if(Page.Session["PAGE"] == "Room")
+            if(Page.Session["PAGE"].ToString() == "Room")
             {
                 sql = "SELECT Enligne, Username, Fullname, Email, Avatar FROM " + SQLTableName;
             }
-            else if(Page.Session["PAGE"] == "Journal")
+            else if (Page.Session["PAGE"].ToString() == "Journal")
             {
                 sql = "SELECT l.USER_ID, l.LOGIN_DATE, l.LOGOUT_DATE, l.IP, u.USERNAME, u.FULLNAME, u.EMAIL, u.AVATAR FROM " + SQLTableName +
                          " l INNER JOIN Users u ON l.USER_ID = u.Id where u.Id=" + Page.Session["USER_ID"];
@@ -322,7 +322,14 @@ namespace SqlExpressUtilities
 
             return NonQuerySQL(SQL);
         }
-
+        //Permet d'updater le parametre enLigne d'un usager 
+        public int UpdateRecordEnligne(long ID, bool Enligne)
+        {
+            String SQL = "UPDATE " + SQLTableName + " ";
+            SQL += "SET [Enligne] = " + "'" + Enligne +"'";
+            SQL += " WHERE [Id] = " + ID;
+            return NonQuerySQL(SQL);
+        }
         // Met à jour de l'enregistrement courant par le biais des valeurs inscrites dans la liste
         // FieldsValues fournie en paramètre
         public int UpdateRecord(params object[] FieldsValues)

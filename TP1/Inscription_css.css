@@ -1,12 +1,12 @@
 ﻿.left_content {
-    width: inherit;
-    height: inherit;
+    width: 50%;
+    height: 100%;
     float: left;
 }
 
 #right_content {
-    width: inherit;
-    height: inherit;
+    width: 50%;
+    height: 100%;
     display:inline-block;
 }
 
@@ -23,13 +23,15 @@
 #content {
     /*min-height:600px;*/
     /*min-width:600px;*/
-    /*width: 75%;*/
-    /*height:100%;*/
-    margin: 0 auto;
+    width: 55%;
+    height:100%;
+    margin: auto;
     background-color: lightgray;
     padding: 20px;
-    border: 5px ridge; 
-    border-style: ridge;
+    border-radius: 11px 11px 11px 11px;
+    -moz-border-radius: 11px 11px 11px 11px;
+    -webkit-border-radius: 11px 11px 11px 11px;
+    border: 5px double #120096;
 }
 
 #Lefty{
@@ -39,4 +41,7 @@
 #IMG_Avatar {
     height: 150px;
     width: 150px;
+}
+.validationSummary{
+    left:50%;
 }

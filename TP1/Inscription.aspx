@@ -145,7 +145,7 @@
                     </td>
                     <td></td>
                 </tr>
-                <tr>
+<%--                <tr>
                     <td>
                 <asp:ValidationSummary ID="ValidationSummary" runat="server"
                 HeaderText="Sommaire des erreurs <hr/>"
@@ -154,7 +154,7 @@
                 ValidationGroup="VG_Login" />
                     &nbsp;
                         </td>
-                </tr>
+                </tr>--%>
             </table>
             <br />
         </div>
@@ -202,7 +202,16 @@
                                                 ControlToValidate="TB_Captcha" 
                                                 onservervalidate="CV_Captcha_ServerValidate" 
                                                 ValidateEmptyText="True">
-                                                </asp:CustomValidator>
+                        </asp:CustomValidator>
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RFV_TB_Captcha" runat="server"
+                            Text="!"
+                            ErrorMessage="Le captcha est vide!"
+                            ControlToValidate="TB_Captcha"
+                            ValidationGroup="VG_Login"
+                            OnServerValidate="CV_TB_Captcha_ServerValidate">
+                        </asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -228,21 +237,16 @@
             </div>
 
         </div>
+            <table class="validationSummary">
+               <tr>
+                  <td>
+                    <asp:ValidationSummary ID="ValidationSummary" runat="server"
+                                            HeaderText="Sommaire des erreurs <hr/>"
+                                            DisplayMode="BulletList"
+                                            EnableClientScript="true"
+                                            ValidationGroup="VG_Login" />
+                   </td>
+               </tr>
+            </table>
     </div>
-    <%--    <asp:CustomValidator 
-    ID="CV_NomUsager" runat="server" 
-    ErrorMessage="Cet usager n'existe pas!" 
-    ControlToValidate="TB_UserName" 
-    OnServerValidate="CV_UserName_ServerValidate"
-    ValidationGroup="VG_Login"
-    Display="None"
-    > </asp:CustomValidator>
-
-    <asp:CustomValidator 
-    ID="CV_Password" runat="server" 
-    ErrorMessage="Le mot de passe est incorrect!" 
-    ControlToValidate="TB_Password"            
-    ValidationGroup="VG_Login"
-    Display="None" OnServerValidate="CV_Password_ServerValidate"
-    > </asp:CustomValidator>--%>
 </asp:Content>
