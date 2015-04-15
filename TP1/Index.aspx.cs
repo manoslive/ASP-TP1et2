@@ -93,6 +93,7 @@ namespace TP1_Env.Graphique
         {
             EnregistrementLogin();
             Session.Abandon();
+            Response.Redirect("Login.aspx"); //testing
         }
     }
 }
