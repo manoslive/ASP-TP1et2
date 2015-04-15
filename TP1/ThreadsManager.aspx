@@ -2,6 +2,19 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="ThreadsManager_css.css" />
+    <script lang="javascript" type="text/javascript">
+        var Quit = 1;
+        function VeutQuitter() {
+            Quit = 0;
+        }
+
+        $(document).ready(function () {
+            $(window).bind("beforeunload", function () {
+                if (Quit == 1)
+                    return confirm("Êtes-vous sur de vouloir quitter la page?");
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
         <asp:Timer ID="TimerJournal" runat="server" Interval="3000" OnTick="TimerJournal_Tick"></asp:Timer>
@@ -34,6 +47,7 @@
                 <td colspan="3"><center>
                     <asp:Button ID="BTN_Login" runat="server"
                         Text="Nouveau..."
+                        OnClientClick="VeutQuitter()"
                         CssClass="submitBTN"
                         ValidationGroup="VG_Login" OnClick="BTN_Retour_Click" /></center>
                 </td>
@@ -43,6 +57,7 @@
                     <asp:Button ID="BTN_Inscription" runat="server"
                         Text="Créer..."
                         CssClass="submitBTN"
+                        OnClientClick="VeutQuitter()"
                         OnClick="BTN_Retour_Click" /></center>
                 </td>
             </tr>
@@ -50,6 +65,7 @@
                 <td colspan="3"><center>
                     <asp:Button ID="BTN_ForgotPassword" runat="server"
                         Text="Effacer..."
+                        OnClientClick="VeutQuitter()"
                         CssClass="submitBTN"
                         OnClick="BTN_Retour_Click" /></center>
                 </td>
@@ -71,7 +87,7 @@
 
         <ContentTemplate>
 
-            <asp:Button ID="BTN_Retour" runat="server" Text="Retour" CssClass="SubmitButton" OnClick="BTN_Retour_Click" />
+            <asp:Button ID="BTN_Retour" runat="server" Text="Retour" OnClientClick="VeutQuitter()" CssClass="SubmitButton" OnClick="BTN_Retour_Click" />
             <asp:Panel ID="PN_GridView" CssClass="gridview" runat="server"></asp:Panel>
 
         </ContentTemplate>

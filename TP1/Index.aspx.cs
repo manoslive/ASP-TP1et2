@@ -52,6 +52,7 @@ namespace TP1_Env.Graphique
             return ip;
         }
 
+        [System.Web.Services.WebMethod]
         protected void Deconnection()
         {
             EnregistrementLogin();

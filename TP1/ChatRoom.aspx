@@ -3,9 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script lang="javascript" type="text/javascript">
+        var Quit = 1;
+        function VeutQuitter() {
+            Quit = 0;
+        }
+
         $(document).ready(function () {
             $(window).bind("beforeunload", function () {
-                return confirm("Êtes-vous sur de vouloir quitter la page?");
+                if (Quit == 1)
+                    return confirm("Êtes-vous sur de vouloir quitter la page?");
             });
         });
     </script>
@@ -58,7 +64,7 @@
                 <td>
                     <asp:Button ID="BTN_Send" runat="server" Text="Envoyer" CssClass="SubmitButton" OnClick="BTN_Send_Click" ClientIDMode="Static" />
                     <br />
-                    <asp:Button ID="BTN_Back" runat="server" Text="Retour" CssClass="SubmitButton" OnClick="BTN_Back_Click" />
+                    <asp:Button ID="BTN_Back" runat="server" Text="Retour" OnClientClick="VeutQuitter()" CssClass="SubmitButton" OnClick="BTN_Back_Click" />
                 </td>
             </tr>
         </table>

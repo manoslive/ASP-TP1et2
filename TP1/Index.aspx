@@ -12,7 +12,10 @@
         $(document).ready(function () {
             $(window).bind("beforeunload", function () {
                 if (Quit == 1)
+                {
+                    PageMethods.Deconnection();
                     return confirm("Êtes-vous sur de vouloir quitter la page?");
+                }       
             });
         });
     </script>
@@ -30,25 +33,25 @@
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td>
-                    <asp:Button ID="BTN_Room" runat="server" Text="Usagers en ligne..." class="indexBTN" OnClick="BTN_Room_Click" />
+                    <asp:Button ID="BTN_Room" runat="server" Text="Usagers en ligne..." OnClientClick="VeutQuitter()" class="indexBTN" OnClick="BTN_Room_Click" />
                 </td>
             </tr>
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td>
-                    <asp:Button ID="BTN_ThreadsManager" runat="server" Text="Gestion des sujets de conversation" class="indexBTN" OnClick="BTN_ThreadsManager_Click" />
+                    <asp:Button ID="BTN_ThreadsManager" runat="server" Text="Gestion des sujets de conversation" OnClientClick="VeutQuitter()" class="indexBTN" OnClick="BTN_ThreadsManager_Click" />
                 </td>
             </tr>
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td>
-                    <asp:Button ID="BTN_ChatRoom" runat="server" Text="Salle de discussion..." class="indexBTN" OnClick="BTN_ChatRoom_Click" />
+                    <asp:Button ID="BTN_ChatRoom" runat="server" Text="Salle de discussion..." OnClientClick="VeutQuitter()" class="indexBTN" OnClick="BTN_ChatRoom_Click" />
                 </td>
             </tr>
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td>
-                    <asp:Button ID="BTN_LoginsJournal" runat="server" Text="Journal des visites..." class="indexBTN" OnClick="BTN_LoginsJournal_Click" />
+                    <asp:Button ID="BTN_LoginsJournal" runat="server" Text="Journal des visites..." OnClientClick="VeutQuitter()" class="indexBTN" OnClick="BTN_LoginsJournal_Click" />
                 </td>
             </tr>
             <tr>

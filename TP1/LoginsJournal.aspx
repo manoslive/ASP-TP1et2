@@ -4,9 +4,15 @@
     <link rel="stylesheet" href="LoginsJournal.css" />
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script lang="javascript" type="text/javascript">
+        var Quit = 1;
+        function VeutQuitter() {
+            Quit = 0;
+        }
+
         $(document).ready(function () {
             $(window).bind("beforeunload", function () {
-                return confirm("Êtes-vous sur de vouloir quitter la page?");
+                if (Quit == 1)
+                    return confirm("Êtes-vous sur de vouloir quitter la page?");
             });
         });
     </script>
@@ -15,5 +21,5 @@
     <div class="logs">
         <asp:Panel ID="PN_GridView" CssClass="panelLogs" runat="server"/>
     </div>
-    <asp:Button ID="BTN_Retour" runat="server" Text="Retour" CssClass="returnBTN" OnClick="BTN_Retour_Click"/>
+    <asp:Button ID="BTN_Retour" runat="server" OnClientClick="VeutQuitter()" Text="Retour" CssClass="returnBTN" OnClick="BTN_Retour_Click"/>
 </asp:Content>

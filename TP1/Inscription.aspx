@@ -20,9 +20,15 @@
     </script>--%>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script lang="javascript" type="text/javascript">
+        var Quit = 1;
+        function VeutQuitter() {
+            Quit = 0;
+        }
+
         $(document).ready(function () {
             $(window).bind("beforeunload", function () {
-                return confirm("Êtes-vous sur de vouloir quitter la page?");
+                if (Quit == 1)
+                    return confirm("Êtes-vous sur de vouloir quitter la page?");
             });
         });
     </script>
@@ -138,6 +144,7 @@
                     <td>
                         <asp:Button ID="BTN_Inscription" runat="server"
                             Text="Inscription..."
+                            OnClientClick="VeutQuitter()"
                             CssClass="submitBTN"
                             ValidationGroup="VG_Login" OnClick="BTN_Inscription_Click" />
                     </td>
@@ -148,6 +155,7 @@
                     <td>
                         <asp:Button ID="BTN_Annuler" runat="server"
                             Text="Annuler..."
+                            OnClientClick="VeutQuitter()"
                             CssClass="submitBTN"
                             OnClick="BTN_Annuler_Click" />
                     </td>

@@ -2,15 +2,20 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="Inscription_css.css" />
     <script lang="javascript" type="text/javascript">
+        var Quit = 1;
+        function VeutQuitter() {
+            Quit = 0;
+        }
+
         $(document).ready(function () {
             $(window).bind("beforeunload", function () {
+                if (Quit == 1)
                     return confirm("Êtes-vous sur de vouloir quitter la page?");
             });
         });
-    </script>
-    <link rel="stylesheet" href="Inscription_css.css" />
-    <script>
+
         function PreLoadImage(e) {
             var imageTarget = document.getElementById("IMG_Avatar");
             var input = document.getElementById("AvatarUpload");
@@ -137,6 +142,7 @@
                     <td>
                         <asp:Button ID="BTN_Modifier" runat="server"
                             Text="Mettre à jour..."
+                            OnClientClick="VeutQuitter()"
                             CssClass="submitBTN"
                             ValidationGroup="VG_Modifier" OnClick="BTN_Modifier_Click" />
                     </td>
@@ -147,6 +153,7 @@
                     <td>
                         <asp:Button ID="BTN_Annuler" runat="server"
                             Text="Annuler..."
+                            OnClientClick="VeutQuitter()"
                             CssClass="submitBTN"
                             OnClick="BTN_Annuler_Click" />
                     </td>
