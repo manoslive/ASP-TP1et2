@@ -51,8 +51,6 @@ namespace TP1_Env.Graphique
                 ip = "localhost";
             return ip;
         }
-
-        [System.Web.Services.WebMethod]
         protected void Deconnection()
         {
             EnregistrementLogin();
@@ -62,8 +60,7 @@ namespace TP1_Env.Graphique
 
         protected void BTN_Profil_Click(object sender, EventArgs e)
         {
-            Session["StartTime"] = DateTime.Now;
-            
+            Session["StartTime"] = DateTime.Now;           
             Response.Redirect("Profil.aspx");
         }
         protected void BTN_Room_Click(object sender, EventArgs e)
@@ -90,6 +87,12 @@ namespace TP1_Env.Graphique
         {
             Session["StartTime"] = DateTime.Now;
             Deconnection();
+        }
+
+        public void BTN_DeconnectionX_Click(object sender, EventArgs e)
+        {
+            EnregistrementLogin();
+            Session.Abandon();
         }
     }
 }

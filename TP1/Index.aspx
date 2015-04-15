@@ -10,11 +10,11 @@
         }
 
         $(document).ready(function () {
-            $(window).bind("beforeunload", function () {
+            $(window).on("unload", function () {
                 if (Quit == 1)
                 {
-                    PageMethods.Deconnection();
-                    return confirm("Êtes-vous sur de vouloir quitter la page?");
+                    $("#BTN_DeconnectionX").click();
+                    //return confirm("Êtes-vous sur de vouloir quitter la page?");
                 }       
             });
         });
@@ -58,6 +58,7 @@
                 <td class="auto-style1">&nbsp;</td>
                 <td>
                     <asp:Button ID="BTN_Deconnection" runat="server" Text="Déconnexion" class="indexBTN" OnClick="BTN_Deconnection_Click" />
+                    <asp:Button ID="BTN_DeconnectionX" runat="server" Text="Invisible" style="visibility:hidden; height:0px" OnClick="BTN_DeconnectionX_Click" />
                 </td>
             </tr>
         </table>
