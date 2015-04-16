@@ -44,7 +44,7 @@
                         <asp:Label for="TB_UserName" runat="server" Text="Nom d'usager"></asp:Label>
                     </td>
                     <td>
-                        <asp:TextBox ID="TB_UserName" runat="server" CssClass="TextBox" Enabled="False"></asp:TextBox>
+                        <asp:TextBox ID="TB_UserName" runat="server" CssClass="TextBox"></asp:TextBox>
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="RFV_TB_UserName" runat="server"

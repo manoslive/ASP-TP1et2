@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -19,7 +20,14 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             Session["PAGE"] = "Profil";
 
-            LoadUserInfo();
+            if (Session.IsNewSession)
+                Server.Transfer("Login.aspx");
+
+            if (!Page.IsPostBack)
+            {
+                //RemplirChamps();
+                LoadUserInfo();
+            }
         }
         public void LoadUserInfo()
         {
@@ -59,8 +67,25 @@ namespace TP1_Env.Graphique
             }
 
         }
+        public void RemplirChamps()
+        {
+            TB_FullName.Text = user.Fullname;
+            TB_UserName.Text = user.Username;
+            TB_Password.Text = user.Password;
+            TB_Email.Text = user.Email;
+            if (user.Avatar != "")
+                IMG_Avatar.ImageUrl = user.Avatar;
+        }
         public void ModifierUtilisateur()
         {
+            //user = (TableUsers)Session["User"];
+            //user.Fullname = TB_FullName.Text;
+            //user.Username = TB_UserName.Text;
+            //user.Password = TB_Password.Text;
+            //user.Email = TB_Email.Text;
+            //user.Avatar = IMG_Avatar.ImageUrl;
+            //user.Update();
+
             TableUsers modifierUser = new TableUsers((string)Application["MainBD"], this);
             modifierUser.ID = (Int64)Session["USER_ID"];
             modifierUser.Fullname = TB_FullName.Text;
@@ -69,6 +94,34 @@ namespace TP1_Env.Graphique
             modifierUser.Email = TB_Email.Text;
             modifierUser.Avatar = IMG_Avatar.ImageUrl;
             modifierUser.Update();
+
+            /*
+            String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
+            String connectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
+            //String sql = "update users set password=@password, fullname=@fullname, email=@email, avatar=@avatar where id=@id";
+            String sql = "update users set password=" + TB_Password.Text + ", fullname='" + TB_FullName.Text + "', email='" + TB_Email.Text + "', avatar='"+ IMG_Avatar.ImageUrl + "' where id=" + Convert.ToInt32((String)Session["USER_ID"].ToString());
+
+            SqlConnection sqlcon = new SqlConnection(connectionString);
+            SqlCommand sqlcmd = new SqlCommand(sql, sqlcon);
+
+            sqlcon.Open();
+            //sqlcmd.Parameters.AddWithValue("@password", TB_Password.Text);
+            //sqlcmd.Parameters.AddWithValue("@fullname", TB_FullName.Text);
+            //sqlcmd.Parameters.AddWithValue("@email", TB_Email.Text);
+            //sqlcmd.Parameters.AddWithValue("@avatar", IMG_Avatar.ImageUrl);
+
+            //sqlcmd.Parameters.AddWithValue("@id", (String)Session["USER_ID"].ToString());
+
+            //sqlcmd.Parameters.AddWithValue("@id", System.Data.SqlDbType.Int);
+            //sqlcmd.Parameters[":password"].Value = TB_Password.Text;
+            //sqlcmd.Parameters[":fullname"].Value = TB_FullName.Text;
+            //sqlcmd.Parameters[":email"].Value = TB_Email.Text;
+            //sqlcmd.Parameters[":avatar"].Value = IMG_Avatar.ImageUrl;
+            //sqlcmd.Parameters["@id"].Value = Convert.ToInt32((String)Session["USER_ID"].ToString());
+            sqlcmd.ExecuteNonQuery();
+            sqlcon.Close();
+            Session["Avatar"] = IMG_Avatar.ImageUrl;
+             */
         }
         public void BTN_Annuler_Click(object sender, EventArgs e)
         {
@@ -174,7 +227,8 @@ namespace TP1_Env.Graphique
         }
         private bool ValiderEmail()
         {
-            Regex rgx = new Regex(@"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b", RegexOptions.IgnoreCase);
+            //Regex rgx = new Regex(@"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b", RegexOptions.IgnoreCase);
+            Regex rgx = new Regex(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             Match match = rgx.Match(TB_Email.Text);
             return match.Value == TB_Email.Text;
         }
