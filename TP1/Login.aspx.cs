@@ -87,7 +87,7 @@ namespace TP1_Env.Graphique
             eMail.Password = "0123456789aA"; // EY! regarde pas mon password ! :D
             eMail.SenderName = "Shaun ou Emmanuel";
             eMail.Host = "smtp.gmail.com";
-            eMail.HostPort = 587;
+            eMail.HostPort = 587;//465
             eMail.SSLSecurity = true;
 
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");

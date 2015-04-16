@@ -70,9 +70,9 @@ div.room table td{
 div.room table{
     width:100% !important;
 }
-div.room table tr:nth-child(2n+2){
+div.room table tr:nth-child(2n+3){
     background-color:lightgray;
 }
-div.room table tr:nth-child(2n+3){
+div.room table tr:nth-child(2n+2){
     background-color:white;
 }

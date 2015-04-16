@@ -72,9 +72,9 @@ div.logs table td{
 div.logs table{
     width:100% !important;
 }
-div.logs table tr:nth-child(2n+2){
+div.logs table tr:nth-child(2n+3){
     background-color:lightgray;
 }
-div.logs table tr:nth-child(2n+3){
+div.logs table tr:nth-child(2n+2){
     background-color:white;
 }
