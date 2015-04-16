@@ -558,7 +558,7 @@ namespace SqlExpressUtilities
                                     if (compteurDateTime == 0)
                                     {
 
-                                        td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToShortDateString();
+                                        td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToString();
                                         debutSession = DateTime.Parse(FieldsValues[fieldIndex]);
                                         compteurDateTime++;
                                     }
