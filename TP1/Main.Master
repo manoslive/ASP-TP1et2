@@ -18,8 +18,7 @@
             <table>
                 <tr>
                     <td>
-                        <h2>
-                            <asp:Label ID="LB_Page_Title" Style="float: left" runat="server"></asp:Label></h2>
+                        <h2 style="padding-left:10%"><asp:Label ID="LB_Page_Title" Style="float: left" runat="server"></asp:Label></h2>
                     </td>
                 </tr>
             </table>
@@ -27,8 +26,8 @@
         <div style="width: 50%; height: 50%; float: right;">
             <table style="width: 50%; height: 50%; float: right;">
                 <tr>
-                    <td>
-                        <h2 style="font-size: 18px">
+                    <td style="padding-right:10%;text-align:right">
+                        <h2 style="font-size: 18px; ">
                             <asp:Label ID="LB_Nom_Usager" runat="server"></asp:Label></h2>
                         <asp:UpdatePanel ID="PN_TimeOut" runat="server" UpdateMode="Conditional">
                             <Triggers>
