@@ -47,7 +47,10 @@
             </table>
         </div>
         <div style="width: 100%; height: 50%; clear: both">
-            <hr />
+            <asp:Panel ID="PN_HR" runat="server">
+                <hr />
+            </asp:Panel>
+
         </div>
         <%-- Début --%>
         <asp:Panel ID="PN_Menu" Visible="false" runat="server">
@@ -91,7 +94,7 @@
                 </table>
             </div>
         </asp:Panel>
-                    <hr />
+        <hr />
         <%-- Fin --%>
         <asp:ContentPlaceHolder ID="Main_Content" runat="server">
         </asp:ContentPlaceHolder>
