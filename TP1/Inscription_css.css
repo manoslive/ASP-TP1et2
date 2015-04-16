@@ -23,17 +23,16 @@
 #content {
     /*min-height:600px;*/
     /*min-width:600px;*/
-    align-content:center!important;
+    align-content:center !important;
     width: 55%;
     height:100%;
-    margin: auto auto auto 0px;
+    margin: auto auto auto auto;
     background-color: lightgray;
     padding: 20px;
     border-radius: 11px 11px 11px 11px;
     -moz-border-radius: 11px 11px 11px 11px;
     -webkit-border-radius: 11px 11px 11px 11px;
     border: 5px double #120096;
-    left:30%;
 }
 
 #Lefty{
