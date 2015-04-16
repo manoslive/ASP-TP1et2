@@ -179,7 +179,7 @@ namespace TP1_Env.Graphique
                         }
                     }
                     else
-                        ClientAlert(this, "Le nom d usager n existe pas");
+                        ClientAlert(this, "Le nom d usager n existe pas ou l'usager est déja connecté");
 
                     dataReader.Close();
                 }
