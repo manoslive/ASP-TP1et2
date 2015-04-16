@@ -18,14 +18,14 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Profil...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             Session["PAGE"] = "Profil";
-            
+
             LoadUserInfo();
         }
         public void LoadUserInfo()
         {
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
             String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
-            String sql = @"Select Fullname,Username,Email,Avatar from USERS where Id=" + (Int64)Session["USER_ID"];
+            String sql = @"Select Fullname,Username,Password,Email,Avatar from USERS where Id=" + (Int64)Session["USER_ID"];
             SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
 
             try
@@ -37,10 +37,11 @@ namespace TP1_Env.Graphique
                 dataReader.Read();
                 TB_FullName.Text = dataReader.GetString(0);
                 TB_UserName.Text = dataReader.GetString(1);
-                //TB_Password.Text = dataReader.GetString(2);
-                TB_Email.Text = dataReader.GetString(2);
-                TB_Email1.Text = dataReader.GetString(2);
-                IMG_Avatar.ImageUrl = dataReader.GetString(3);
+                TB_Password.Text = dataReader.GetString(2);
+                TB_Password1.Text = dataReader.GetString(2);
+                TB_Email.Text = dataReader.GetString(3);
+                TB_Email1.Text = dataReader.GetString(3);
+                IMG_Avatar.ImageUrl = dataReader.GetString(4);
                 DataBase_Connection.Close();
             }
             catch (Exception ex)
@@ -49,6 +50,16 @@ namespace TP1_Env.Graphique
             }
         }
         public void BTN_Modifier_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                ModifierUtilisateur();
+                Session["StartTime"] = DateTime.Now;
+                Response.Redirect("Index.aspx");
+            }
+
+        }
+        public void ModifierUtilisateur()
         {
             TableUsers modifierUser = new TableUsers((string)Application["MainBD"], this);
             modifierUser.ID = (Int64)Session["USER_ID"];
