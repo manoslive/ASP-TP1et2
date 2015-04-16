@@ -67,15 +67,15 @@ namespace TP1_Env.Graphique
             }
 
         }
-        public void RemplirChamps()
-        {
-            TB_FullName.Text = user.Fullname;
-            TB_UserName.Text = user.Username;
-            TB_Password.Text = user.Password;
-            TB_Email.Text = user.Email;
-            if (user.Avatar != "")
-                IMG_Avatar.ImageUrl = user.Avatar;
-        }
+        //public void RemplirChamps()
+        //{
+        //    TB_FullName.Text = user.Fullname;
+        //    TB_UserName.Text = user.Username;
+        //    TB_Password.Text = user.Password;
+        //    TB_Email.Text = user.Email;
+        //    if (user.Avatar != "")
+        //        IMG_Avatar.ImageUrl = user.Avatar;
+        //}
         public void ModifierUtilisateur()
         {
             //user = (TableUsers)Session["User"];
