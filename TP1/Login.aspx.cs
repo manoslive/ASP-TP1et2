@@ -19,6 +19,7 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Login...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = "Anomyme";
             Session["PAGE"] = "Login";
+            Session["User_Valid"] = false;
         }
         public void InsertBlackList()
         {
@@ -128,7 +129,6 @@ namespace TP1_Env.Graphique
                 // Nous créons une instance de TableLogins pour cette session
                 Session["Login"] = new TableLogins((String)Application["MainBD"], this);
 
-                ///// TO DO - METTRE DANS LA CLASSE /////
                 String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
                 String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
                 String sql = @"Select PASSWORD, USERNAME, AVATAR, ID From USERS where UserName = '" + TB_UserName.Text + "'";
@@ -156,7 +156,8 @@ namespace TP1_Env.Graphique
                             usager.ID = (Int64)Session["USER_ID"];
                             usager.Enligne = true;
                             usager.userEnligne();
-                            Response.Redirect("Index.aspx");
+                            Session["User_Valid"] = true;
+                            Response.Redirect("Room.aspx");
                         }
                         else
                         {

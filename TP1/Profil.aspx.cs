@@ -64,7 +64,7 @@ namespace TP1_Env.Graphique
             {
                 ModifierUtilisateur();
                 Session["StartTime"] = DateTime.Now;
-                Response.Redirect("Index.aspx");
+                Response.Redirect("Room.aspx");
             }
 
         }
@@ -98,7 +98,7 @@ namespace TP1_Env.Graphique
         public void BTN_Annuler_Click(object sender, EventArgs e)
         {
             Session["StartTime"] = DateTime.Now;
-            Response.Redirect("Index.aspx");
+            Response.Redirect("Room.aspx");
         }
         public static void ClientAlert(System.Web.UI.Page page, string message)
         {

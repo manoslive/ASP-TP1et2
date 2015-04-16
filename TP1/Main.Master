@@ -18,7 +18,8 @@
             <table>
                 <tr>
                     <td>
-                        <h2 style="padding-left:10%"><asp:Label ID="LB_Page_Title" Style="float: left" runat="server"></asp:Label></h2>
+                        <h2 style="padding-left: 10%">
+                            <asp:Label ID="LB_Page_Title" Style="float: left" runat="server"></asp:Label></h2>
                     </td>
                 </tr>
             </table>
@@ -26,8 +27,8 @@
         <div style="width: 50%; height: 50%; float: right;">
             <table style="width: 50%; height: 50%; float: right;">
                 <tr>
-                    <td style="padding-right:10%;text-align:right">
-                        <h2 style="font-size: 18px; ">
+                    <td style="padding-right: 10%; text-align: right">
+                        <h2 style="font-size: 18px;">
                             <asp:Label ID="LB_Nom_Usager" runat="server"></asp:Label></h2>
                         <asp:UpdatePanel ID="PN_TimeOut" runat="server" UpdateMode="Conditional">
                             <Triggers>
@@ -40,7 +41,7 @@
 
                     </td>
                     <td>
-                        <asp:Image ID="PB_Avatar" ImageUrl="~/Images/Anonymous.png" width="50" height="50" runat="server"/>
+                        <asp:Image ID="PB_Avatar" ImageUrl="~/Images/Anonymous.png" Width="50" Height="50" runat="server" />
                     </td>
                 </tr>
             </table>
@@ -48,6 +49,50 @@
         <div style="width: 100%; height: 50%; clear: both">
             <hr />
         </div>
+        <%-- Début --%>
+        <asp:Panel ID="PN_Menu" Visible="false" runat="server">
+            <div id="Div_Menu">
+                <table>
+                    <tr>
+                        <td class="auto-style1">&nbsp;</td>
+                        <td>
+                            <asp:Button ID="BTN_Profil" runat="server" Text="Gestion du profil..." class="indexBTN" OnClick="BTN_Profil_Click" />
+                        </td>
+                        <td class="auto-style1">&nbsp;</td>
+                        <td>
+                            <asp:Button ID="BTN_Room" runat="server" Text="Usagers en ligne..." class="indexBTN" OnClick="BTN_Room_Click" />
+                        </td>
+
+                        <td class="auto-style1">&nbsp;</td>
+                        <td>
+                            <asp:Button ID="BTN_ThreadsManager" runat="server" Text="Gestion des sujets..." class="indexBTN" OnClick="BTN_ThreadsManager_Click" />
+                        </td>
+
+                        <td class="auto-style1">&nbsp;</td>
+                        <td>
+                            <asp:Button ID="BTN_ChatRoom" runat="server" Text="Chatroom..." class="indexBTN" OnClick="BTN_ChatRoom_Click" />
+                        </td>
+
+                        <td class="auto-style1">&nbsp;</td>
+                        <td>
+                            <asp:Button ID="BTN_LoginsJournal" runat="server" Text="Journal des visites..." class="indexBTN" OnClick="BTN_LoginsJournal_Click" />
+                        </td>
+
+                        <td class="auto-style1">&nbsp;</td>
+                        <td>
+                            <asp:Button ID="BTN_Deconnection" runat="server" Text="Déconnexion..." class="indexBTN" OnClick="BTN_Deconnection_Click" />
+                        </td>
+                        <td>
+                            <div style="display: none">
+                                <asp:Button ID="BTN_DeconnectionX" runat="server" Text="Invisible" Style="height: 0px" OnClick="BTN_DeconnectionX_Click" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </asp:Panel>
+                    <hr />
+        <%-- Fin --%>
         <asp:ContentPlaceHolder ID="Main_Content" runat="server">
         </asp:ContentPlaceHolder>
     </form>

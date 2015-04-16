@@ -15,6 +15,7 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Journal des visites...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
             ((Image)Master.FindControl("PB_Avatar")).ImageUrl = (String)Session["Avatar"];
+            Session["User_Valid"] = true;
             Session["PAGE"] = "Journal";
 
             // Empêcher l'accès sans nom d'usager
@@ -27,7 +28,7 @@ namespace TP1_Env.Graphique
         protected void BTN_Retour_Click(object sender, EventArgs e)
         {
             Session["StartTime"] = DateTime.Now;
-            Response.Redirect("Index.aspx");
+            Response.Redirect("Room.aspx");
         }
         protected void AfficherGridView()
         {

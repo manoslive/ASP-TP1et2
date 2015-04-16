@@ -21,5 +21,5 @@
     <div class="room">
         <asp:Panel ID="PN_GridView" CssClass="panelLogs" runat="server"/>
     </div>
-    <asp:Button ID="BTN_Retour" runat="server" Text="Retour" OnClientClick="VeutQuitter()" CssClass="returnBTN" OnClick="BTN_Retour_Click"/>
+    <%--<asp:Button ID="BTN_Retour" runat="server" Text="Retour" OnClientClick="VeutQuitter()" CssClass="returnBTN" OnClick="BTN_Retour_Click"/>--%>
 </asp:Content>

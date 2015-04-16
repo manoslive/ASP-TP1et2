@@ -94,6 +94,78 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.Image PB_Avatar;
         
         /// <summary>
+        /// Contrôle PN_Menu.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PN_Menu;
+        
+        /// <summary>
+        /// Contrôle BTN_Profil.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_Profil;
+        
+        /// <summary>
+        /// Contrôle BTN_Room.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_Room;
+        
+        /// <summary>
+        /// Contrôle BTN_ThreadsManager.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_ThreadsManager;
+        
+        /// <summary>
+        /// Contrôle BTN_ChatRoom.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_ChatRoom;
+        
+        /// <summary>
+        /// Contrôle BTN_LoginsJournal.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_LoginsJournal;
+        
+        /// <summary>
+        /// Contrôle BTN_Deconnection.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_Deconnection;
+        
+        /// <summary>
+        /// Contrôle BTN_DeconnectionX.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_DeconnectionX;
+        
+        /// <summary>
         /// Contrôle Main_Content.
         /// </summary>
         /// <remarks>
