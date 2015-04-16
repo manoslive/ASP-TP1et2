@@ -3,21 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="Inscription_css.css" />
     <script type="text/javascript" src="ClientFormUtilities.js"></script>
-<%--    <script>
-        function PreLoadImage(e) {
-            var imageTarget = document.getElementById("IMG_Avatar");
-            var input = document.getElementById("AvatarUpload");
-            if (imageTarget != null) {
-                var fReader = new FileReader();
-                fReader.readAsDataURL(input.files[0]);
-                fReader.onloadend = function (event) {
-                    // the event.target.result contains the image data 
-                    imageTarget.src = event.target.result;
-                }
-            }
-            return true;
-        }
-    </script>--%>
+
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script lang="javascript" type="text/javascript">
         var Quit = 1;
@@ -235,7 +221,7 @@
                 </tr>
             </table>
         </div>
-        <asp:ValidationSummary ID="Subscribe_Validation" runat="server" ValidationGroup="Subscribe_Validation" />
+        <%--<asp:ValidationSummary ID="Subscribe_Validation" runat="server" ValidationGroup="Subscribe_Validation" />--%>
             </div>
             <div id="right_bottom_content">
                 <table>
