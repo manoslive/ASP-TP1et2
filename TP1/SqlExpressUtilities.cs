@@ -49,8 +49,8 @@ namespace SqlExpressUtilities
 
         // Liste des délégates chargés de construire contenu personnalisé pour les champs
         public List<CellContentDelegate> CellsContentDelegate = new List<CellContentDelegate>();
-        
-         // contructeur obligatoire auquel il faut fournir la chaine de connection et l'objet Page
+
+        // contructeur obligatoire auquel il faut fournir la chaine de connection et l'objet Page
         public SqlExpressWrapper(String connexionString, System.Web.UI.Page Page)
         {
             this.Page = Page;
@@ -158,7 +158,7 @@ namespace SqlExpressUtilities
             if (Valid(fieldIndex, CellsContentDelegate.Count))
                 CellsContentDelegate[fieldIndex] = ccd;
         }
-        
+
         // Extraire les noms et types des champs 
         void GetFieldsNameAndType()
         {
@@ -166,12 +166,12 @@ namespace SqlExpressUtilities
             {
                 FieldsNames.Clear();
                 FieldsTypes.Clear();
-                
+
                 for (int f = 0; f < reader.FieldCount; f++)
                 {
                     FieldsNames.Add(reader.GetName(f));
                     FieldsTypes.Add(reader.GetFieldType(f));
-                } 
+                }
             }
         }
 
@@ -223,7 +223,7 @@ namespace SqlExpressUtilities
 
             // retourner le nombre d'enregistrements générés
             return reader.RecordsAffected;
-           
+
         }
 
         // Conclure la dernière requête
@@ -231,7 +231,7 @@ namespace SqlExpressUtilities
         {
             // Fermer la connection
             if (connection.State != System.Data.ConnectionState.Closed)
-            connection.Close();
+                connection.Close();
             // Débloquer l'objet Page.Application afin que d'autres session puissent
             // accéder à leur tour à la base de données
             Page.Application.UnLock();
@@ -241,7 +241,7 @@ namespace SqlExpressUtilities
         public virtual bool SelectAll(string orderBy = "")
         {
             string sql = "";
-            if(Page.Session["PAGE"].ToString() == "Room")
+            if (Page.Session["PAGE"].ToString() == "Room")
             {
                 sql = "SELECT Enligne, Username, Fullname, Email, Avatar FROM " + SQLTableName;
             }
@@ -250,7 +250,7 @@ namespace SqlExpressUtilities
                 sql = "SELECT l.USER_ID, l.LOGIN_DATE, l.LOGOUT_DATE, l.IP, u.USERNAME, u.FULLNAME, u.EMAIL, u.AVATAR FROM " + SQLTableName +
                          " l INNER JOIN Users u ON l.USER_ID = u.Id where u.Id=" + Page.Session["USER_ID"];
             }
-            else if(Page.Session["PAGE"].ToString() == "ThreadsManager")
+            else if (Page.Session["PAGE"].ToString() == "ThreadsManager")
             {
                 sql = "Select * from " + SQLTableName;
             }
@@ -330,7 +330,7 @@ namespace SqlExpressUtilities
         public int UpdateRecordEnligne(long ID, bool Enligne)
         {
             String SQL = "UPDATE " + SQLTableName + " ";
-            SQL += "SET [Enligne] = " + "'" + Enligne +"'";
+            SQL += "SET [Enligne] = " + "'" + Enligne + "'";
             SQL += " WHERE [Id] = " + ID;
             return NonQuerySQL(SQL);
         }
@@ -417,7 +417,7 @@ namespace SqlExpressUtilities
             EndQuerySQL();
 
             string sql = "INSERT INTO " + SQLTableName + "(";
-            for (int i = 1; i < FieldsValues.Length+1; i++)
+            for (int i = 1; i < FieldsValues.Length + 1; i++)
             {
                 sql += FieldsNames[i];
                 if (i < FieldsValues.Length)
@@ -470,11 +470,14 @@ namespace SqlExpressUtilities
         private Panel PN_GridView = null;
         public virtual void MakeGridView(Panel PN_GridView, String EditPage)
         {
-           
+
             // converver le panneau parent (utilisé dans certaines méthodes de cette classe)
             this.PN_GridView = PN_GridView;
             Page.Session["EditPage"] = EditPage;
             Table Grid = null;
+            int compteurDateTime = 0;
+            DateTime debutSession = DateTime.Now;
+
             if (reader.HasRows)
             {
                 Grid = new Table();
@@ -488,7 +491,10 @@ namespace SqlExpressUtilities
                         TableCell td = new TableCell();
                         tr.Cells.Add(td);
                         Label LBL_Header = new Label();
-                        LBL_Header.Text = "<b>" + ColumnTitles[columnIndex] + "</b>";
+                        if (ColumnTitles[columnIndex].ToString() == "LOGOUT_DATE")
+                            LBL_Header.Text = "<b> Durée de la session </b>";
+                        else
+                            LBL_Header.Text = "<b>" + ColumnTitles[columnIndex] + "</b>";
 
                         if (ColumnsSortEnable[columnIndex])
                         {
@@ -507,7 +513,7 @@ namespace SqlExpressUtilities
                     }
                 }
                 Grid.Rows.Add(tr);
-               
+
                 string image = "";
                 // Construction des rangées de la GridView
                 while (Next())
@@ -520,41 +526,55 @@ namespace SqlExpressUtilities
                             TableCell td = new TableCell();
                             //if (CellsContentDelegate[fieldIndex] != null)
                             //{
-                                //Pour les usagers enligne ou horsligne
+                            //Pour les usagers enligne ou horsligne
 
 
-                                // construction spécialisée du contenu d'une cellule
-                                // définie dans les sous classes
-                                //td.Controls.Add(CellsContentDelegate[fieldIndex]());///////////jai mis ca en commentaire pour le faire fonctionner
+                            // construction spécialisée du contenu d'une cellule
+                            // définie dans les sous classes
+                            //td.Controls.Add(CellsContentDelegate[fieldIndex]());///////////jai mis ca en commentaire pour le faire fonctionner
                             //}                                                                   
                             //else
                             //{
-                                Type type = FieldsTypes[fieldIndex];
-                                if (SQLHelper.IsNumericType(type))
+                            Type type = FieldsTypes[fieldIndex];
+                            if (SQLHelper.IsNumericType(type))
+                            {
+                                td.Text = FieldsValues[fieldIndex].ToString();
+                                // IMPORTANT! Il faut inclure dans la section style
+                                // une classe numeric qui impose l'alignement à droite
+                                td.CssClass = "numeric";
+                            }
+                            else
+                                if (FieldsValues[fieldIndex].ToString() == "True")
+                                    td.Text = "<img src=\"/Images/OnLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">";
+                                else if (FieldsValues[fieldIndex].ToString() == "False")
+                                    td.Text = "<img src=\"/Images/OffLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">";
+                                else if (FieldsValues[fieldIndex].StartsWith("~"))
                                 {
-                                    td.Text = FieldsValues[fieldIndex].ToString();
-                                    // IMPORTANT! Il faut inclure dans la section style
-                                    // une classe numeric qui impose l'alignement à droite
-                                    td.CssClass = "numeric";
+                                    image = FieldsValues[fieldIndex].Substring(1, FieldsValues[fieldIndex].Length - 1);
+                                    td.Text = "<img src=" + image + " alt=Avatar style=width:25px;height:25px; >";
                                 }
-                                else
-                                    if (FieldsValues[fieldIndex].ToString() == "True")
-                                        td.Text = "<img src=\"/Images/OnLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">";
-                                    else if (FieldsValues[fieldIndex].ToString() == "False")
-                                        td.Text = "<img src=\"/Images/OffLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">";
-                                    else if(FieldsValues[fieldIndex].StartsWith("~"))
+                                else if (type == typeof(DateTime))
+                                {
+                                    if (compteurDateTime == 0)
                                     {
-                                        image = FieldsValues[fieldIndex].Substring(1, FieldsValues[fieldIndex].Length-1);
-                                        td.Text = "<img src=" + image + " alt=Avatar style=width:25px;height:25px; >";
-                                    }
-                                    else if (type == typeof(DateTime))
-                                        td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToString(); //.ToShortDateString()
-                                    else if (FieldsValues[fieldIndex].Contains('@'))
-                                    {
-                                        td.Text = "<a href='mailto:" + SQLHelper.FromSql(FieldsValues[fieldIndex]) + "'>" + SQLHelper.FromSql(FieldsValues[fieldIndex]) + "</a>";
+
+                                        td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToShortDateString();
+                                        debutSession = DateTime.Parse(FieldsValues[fieldIndex]);
+                                        compteurDateTime++;
                                     }
                                     else
-                                        td.Text = SQLHelper.FromSql(FieldsValues[fieldIndex]);
+                                    {
+                                        td.Text = ((DateTime.Parse(FieldsValues[fieldIndex]).Subtract(debutSession)).ToString());
+                                        // td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToString();
+                                        compteurDateTime = 0;
+                                    }
+                                }
+                                else if (FieldsValues[fieldIndex].Contains('@'))
+                                {
+                                    td.Text = "<a href='mailto:" + SQLHelper.FromSql(FieldsValues[fieldIndex]) + "'>" + SQLHelper.FromSql(FieldsValues[fieldIndex]) + "</a>";
+                                }
+                                else
+                                    td.Text = SQLHelper.FromSql(FieldsValues[fieldIndex]);
                             //}
                             tr.Cells.Add(td);
                         }
@@ -563,7 +583,7 @@ namespace SqlExpressUtilities
                 }
             }
             PN_GridView.Controls.Clear();
-            if (Grid!=null)
+            if (Grid != null)
                 PN_GridView.Controls.Add(Grid);
             EndQuerySQL();
         }
@@ -620,7 +640,7 @@ namespace SqlExpressUtilities
             // rediriger la session vers la "Web Form" désignée pour l'édition
             // de l'enregistement d'id Selected_ID
             Page.Session["Selected_ID"] = ID;
-            if (Page.Session["EditPage"]!=null)
+            if (Page.Session["EditPage"] != null)
                 Page.Response.Redirect((String)Page.Session["EditPage"]);
         }
     }
