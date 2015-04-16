@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script lang="javascript" type="text/javascript">
-        var Quit = 1;
+<%--        var Quit = 1;
         function VeutQuitter()
         {
             Quit = 0;
@@ -25,7 +25,7 @@
                 if (Quit == 1)
                     Deconnect();
             });
-        });
+        });--%>
     </script>
     <link rel="stylesheet" href="Index.css" />
 </asp:Content>
@@ -66,7 +66,11 @@
                 <td class="auto-style1">&nbsp;</td>
                 <td>
                     <asp:Button ID="BTN_Deconnection" runat="server" Text="Déconnexion" class="indexBTN" OnClick="BTN_Deconnection_Click" />
-                    <asp:Button ID="BTN_DeconnectionX" runat="server" Text="Invisible" OnClientClick="VeutQuitter()" style="height:0px" OnClick="BTN_DeconnectionX_Click" />
+                </td>
+                <td>
+                    <div style="display:none">
+                        <asp:Button ID="BTN_DeconnectionX" runat="server" Text="Invisible" OnClientClick="VeutQuitter()" style="height:0px" OnClick="BTN_DeconnectionX_Click" />
+                    </div>
                 </td>
             </tr>
         </table>

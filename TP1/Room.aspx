@@ -4,17 +4,17 @@
     <link rel="stylesheet" href="Room.css" />
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script lang="javascript" type="text/javascript">
-        var Quit = 1;
-        function VeutQuitter() {
-            Quit = 0;
-        }
+        //var Quit = 1;
+        //function VeutQuitter() {
+        //    Quit = 0;
+        //}
 
-        $(document).ready(function () {
-            $(window).bind("beforeunload", function () {
-                if (Quit == 1)
-                    return "Êtes-vous sur de vouloir quitter la page?";
-            });
-        });
+        //$(document).ready(function () {
+        //    $(window).bind("beforeunload", function () {
+        //        if (Quit == 1)
+        //            return "Êtes-vous sur de vouloir quitter la page?";
+        //    });
+        //});
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
