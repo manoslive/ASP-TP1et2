@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Drawing;
-using System.Drawing.Imaging;
+//using System.Drawing;
+//using System.Drawing.Imaging;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -18,6 +18,7 @@ namespace TP1_Env.Graphique
         {
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Profil...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
+            ((Image)Master.FindControl("PB_Avatar")).ImageUrl = (String)Session["Avatar"];
             Session["PAGE"] = "Profil";
 
             if (Session.IsNewSession)
@@ -49,7 +50,7 @@ namespace TP1_Env.Graphique
                 TB_Password1.Text = dataReader.GetString(2);
                 TB_Email.Text = dataReader.GetString(3);
                 TB_Email1.Text = dataReader.GetString(3);
-                IMG_Avatar.ImageUrl = dataReader.GetString(4);
+                IMG_Avatar.ImageUrl = (String)Session["Avatar"];
                 DataBase_Connection.Close();
             }
             catch (Exception ex)
