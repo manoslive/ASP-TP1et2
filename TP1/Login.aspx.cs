@@ -12,58 +12,46 @@ namespace TP1_Env.Graphique
 {
     public partial class Login : System.Web.UI.Page
     {
+        public DateTime BanTime;
+        public DateTime UnBanTime;
         protected void Page_Load(object sender, EventArgs e)
         {
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Login...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = "Anomyme";
             Session["PAGE"] = "Login";
-            Session["Nb_Essai"] = 0;
         }
-        public void BTN_Login_Click(object sender, EventArgs e)
+        public void InsertBlackList()
         {
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
             String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
-            
-            if (Convert.ToInt32(Session["Nb_Essai"]) > 3 && Session["Essai_User"].ToString() == TB_UserName.Text)
+
+            System.DateTime Ban = System.DateTime.Now;
+            System.TimeSpan duration = new System.TimeSpan(0, 0, 5, 0); // Unban dans 5 minutes
+            System.DateTime Unban = Ban.Add(duration);
+            String sqlBlackList = @"INSERT INTO Blacklist (USERNAME, DATEBAN, DATEUNBAN) VALUES 
+                                  ('" + TB_UserName.Text + "','" + DateTime.Now + "','" + Unban + "')";
+            SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
+
+            try
             {
-                System.DateTime Ban = System.DateTime.Now;
-                System.TimeSpan duration = new System.TimeSpan(0, 0, 5, 0); // Unban dans 5 minutes
-                System.DateTime Unban = Ban.Add(duration);
-                String sqlBlackList = @"INSERT INTO Blacklist (USERNAME, DATEBAN, DATEUNBAN) VALUES 
-                                  ('" + TB_UserName.Text + "'," + DateTime.Now + "," + DateTime.Now + "," + Unban + ")";
-                SqlConnection DataBase_Connection2 = new SqlConnection(ConnectString);
-
-                try
-                {
-                    SqlCommand sqlCommand = new SqlCommand(sqlBlackList);
-                    sqlCommand.Connection = DataBase_Connection2;
-                    DataBase_Connection2.Open();
-                    sqlCommand.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    Response.Write(ex.Message);
-                }
+                SqlCommand sqlCommand = new SqlCommand(sqlBlackList);
+                sqlCommand.Connection = DataBase_Connection;
+                DataBase_Connection.Open();
+                sqlCommand.ExecuteNonQuery();
             }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+        }
+        public bool PresentDansBlackList()
+        {
+            bool present = false;
+            string username = "";
+            String sql = "SELECT * FROM BlackList Where USERNAME ='" + TB_UserName.Text + "'";
 
-
-
-
-
-            Session["Essai_User"] = TB_UserName.Text;
-
-            // Nous créons ici une instance de TableUsers pour cette session
-            Session["User"] = new TableUsers((String)Application["MainBD"].ToString(), this);
-            TableUsers usager = new TableUsers((String)Application["MainBD"], this);
-            //((TableUsers)Session["User"]).SelectByFieldName("USERNAME", TB_UserName.Text);
-            // Je cherche comment affecter le username à cette session
-            // ??????????
-
-            // Nous créons une instance de TableLogins pour cette session
-            Session["Login"] = new TableLogins((String)Application["MainBD"], this);
-
-            ///// TO DO - METTRE DANS LA CLASSE /////
-            String sql = @"Select PASSWORD, USERNAME, AVATAR, ID From USERS where UserName = '" + TB_UserName.Text + "'";
+            String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
+            String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
             SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
 
             try
@@ -72,43 +60,132 @@ namespace TP1_Env.Graphique
                 sqlCommand.Connection = DataBase_Connection;
                 DataBase_Connection.Open();
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                dataReader.Read();
-                Session["Username"] = dataReader.GetString(1);
-                Session["Avatar"] = dataReader.GetString(2);
-                Session["USER_ID"] = dataReader.GetInt64(3);
-                if (TB_Password.Text == dataReader.GetString(0))
+                dataReader.Read();   
+                if(dataReader.HasRows)
                 {
-                    ClientAlert(this, "Login est un succes!");
-                    //((TableUsers)Session["Users"]).Online = 1;
-                    //((TableUsers)Session["Users"]).Update();
-                    Session["StartTime"] = DateTime.Now;
-                    Session["USER_LOGIN"] = DateTime.Now;
-                    usager.ID = (Int64)Session["USER_ID"];
-                    usager.Enligne = true;
-                    usager.userEnligne();
-                    Response.Redirect("Index.aspx");
-                }
-                else
-                {
-                    ClientAlert(this, "Mot de passe incorrect!");
-                    if(TB_UserName.Text == Session["Essai_User"].ToString())
-                    {
-                        Session["Nb_Essai"] = Convert.ToInt32(Session["Nb_Essai"]) + 1;
-                    }
-                    else
-                    {
-                        Session["Nb_Essai"] = 0;
-                        Session["Essai_User"] = TB_UserName.Text;
-                        Session["Nb_Essai"] = Convert.ToInt32(Session["Nb_Essai"]) + 1;
-                    }
-                }
-
-                dataReader.Close();
+                    present = true;
+                    username = dataReader.GetString(0);
+                    BanTime = dataReader.GetDateTime(1);
+                    UnBanTime = dataReader.GetDateTime(2);
+                }    
             }
             catch (Exception ex)
             {
                 Response.Write(ex.Message);
             }
+            return present;
+        }
+        public void DeleteBlackList()
+        {
+            if(PresentDansBlackList())
+            {
+                if(UnBanTime < DateTime.Now)
+                {
+                    String sql = "Delete FROM BlackList Where USERNAME ='" + TB_UserName.Text + "'";
+
+                    String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
+                    String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
+                    SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
+
+                    try
+                    {
+                        SqlCommand sqlCommand = new SqlCommand(sql);
+                        sqlCommand.Connection = DataBase_Connection;
+                        DataBase_Connection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write(ex.Message);
+                    }
+                }
+            }
+        }
+        public void BTN_Login_Click(object sender, EventArgs e)
+        {
+            DeleteBlackList();
+            if (Session["Nb_Essai"] == null)
+                Session["Nb_Essai"] = 0;
+            else if (Session["Essai_User"] != null)
+            {
+                if (Session["Essai_User"].ToString() == TB_UserName.Text)
+                    if (Convert.ToInt32(Session["Nb_Essai"]) > 3)
+                        InsertBlackList();
+            }
+            if (PresentDansBlackList())
+            {
+                ClientAlert(this, "Vous êtes bani! Temps bani : " + BanTime + " - " + UnBanTime);
+            }
+            else
+            {
+                // Nous créons ici une instance de TableUsers pour cette session
+                Session["User"] = new TableUsers((String)Application["MainBD"].ToString(), this);
+                TableUsers usager = new TableUsers((String)Application["MainBD"], this);
+                //((TableUsers)Session["User"]).SelectByFieldName("USERNAME", TB_UserName.Text);
+                // Je cherche comment affecter le username à cette session
+                // ??????????
+
+                // Nous créons une instance de TableLogins pour cette session
+                Session["Login"] = new TableLogins((String)Application["MainBD"], this);
+
+                ///// TO DO - METTRE DANS LA CLASSE /////
+                String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
+                String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
+                String sql = @"Select PASSWORD, USERNAME, AVATAR, ID From USERS where UserName = '" + TB_UserName.Text + "'";
+                SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
+
+                try
+                {
+                    SqlCommand sqlCommand = new SqlCommand(sql);
+                    sqlCommand.Connection = DataBase_Connection;
+                    DataBase_Connection.Open();
+                    SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                    dataReader.Read();
+                    if (dataReader.HasRows)
+                    {
+                        Session["Username"] = dataReader.GetString(1);
+                        Session["Avatar"] = dataReader.GetString(2);
+                        Session["USER_ID"] = dataReader.GetInt64(3);
+                        if (TB_Password.Text == dataReader.GetString(0))
+                        {
+                            ClientAlert(this, "Login est un succes!");
+                            //((TableUsers)Session["Users"]).Online = 1;
+                            //((TableUsers)Session["Users"]).Update();
+                            Session["StartTime"] = DateTime.Now;
+                            Session["USER_LOGIN"] = DateTime.Now;
+                            usager.ID = (Int64)Session["USER_ID"];
+                            usager.Enligne = true;
+                            usager.userEnligne();
+                            Response.Redirect("Index.aspx");
+                        }
+                        else
+                        {
+                            ClientAlert(this, "Mot de passe incorrect!");
+                            if (Session["Essai_User"] == null)
+                                Session["Essai_User"] = TB_UserName.Text;
+                            if (TB_UserName.Text == Session["Essai_User"].ToString())
+                            {
+                                Session["Nb_Essai"] = Convert.ToInt32(Session["Nb_Essai"]) + 1;
+                                Session["Essai_User"] = TB_UserName.Text;
+                            }
+                            else
+                            {
+                                Session["Nb_Essai"] = 0;
+                                Session["Nb_Essai"] = Convert.ToInt32(Session["Nb_Essai"]) + 1;
+                                Session["Essai_User"] = TB_UserName.Text;
+                            }
+                        }
+                    }
+                    else
+                        ClientAlert(this, "Le nom d usager n existe pas");
+
+                    dataReader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Response.Write(ex.Message);
+                }
+            }     
         }
         public void BTN_Inscription_Click(object sender, EventArgs e)
         {
