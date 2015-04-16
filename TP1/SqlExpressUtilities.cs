@@ -338,11 +338,17 @@ namespace SqlExpressUtilities
         // FieldsValues fournie en paramètre
         public int UpdateRecord(params object[] FieldsValues)
         {
+            if(Page.Session["PAGE"].ToString() == "Profil")
+            {
+                FieldsNames  =new List<string>(){"ID","Username","Password","Fullname","EMAIL", "Avatar"};
+            }
+            // id, username, password, fullname, email, avatar
             String SQL = "UPDATE " + SQLTableName + " ";
             SQL += "SET ";
             int nb_fields = FieldsValues.Length;
             for (int i = 1; i < nb_fields; i++)
             {
+
                 SQL += "[" + FieldsNames[i] + "] = ";
                 Type type = FieldsValues[i].GetType();
                 if (SQLHelper.IsNumericType(type))
