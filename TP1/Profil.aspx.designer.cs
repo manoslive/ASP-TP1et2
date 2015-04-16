@@ -121,13 +121,13 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFV_TB_Email1;
         
         /// <summary>
-        /// Contrôle BTN_Inscription.
+        /// Contrôle BTN_Modifier.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTN_Inscription;
+        protected global::System.Web.UI.WebControls.Button BTN_Modifier;
         
         /// <summary>
         /// Contrôle BTN_Annuler.
@@ -137,51 +137,6 @@ namespace TP1_Env.Graphique {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BTN_Annuler;
-        
-        /// <summary>
-        /// Contrôle PN_Captcha.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel PN_Captcha;
-        
-        /// <summary>
-        /// Contrôle RegenarateCaptcha.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton RegenarateCaptcha;
-        
-        /// <summary>
-        /// Contrôle IMGCaptcha.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image IMGCaptcha;
-        
-        /// <summary>
-        /// Contrôle TB_Captcha.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TB_Captcha;
-        
-        /// <summary>
-        /// Contrôle RFV_TB_Captcha.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFV_TB_Captcha;
         
         /// <summary>
         /// Contrôle IMG_Avatar.
@@ -263,14 +218,5 @@ namespace TP1_Env.Graphique {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator CV_EmailConfirm;
-        
-        /// <summary>
-        /// Contrôle CV_Captcha.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CV_Captcha;
     }
 }
