@@ -14,12 +14,10 @@ namespace TP1_Env.Graphique
 {
     public partial class Profil : System.Web.UI.Page
     {
-        TableUsers user = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Profil...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = (String)Session["Username"];
-            user = (TableUsers)Session["User"];
             Session["PAGE"] = "Profil";
 
             if (Session.IsNewSession)
@@ -80,22 +78,22 @@ namespace TP1_Env.Graphique
         }
         public void ModifierUtilisateur()
         {
-            user = (TableUsers)Session["User"];
-            user.Fullname = TB_FullName.Text;
-            user.Username = TB_UserName.Text;
-            user.Password = TB_Password.Text;
-            user.Email = TB_Email.Text;
-            user.Avatar = IMG_Avatar.ImageUrl;
-            user.Update();
+            //user = (TableUsers)Session["User"];
+            //user.Fullname = TB_FullName.Text;
+            //user.Username = TB_UserName.Text;
+            //user.Password = TB_Password.Text;
+            //user.Email = TB_Email.Text;
+            //user.Avatar = IMG_Avatar.ImageUrl;
+            //user.Update();
 
-            //TableUsers modifierUser = new TableUsers((string)Application["MainBD"], this);
-            //modifierUser.ID = (Int64)Session["USER_ID"];
-            //modifierUser.Fullname = TB_FullName.Text;
-            //modifierUser.Username = TB_UserName.Text;
-            //modifierUser.Password = TB_Password.Text;
-            //modifierUser.Email = TB_Email.Text;
-            //modifierUser.Avatar = IMG_Avatar.ImageUrl;
-            //modifierUser.Update();
+            TableUsers modifierUser = new TableUsers((string)Application["MainBD"], this);
+            modifierUser.ID = (Int64)Session["USER_ID"];
+            modifierUser.Fullname = TB_FullName.Text;
+            modifierUser.Username = TB_UserName.Text;
+            modifierUser.Password = TB_Password.Text;
+            modifierUser.Email = TB_Email.Text;
+            modifierUser.Avatar = IMG_Avatar.ImageUrl;
+            modifierUser.Update();
 
             /*
             String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
