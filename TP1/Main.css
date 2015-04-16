@@ -126,7 +126,7 @@ div.ui-datepicker {
 	color:#ffffff;
 	font-family:arial;
 	font-size:15px;
-	padding:4px 59px;
+    padding:4px 4px 4px 4px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #0d286b;
     width:100%;
@@ -148,5 +148,9 @@ div.ui-datepicker {
 .auto-style1 {
     width: 15px;
 }
-
+.Div_Menu{
+    padding:0px 0px 0px 0px !important;
+    width:90%;
+    left:10%;
+}
 
