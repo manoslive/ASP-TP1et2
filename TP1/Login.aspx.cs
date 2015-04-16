@@ -21,11 +21,36 @@ namespace TP1_Env.Graphique
         }
         public void BTN_Login_Click(object sender, EventArgs e)
         {
-            Session["Essai_User"] = TB_UserName.Text;
-            if (Convert.ToInt32(Session["Nb_Essai"]) > 3)
+            String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
+            String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
+            
+            if (Convert.ToInt32(Session["Nb_Essai"]) > 3 && Session["Essai_User"].ToString() == TB_UserName.Text)
             {
-                
+                System.DateTime Ban = System.DateTime.Now;
+                System.TimeSpan duration = new System.TimeSpan(0, 0, 5, 0); // Unban dans 5 minutes
+                System.DateTime Unban = Ban.Add(duration);
+                String sqlBlackList = @"INSERT INTO Blacklist (USERNAME, DATEBAN, DATEUNBAN) VALUES 
+                                  ('" + TB_UserName.Text + "'," + DateTime.Now + "," + DateTime.Now + "," + Unban + ")";
+                SqlConnection DataBase_Connection2 = new SqlConnection(ConnectString);
+
+                try
+                {
+                    SqlCommand sqlCommand = new SqlCommand(sqlBlackList);
+                    sqlCommand.Connection = DataBase_Connection2;
+                    DataBase_Connection2.Open();
+                    sqlCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Response.Write(ex.Message);
+                }
             }
+
+
+
+
+
+            Session["Essai_User"] = TB_UserName.Text;
 
             // Nous créons ici une instance de TableUsers pour cette session
             Session["User"] = new TableUsers((String)Application["MainBD"].ToString(), this);
@@ -38,8 +63,6 @@ namespace TP1_Env.Graphique
             Session["Login"] = new TableLogins((String)Application["MainBD"], this);
 
             ///// TO DO - METTRE DANS LA CLASSE /////
-            String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
-            String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
             String sql = @"Select PASSWORD, USERNAME, AVATAR, ID From USERS where UserName = '" + TB_UserName.Text + "'";
             SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
 
