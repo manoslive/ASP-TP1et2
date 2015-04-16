@@ -73,7 +73,19 @@ namespace TP1_Env.Graphique
         {
             page.ClientScript.RegisterStartupScript(page.GetType(), "alert", "alert('" + message + "');", true);
         }
-
+        protected void CV_Captcha_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (TB_Captcha.Text != (string)Session["captcha"])
+            {
+                TB_Captcha.BackColor = System.Drawing.Color.FromArgb(0, 255, 200, 200);
+                args.IsValid = false;
+            }
+            else
+            {
+                TB_Captcha.BackColor = System.Drawing.Color.White;
+                args.IsValid = true;
+            }
+        }
         protected void CV_UserName_ServerValidate(object source, ServerValidateEventArgs args)
         {
             //USERS users = (USERS)Session["CurrentUser"];
@@ -147,9 +159,5 @@ namespace TP1_Env.Graphique
                 //Response.Redirect("Profil.aspx");
             }
         }
-        protected void CV_Captcha_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            args.IsValid = (TB_Captcha.Text == (string)Session["captcha"]);//
-        } 
     }
 }

@@ -25,7 +25,7 @@
     /*min-width:600px;*/
     width: 55%;
     height:100%;
-    margin: auto;
+    margin: auto auto auto 0px;
     background-color: lightgray;
     padding: 20px;
     border-radius: 11px 11px 11px 11px;
