@@ -17,14 +17,15 @@ namespace TP1_Env.Graphique
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Login...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = "Anomyme";
             Session["PAGE"] = "Login";
+            Session["Nb_Essai"] = 0;
         }
         public void BTN_Login_Click(object sender, EventArgs e)
         {
-            /////////////////////////////////////////////////
-            //
-            // Changer ici pour utiliser la classe tableusers
-            //
-            /////////////////////////////////////////////////
+            Session["Essai_User"] = TB_UserName.Text;
+            if (Convert.ToInt32(Session["Nb_Essai"]) > 3)
+            {
+                
+            }
 
             // Nous créons ici une instance de TableUsers pour cette session
             Session["User"] = new TableUsers((String)Application["MainBD"].ToString(), this);
@@ -65,7 +66,19 @@ namespace TP1_Env.Graphique
                     Response.Redirect("Index.aspx");
                 }
                 else
+                {
                     ClientAlert(this, "Mot de passe incorrect!");
+                    if(TB_UserName.Text == Session["Essai_User"].ToString())
+                    {
+                        Session["Nb_Essai"] = Convert.ToInt32(Session["Nb_Essai"]) + 1;
+                    }
+                    else
+                    {
+                        Session["Nb_Essai"] = 0;
+                        Session["Essai_User"] = TB_UserName.Text;
+                        Session["Nb_Essai"] = Convert.ToInt32(Session["Nb_Essai"]) + 1;
+                    }
+                }
 
                 dataReader.Close();
             }
