@@ -12,7 +12,7 @@
         $(document).ready(function () {
             $(window).bind("beforeunload", function () {
                 if (Quit == 1)
-                    return confirm("Êtes-vous sur de vouloir quitter la page?");
+                    return "Êtes-vous sur de vouloir quitter la page?";
             });
         });
     </script>
