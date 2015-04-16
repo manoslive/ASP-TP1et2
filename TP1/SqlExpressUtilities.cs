@@ -503,7 +503,10 @@ namespace SqlExpressUtilities
                             BTN_Sort.Click += new ImageClickEventHandler(SortField_Click);
                             // IMPORTANT!!!
                             // il faut placer dans le répertoire Images du projet l'icône qui représente un tri
-                            BTN_Sort.ImageUrl = @"~/Images/Sort.png";
+                            if (Page.Session["PAGE"].ToString() == "Journal" && columnIndex != 2)
+                                BTN_Sort.ImageUrl = @"~/Images/Sort.png";
+                            else
+                                BTN_Sort.Visible = false;
                             // afin de bien reconnaitre quel champ il faudra trier on construit ici un ID
                             // pour le bouton
                             BTN_Sort.ID = "Sort_" + FieldsNames[columnIndex];
@@ -558,7 +561,7 @@ namespace SqlExpressUtilities
                                     if (compteurDateTime == 0)
                                     {
 
-                                        td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToShortDateString();
+                                        td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToString();
                                         debutSession = DateTime.Parse(FieldsValues[fieldIndex]);
                                         compteurDateTime++;
                                     }
