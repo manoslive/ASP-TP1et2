@@ -35,7 +35,7 @@
                             Text="!"
                             ErrorMessage="Le nom est vide!"
                             ControlToValidate="TB_FullName"
-                            ValidationGroup="VG_Login"
+                            ValidationGroup="VG_Inscription"
                             OnServerValidate="CV_TB_UserName_ServerValidate">
                         </asp:RequiredFieldValidator>
                     </td>
@@ -52,7 +52,7 @@
                             Text="!"
                             ErrorMessage="Le nom d'usager est vide!"
                             ControlToValidate="TB_UserName"
-                            ValidationGroup="VG_Login"
+                            ValidationGroup="VG_Inscription"
                             OnServerValidate="CV_TB_UserName_ServerValidate">
                         </asp:RequiredFieldValidator>
                     </td>
@@ -69,7 +69,7 @@
                             Text="!"
                             ErrorMessage="Le mot de passe est vide!"
                             ControlToValidate="TB_Password"
-                            ValidationGroup="VG_Login"
+                            ValidationGroup="VG_Inscription"
                             OnServerValidate="CV_TB_UserName_ServerValidate">
                         </asp:RequiredFieldValidator>
                     </td>
@@ -86,7 +86,7 @@
                             Text="!"
                             ErrorMessage="La confirmation du mot de passe est vide!"
                             ControlToValidate="TB_Password1"
-                            ValidationGroup="VG_Login"
+                            ValidationGroup="VG_Inscription"
                             OnServerValidate="CV_TB_UserName_ServerValidate">
                         </asp:RequiredFieldValidator>
                     </td>
@@ -103,7 +103,7 @@
                             Text="!"
                             ErrorMessage="Le courriel est vide!"
                             ControlToValidate="TB_Email"
-                            ValidationGroup="VG_Login"
+                            ValidationGroup="VG_Inscription"
                             OnServerValidate="CV_TB_UserName_ServerValidate">
                         </asp:RequiredFieldValidator>
                     </td>
@@ -120,7 +120,7 @@
                             Text="!"
                             ErrorMessage="La confirmation du courriel est vide!"
                             ControlToValidate="TB_Email1"
-                            ValidationGroup="VG_Login"
+                            ValidationGroup="VG_Inscription"
                             OnServerValidate="CV_TB_UserName_ServerValidate">
                         </asp:RequiredFieldValidator>
                     </td>
@@ -132,7 +132,7 @@
                             Text="Inscription..."
                             OnClientClick="VeutQuitter()"
                             CssClass="submitBTN"
-                            ValidationGroup="VG_Login" OnClick="BTN_Inscription_Click" />
+                            ValidationGroup="VG_Inscription" OnClick="BTN_Inscription_Click" />
                     </td>
                     <td></td>
                 </tr>
@@ -197,21 +197,13 @@
                     <td>&nbsp;</td>
                     <td>
                         <asp:TextBox ID="TB_Captcha" runat="server" MaxLength="5" ></asp:TextBox>
-                        <asp:CustomValidator    ID="CV_Captcha" runat="server" 
-                                                ErrorMessage="Code captcha incorrect!" 
-                                                ValidationGroup="Subscribe_Validation"
-                                                Text="!" 
-                                                ControlToValidate="TB_Captcha" 
-                                                onservervalidate="CV_Captcha_ServerValidate" 
-                                                ValidateEmptyText="True">
-                        </asp:CustomValidator>
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="RFV_TB_Captcha" runat="server"
                             Text="!"
                             ErrorMessage="Le captcha est vide!"
                             ControlToValidate="TB_Captcha"
-                            ValidationGroup="VG_Login"
+                            ValidationGroup="VG_Inscription"
                             OnServerValidate="CV_TB_Captcha_ServerValidate">
                         </asp:RequiredFieldValidator>
                     </td>
@@ -221,7 +213,6 @@
                 </tr>
             </table>
         </div>
-        <%--<asp:ValidationSummary ID="Subscribe_Validation" runat="server" ValidationGroup="Subscribe_Validation" />--%>
             </div>
             <div id="right_bottom_content">
                 <table>
@@ -246,7 +237,68 @@
                                             HeaderText="Sommaire des erreurs <hr/>"
                                             DisplayMode="BulletList"
                                             EnableClientScript="true"
-                                            ValidationGroup="VG_Login" />
+                                            ValidationGroup="VG_Inscription" />
+                                          <asp:CustomValidator ID="CV_Fullname" runat="server"
+                        ControlToValidate="TB_Fullname"
+                        ErrorMessage="Nom complet"
+                        OnServerValidate="CV_FullName_ServerValidate"
+                        ValidationGroup="VG_Inscription"
+                        ValidateEmptyText="True"
+                        Display="None">
+                    </asp:CustomValidator>
+                    <asp:CustomValidator runat="server"
+                        ID="CV_Username"
+                        ControlToValidate="TB_UserName"
+                        ErrorMessage="Nom d'usager"
+                        OnServerValidate="CV_UserName_ServerValidate"
+                        ValidationGroup="VG_Inscription"
+                        ValidateEmptyText="true"
+                        Display="None">
+                    </asp:CustomValidator>
+                    <asp:CustomValidator runat="server"
+                        ID="CV_Password"
+                        ControlToValidate="TB_Password"
+                        ErrorMessage="Mot de passe"
+                        OnServerValidate="CV_Password_ServerValidate"
+                        ValidationGroup="VG_Inscription"
+                        ValidateEmptyText="true"
+                        Display="None">
+                    </asp:CustomValidator>
+                    <asp:CustomValidator runat="server"
+                        ID="CV_PasswordConfirm"
+                        ControlToValidate="TB_Password1"
+                        ErrorMessage="Confirmation du mot de passe"
+                        OnServerValidate="CV_Password1_ServerValidate"
+                        ValidationGroup="VG_Inscription"
+                        ValidateEmptyText="true"
+                        Display="None">
+                    </asp:CustomValidator>
+                    <asp:CustomValidator runat="server"
+                        ID="CV_Email"
+                        ControlToValidate="TB_Email"
+                        ErrorMessage="Courriel"
+                        OnServerValidate="CV_Email_ServerValidate"
+                        ValidationGroup="VG_Inscription"
+                        ValidateEmptyText="true"
+                        Display="None">
+                    </asp:CustomValidator>
+                    <asp:CustomValidator runat="server"
+                        ID="CV_EmailConfirm"
+                        ControlToValidate="TB_Email1"
+                        ErrorMessage="La confirmation du courriel"
+                        OnServerValidate="CV_Email1_ServerValidate"
+                        ValidationGroup="VG_Inscription"
+                        ValidateEmptyText="true"
+                        Display="None">
+                    </asp:CustomValidator>
+                    <asp:CustomValidator ID="CV_Captcha" runat="server"
+                        ErrorMessage="Code captcha incorrect!"
+                        ValidationGroup="VG_Inscription"
+                        ControlToValidate="TB_Captcha"
+                        OnServerValidate="CV_Captcha_ServerValidate"
+                        ValidateEmptyText="True"
+                        Display="None">
+                    </asp:CustomValidator>
                    </td>
                </tr>
             </table>
