@@ -138,11 +138,11 @@
                 <tr>
                     <td></td>
                     <td>
-                        <asp:Button ID="BTN_Annuler" runat="server"
+<%--                        <asp:Button ID="BTN_Annuler" runat="server"
                             Text="Annuler..."
                             OnClientClick="VeutQuitter()"
                             CssClass="submitBTN"
-                            OnClick="BTN_Annuler_Click" />
+                            OnClick="BTN_Annuler_Click" />--%>
                     </td>
                     <td></td>
                 </tr>

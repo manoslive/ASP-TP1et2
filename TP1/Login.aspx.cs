@@ -18,6 +18,7 @@ namespace TP1_Env.Graphique
         {
             ((Label)Master.FindControl("LB_Page_Title")).Text = "Login...";
             ((Label)Master.FindControl("LB_Nom_Usager")).Text = "Anomyme";
+            ((Panel)Master.FindControl("PN_HR")).Visible = false;
             Session["PAGE"] = "Login";
             Session["User_Valid"] = false;
         }
