@@ -121,13 +121,13 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFV_TB_Email1;
         
         /// <summary>
-        /// Contrôle BTN_Modifier.
+        /// Contrôle BTN_Inscription.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTN_Modifier;
+        protected global::System.Web.UI.WebControls.Button BTN_Inscription;
         
         /// <summary>
         /// Contrôle BTN_Annuler.
@@ -139,22 +139,49 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.Button BTN_Annuler;
         
         /// <summary>
-        /// Contrôle ValidationSummary.
+        /// Contrôle PN_Captcha.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
+        protected global::System.Web.UI.UpdatePanel PN_Captcha;
         
         /// <summary>
-        /// Contrôle Subscribe_Validation.
+        /// Contrôle RegenarateCaptcha.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary Subscribe_Validation;
+        protected global::System.Web.UI.WebControls.ImageButton RegenarateCaptcha;
+        
+        /// <summary>
+        /// Contrôle IMGCaptcha.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image IMGCaptcha;
+        
+        /// <summary>
+        /// Contrôle TB_Captcha.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TB_Captcha;
+        
+        /// <summary>
+        /// Contrôle RFV_TB_Captcha.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFV_TB_Captcha;
         
         /// <summary>
         /// Contrôle IMG_Avatar.
@@ -173,5 +200,77 @@ namespace TP1_Env.Graphique {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload AvatarUpload;
+        
+        /// <summary>
+        /// Contrôle ValidationSummary.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
+        
+        /// <summary>
+        /// Contrôle CV_Fullname.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CV_Fullname;
+        
+        /// <summary>
+        /// Contrôle CV_Username.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CV_Username;
+        
+        /// <summary>
+        /// Contrôle CV_Password.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CV_Password;
+        
+        /// <summary>
+        /// Contrôle CV_PasswordConfirm.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CV_PasswordConfirm;
+        
+        /// <summary>
+        /// Contrôle CV_Email.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CV_Email;
+        
+        /// <summary>
+        /// Contrôle CV_EmailConfirm.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CV_EmailConfirm;
+        
+        /// <summary>
+        /// Contrôle CV_Captcha.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CV_Captcha;
     }
 }
