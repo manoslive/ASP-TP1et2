@@ -549,6 +549,10 @@ namespace SqlExpressUtilities
                                     }
                                     else if (type == typeof(DateTime))
                                         td.Text = DateTime.Parse(FieldsValues[fieldIndex]).ToString(); //.ToShortDateString()
+                                    else if (FieldsValues[fieldIndex].Contains('@'))
+                                    {
+                                        td.Text = "<a href='mailto:" + SQLHelper.FromSql(FieldsValues[fieldIndex]) + "'>" + SQLHelper.FromSql(FieldsValues[fieldIndex]) + "</a>";
+                                    }
                                     else
                                         td.Text = SQLHelper.FromSql(FieldsValues[fieldIndex]);
                             //}
