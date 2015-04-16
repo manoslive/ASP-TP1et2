@@ -39,6 +39,7 @@ namespace TP1_Env.Graphique
                 TB_UserName.Text = dataReader.GetString(1);
                 //TB_Password.Text = dataReader.GetString(2);
                 TB_Email.Text = dataReader.GetString(2);
+                TB_Email1.Text = dataReader.GetString(2);
                 IMG_Avatar.ImageUrl = dataReader.GetString(3);
                 DataBase_Connection.Close();
             }

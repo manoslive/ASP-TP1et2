@@ -16,20 +16,6 @@
         //            return "Êtes-vous sur de vouloir quitter la page?";
         //    });
         //});
-
-        function PreLoadImage(e) {
-            var imageTarget = document.getElementById("IMG_Avatar");
-            var input = document.getElementById("AvatarUpload");
-            if (imageTarget != null) {
-                var fReader = new FileReader();
-                fReader.readAsDataURL(input.files[0]);
-                fReader.onloadend = function (event) {
-                    // the event.target.result contains the image data 
-                    imageTarget.src = event.target.result;
-                }
-            }
-            return true;
-        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
@@ -58,7 +44,7 @@
                         <asp:Label for="TB_UserName" runat="server" Text="Nom d'usager"></asp:Label>
                     </td>
                     <td>
-                        <asp:TextBox ID="TB_UserName" runat="server" CssClass="TextBox"></asp:TextBox>
+                        <asp:TextBox ID="TB_UserName" runat="server" CssClass="TextBox" Enabled="False"></asp:TextBox>
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="RFV_TB_UserName" runat="server"
