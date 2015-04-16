@@ -132,7 +132,7 @@ namespace TP1_Env.Graphique
 
                 String DBPath = Server.MapPath(@"~\App_Data\MainBD.mdf");
                 String ConnectString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DBPath + "';Integrated Security=True";
-                String sql = @"Select PASSWORD, USERNAME, AVATAR, ID From USERS where UserName = '" + TB_UserName.Text + "' AND Enligne = false";
+                String sql = @"Select PASSWORD, USERNAME, AVATAR, ID From USERS where UserName = '" + TB_UserName.Text + "' AND Enligne = 0";
                 SqlConnection DataBase_Connection = new SqlConnection(ConnectString);
 
                 try
