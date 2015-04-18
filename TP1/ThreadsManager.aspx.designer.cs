@@ -13,76 +13,40 @@ namespace TP1_Env.Graphique {
     public partial class ThreadsManager {
         
         /// <summary>
-        /// Contrôle TimerJournal.
+        /// Contrôle LBL_ListDiscussions.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.Timer TimerJournal;
+        protected global::System.Web.UI.WebControls.ListBox LBL_ListDiscussions;
         
         /// <summary>
-        /// Contrôle TB_UserName.
+        /// Contrôle BTN_New.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TB_UserName;
+        protected global::System.Web.UI.WebControls.Button BTN_New;
         
         /// <summary>
-        /// Contrôle RFV_TB_UserName.
+        /// Contrôle BTN_Edit.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFV_TB_UserName;
+        protected global::System.Web.UI.WebControls.Button BTN_Edit;
         
         /// <summary>
-        /// Contrôle LB_Sujets.
+        /// Contrôle BTN_Delete.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox LB_Sujets;
-        
-        /// <summary>
-        /// Contrôle BTN_Login.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTN_Login;
-        
-        /// <summary>
-        /// Contrôle BTN_Inscription.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTN_Inscription;
-        
-        /// <summary>
-        /// Contrôle BTN_ForgotPassword.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTN_ForgotPassword;
-        
-        /// <summary>
-        /// Contrôle ValidationSummary.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
+        protected global::System.Web.UI.WebControls.Button BTN_Delete;
         
         /// <summary>
         /// Contrôle BTN_Retour.
@@ -94,12 +58,39 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.Button BTN_Retour;
         
         /// <summary>
-        /// Contrôle PN_GridView.
+        /// Contrôle TBX_NewThread.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PN_GridView;
+        protected global::System.Web.UI.WebControls.TextBox TBX_NewThread;
+        
+        /// <summary>
+        /// Contrôle CBX_All.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CBX_All;
+        
+        /// <summary>
+        /// Contrôle PN_User_Content.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PN_User_Content;
+        
+        /// <summary>
+        /// Contrôle CBX_Users.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList CBX_Users;
     }
 }

@@ -11,9 +11,11 @@ namespace TP1_Env.Graphique
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            string DB_Path = Server.MapPath(@"~\App_Data\MainBD.mdf");
+            //string DB_Path = Server.MapPath(@"~\db\MainBD.mdf");
             // Toutes les Pages (WebForm) pourront accéder à la propriété Application["MaindDB"]
-            Application["MainBD"] = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DB_Path + "';Integrated Security=False";
+            //Application["MainBD"] = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DB_Path + "';Integrated Security=False";
+            //"Data Source=.\SQLEXPRESS\v11.0;Server=SQL5002.Smarterasp.net;Database=DB_9C112B_BARBUETSHAUN;User ID=DB_9C112B_barbuetshaun_admin;Password=12345Allo;Trusted_Connection=False";
+            Application["MainBD"] = @"Data Source=SQL5002.Smarterasp.net;Initial Catalog=DB_9C112B_barbuetshaun;User Id=DB_9C112B_barbuetshaun_admin;Password=12345Allo;";
         }
         protected void Session_Start(object sender, EventArgs e)
         {
@@ -23,9 +25,6 @@ namespace TP1_Env.Graphique
         {
             if ((TableLogins)Session["Utilisateur"] != null)
             {
-                ////////////////////// TODO /////////////////////
-                /// Mettre à jour ici la date/heure de logoff ///
-                /////////////////////////////////////////////////
                 ((TableLogins)Session["Utilisateur"]).Update();
                 ((TableLogins)Session["Utilisateur"]).EndQuerySQL();
             }
