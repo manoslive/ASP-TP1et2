@@ -16,6 +16,12 @@ namespace TP1_Env.Graphique
         {
             SQLTableName = "THREADS_ACCESS";
         }
+        public override void GetValues()
+        {
+            ID = long.Parse(FieldsValues[0]);
+            Thread_ID = long.Parse(FieldsValues[1]);
+            User_ID = long.Parse(FieldsValues[2]);
+        }
         public override void Insert()
         {
             InsertRecord(Thread_ID, User_ID);
