@@ -25,6 +25,8 @@ namespace TP1_Env.Graphique
 
             ListThreads();
             ListUsers();
+
+            
         }
 
         private void ListThreads()
@@ -35,7 +37,7 @@ namespace TP1_Env.Graphique
 
             LBL_ListDiscussions.Items.Clear();
 
-            if (threads.SelectByFieldName("CREATOR", ((TableUsers)Session["User"]).ID))
+            if (threads.SelectByFieldName("CREATOR", ((Int64)Session["USER_ID"])))
             {
                 do
                 {
@@ -76,7 +78,7 @@ namespace TP1_Env.Graphique
                         td = new TableCell();
                         Image img = new Image();
                         img.Height = img.Width = 25;
-                        img.ImageUrl = user.Avatar != "" ? "~/Images/" + user.Avatar + ".png" : "~/Images/Anonymous.png";
+                        img.ImageUrl = user.Avatar != "" ? user.Avatar : "~/Images/Anonymous.png";
                         td.Controls.Add(img);
                         tr.Cells.Add(td);
 

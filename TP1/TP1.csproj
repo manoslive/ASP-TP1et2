@@ -92,6 +92,7 @@
     <Content Include="Profil.aspx" />
     <Content Include="Room.aspx" />
     <Content Include="Room.css" />
+    <Content Include="spyWin.aspx" />
     <Content Include="ThreadsManager.aspx" />
     <Content Include="ThreadsManager_css.css" />
     <Content Include="TimeOut.aspx" />
@@ -150,6 +151,13 @@
     </Compile>
     <Compile Include="Profil.aspx.designer.cs">
       <DependentUpon>Profil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="spyWin.aspx.cs">
+      <DependentUpon>spyWin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="spyWin.aspx.designer.cs">
+      <DependentUpon>spyWin.aspx</DependentUpon>
     </Compile>
     <Compile Include="TableLogins.cs" />
     <Compile Include="TableThreads.cs" />

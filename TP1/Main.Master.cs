@@ -94,6 +94,8 @@ namespace TP1_Env.Graphique
         {
             EnregistrementLogin();
             Session.Abandon();
+            Response.Write("<script>javascript: parent.opener=''; " +
+                                            "parent.close();</script>");
             Response.Redirect("Login.aspx");
         }
 

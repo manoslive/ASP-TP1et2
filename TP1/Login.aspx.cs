@@ -21,6 +21,32 @@ namespace TP1_Env.Graphique
             ((Panel)Master.FindControl("PN_HR")).Visible = false;
             Session["PAGE"] = "Login";
             Session["User_Valid"] = false;
+            if (Convert.ToString(Session["USER"]).Length > 0)
+            {
+                if (Session["RETURN"] != null)
+                {
+                    if (Convert.ToInt32(Session["RETURN"]) == 1)
+                    {
+                        Session["RETURN"] = 0;
+                        // Reset EnLigne to false
+                        LogOutUser();
+                    }
+                    else
+                    {
+                        Response.Redirect("room.aspx", false);
+                    }
+                }
+            }
+        }
+        protected void LogOutUser()
+        {
+            Session["USER_LOGOUT"] = DateTime.Now;
+            TableUsers users = (TableUsers)Session["User"];
+
+            // Rendre l'usager Offline
+            users.ID = (Int64)Session["USER_ID"];
+            users.Enligne = false;
+            users.userEnligne();
         }
         public void InsertBlackList()
         {
@@ -62,14 +88,14 @@ namespace TP1_Env.Graphique
                 sqlCommand.Connection = DataBase_Connection;
                 DataBase_Connection.Open();
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                dataReader.Read();   
-                if(dataReader.HasRows)
+                dataReader.Read();
+                if (dataReader.HasRows)
                 {
                     present = true;
                     username = dataReader.GetString(0);
                     BanTime = dataReader.GetDateTime(1);
                     UnBanTime = dataReader.GetDateTime(2);
-                }    
+                }
             }
             catch (Exception ex)
             {
@@ -79,9 +105,9 @@ namespace TP1_Env.Graphique
         }
         public void DeleteBlackList()
         {
-            if(PresentDansBlackList())
+            if (PresentDansBlackList())
             {
-                if(UnBanTime < DateTime.Now)
+                if (UnBanTime < DateTime.Now)
                 {
                     String sql = "Delete FROM BlackList Where USERNAME ='" + TB_UserName.Text + "'";
 
@@ -121,7 +147,7 @@ namespace TP1_Env.Graphique
             else
             {
                 // Nous créons ici une instance de TableUsers pour cette session
-                Session["User"] = new TableUsers((String)Application["MainBD"].ToString(), this);
+                Session["User"] = new TableUsers((String)Application["MainBD"], this);
                 TableUsers usager = new TableUsers((String)Application["MainBD"], this);
                 //((TableUsers)Session["User"]).SelectByFieldName("USERNAME", TB_UserName.Text);
                 // Je cherche comment affecter le username à cette session
@@ -187,7 +213,7 @@ namespace TP1_Env.Graphique
                 {
                     Response.Write(ex.Message);
                 }
-            }     
+            }
         }
         public void BTN_Inscription_Click(object sender, EventArgs e)
         {

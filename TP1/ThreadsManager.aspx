@@ -5,6 +5,11 @@
     <script lang="javascript" type="text/javascript">
 
     </script>
+    <style type="text/css">
+        .auto-style2 {
+            width: 5%;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
 
@@ -12,9 +17,9 @@
         <table>
             <tbody>
                 <tr>
-                    <td>
+                    <td class="auto-style2">
                         <h3>Liste de mes discussions</h3>
-                        <asp:ListBox ID="LBL_ListDiscussions" runat="server" Width="200px" Height="800px"
+                        <asp:ListBox ID="LBL_ListDiscussions" runat="server" Width="200px" Height="268px"
                             AutoPostBack="true" OnSelectedIndexChanged="LBL_ListDiscussions_SelectedIndexChanged"></asp:ListBox>
                         <br />
                         <asp:Button ID="BTN_New" runat="server" Text="Nouveau" OnClick="BTN_New_Click" />
