@@ -39,5 +39,9 @@ namespace TP1_Env.Graphique
             table.EndQuerySQL();
             table.Room = false;
         }
+        protected void TimerRoom_Tick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

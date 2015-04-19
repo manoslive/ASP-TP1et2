@@ -11,13 +11,13 @@ namespace TP1_Env.Graphique
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            string DB_Path = Server.MapPath(@"~\App_Data\MainBD.mdf");
             // Toutes les Pages (WebForm) pourront accéder à la propriété Application["MaindDB"]
+            string DB_Path = Server.MapPath(@"~\App_Data\MainBD.mdf");
             Application["MainBD"] = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DB_Path + "';Integrated Security=False";
 
 
             // Ce data source fonctionne avec une BD à distance
-            //Application["MainBD"] = @"Data Source=SQL5002.Smarterasp.net;Initial Catalog=DB_9C112B_barbuetshaun;User Id=DB_9C112B_barbuetshaun_admin;Password=12345Allo;";
+            //Application["MainBD"] = @"Data Source=SQL5002.Smarterasp.net;Initial Catalog=DB_9C1271_asp;User Id=DB_9C1271_asp_admin;Password=12345Allo;";
         }
         protected void Session_Start(object sender, EventArgs e)
         {
