@@ -116,7 +116,7 @@ namespace TP1_Env.Graphique
         private void CreateNewThread()
         {
             TableThreads thread = new TableThreads((String)Application["MainBD"], this);
-            thread.Creator = ((TableUsers)Session["User"]).ID;
+            thread.Creator = Convert.ToInt64(Session["USER_ID"]); //((TableUsers)Session["User"]).ID
             thread.Title = TBX_NewThread.Text;
             thread.Date_Of_Creation = DateTime.Now;
 
