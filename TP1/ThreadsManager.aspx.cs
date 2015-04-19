@@ -138,7 +138,7 @@ namespace TP1_Env.Graphique
 
             access.Thread_ID = long.Parse(threadId);
 
-            access.User_ID = Convert.ToInt64(Session["USER_ID"]);
+            access.User_ID = (Int64)Session["USER_ID"];
             access.Insert();
 
             foreach (TableRow tr in table.Rows)
