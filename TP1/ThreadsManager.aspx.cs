@@ -121,7 +121,7 @@ namespace TP1_Env.Graphique
             thread.Date_Of_Creation = DateTime.Now;
 
             thread.Insert();
-            thread.SelectAll("ID DESC");
+            thread.SelectAll("Id DESC");
             thread.Next();
 
             String id = thread.ID.ToString();
