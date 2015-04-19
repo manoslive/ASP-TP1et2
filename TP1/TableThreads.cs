@@ -18,6 +18,13 @@ namespace TP1_Env.Graphique
         {
             SQLTableName = "THREADS";
         }
+        public override void GetValues()
+        {
+            ID = long.Parse(FieldsValues[0]);
+            Creator = long.Parse(FieldsValues[1]);
+            Title = FieldsValues[2];
+            Date_Of_Creation = DateTime.Parse(FieldsValues[3]);
+        }
         public override void Insert()
         {
             InsertRecord(Creator, Title, Date_Of_Creation);
