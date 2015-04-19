@@ -121,7 +121,7 @@ namespace TP1_Env.Graphique
             thread.Date_Of_Creation = DateTime.Now;
 
             thread.Insert();
-            thread.SelectAll("ID DESC");
+            thread.SelectAll("Id DESC");
             thread.Next();
 
             String id = thread.ID.ToString();
@@ -138,7 +138,7 @@ namespace TP1_Env.Graphique
 
             access.Thread_ID = long.Parse(threadId);
 
-            access.User_ID = ((TableUsers)Session["User"]).ID;
+            access.User_ID = Convert.ToInt64(Session["USER_ID"]);
             access.Insert();
 
             foreach (TableRow tr in table.Rows)
