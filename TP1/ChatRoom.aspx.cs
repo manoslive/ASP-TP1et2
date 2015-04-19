@@ -30,7 +30,8 @@ namespace TP1_Env.Graphique
             TableRow tr;
             TableCell td;
 
-            if (access.SelectByFieldName("USER_ID", ((TableUsers)Session["User"]).ID))
+            //if (access.SelectByFieldName("USER_ID", ((TableUsers)Session["User"]).ID))
+            if (access.SelectByFieldName("USER_ID", ((Int64)Session["User_ID"])))
             {
 
                 do
