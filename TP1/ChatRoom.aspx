@@ -31,7 +31,7 @@
         //});
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
+<%--<asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
     <asp:Timer ID="TimerChatroom" runat="server" Interval="2000" OnTick="TimerChatroom_Tick"></asp:Timer>
     <asp:UpdatePanel ID="UPN_Chatroom" runat="server">
         <Triggers>
@@ -86,12 +86,53 @@
                 <td class="auto-style1">
                     <asp:TextBox ID="TB_Message" runat="server" TextMode="MultiLine" Width="536px" ClientIDMode="Static"></asp:TextBox></td>
                 <td>
-                    <asp:Button ID="BTN_Send" runat="server" Text="Envoyer" CssClass="SubmitButton" OnClick="BTN_Send_Click" ClientIDMode="Static" />
+                    <asp:Button ID="BTN_Send" CssClass="submitBTN" runat="server" Text="Envoyer" OnClick="BTN_Send_Click" ClientIDMode="Static" />
                     <br />
-                    <asp:Button ID="BTN_Back" runat="server" Text="Retour" OnClientClick="VeutQuitter()" CssClass="SubmitButton" OnClick="BTN_Back_Click" />
+                    <asp:Button ID="BTN_Back" CssClass="submitBTN" runat="server" Text="Retour" OnClientClick="VeutQuitter()" OnClick="BTN_Back_Click" />
                 </td>
             </tr>
         </table>
     </asp:Panel>
     </div>
+</asp:Content>--%>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
+    <asp:Timer ID="TimerChatroom" runat="server" Interval="2000" OnTick="TimerChatroom_Tick"></asp:Timer>
+    <asp:UpdatePanel ID="UPN_Chatroom" runat="server">
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="TimerChatroom" EventName="Tick" />
+        </Triggers>
+        <ContentTemplate>
+            <div>
+                <div class="divThreads">
+                    <asp:Label ID="LBL_Threads" CssClass="Title" runat="server" Text="Vos discussions"></asp:Label>
+                    <div>
+                        <asp:Panel ID="PN_Threads" runat="server"></asp:Panel>
+                    </div>
+                </div>
+                <div class="divMessages">
+                    <asp:Label ID="LBL_Title" CssClass="Title" runat="server" Text="Aucune discussion selectionée"></asp:Label>
+                    <div>
+                        <asp:Panel ID="PN_Messages" runat="server"></asp:Panel>
+                    </div>
+                </div>
+                <div class="divUsers">
+                    <asp:Label ID="LBL_Users" CssClass="Title" runat="server" Text="Invités"></asp:Label>
+                    <div>
+                        <asp:Panel ID="PN_Users" runat="server"></asp:Panel>
+                    </div>
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <div class="message_Sortant">
+        <asp:Panel ID="PN_Message" runat="server">
+
+            <asp:TextBox ID="TB_Message" runat="server" CssClass="TB_Message" TextMode="MultiLine"  ClientIDMode="Static"></asp:TextBox>
+
+            <asp:Button ID="BTN_Send" runat="server" CssClass="envoyerBTN" Text="Envoyer" OnClick="BTN_Send_Click" ClientIDMode="Static" />
+
+        </asp:Panel>
+    </div>
+    
 </asp:Content>
