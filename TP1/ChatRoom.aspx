@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ChatRoom.aspx.cs" Inherits="TP1_Env.Graphique.ChatRoom" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="ChatRoom.css" />
     <style>
         /*#PN_Messages {
             overflow: auto;
@@ -69,6 +70,7 @@
             </table>
         </ContentTemplate>
     </asp:UpdatePanel>
+    <div class="message">
     <asp:Panel ID="PN_Message" runat="server">
         <table>
             <tr>
@@ -83,4 +85,5 @@
             </tr>
         </table>
     </asp:Panel>
+    </div>
 </asp:Content>
