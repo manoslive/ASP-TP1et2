@@ -121,7 +121,7 @@ namespace TP1_Env.Graphique
             thread.Date_Of_Creation = DateTime.Now;
 
             thread.Insert();
-            thread.SelectAll("Id DESC");
+            thread.SelectAll("ID DESC");
             thread.Next();
 
             String id = thread.ID.ToString();
@@ -137,7 +137,6 @@ namespace TP1_Env.Graphique
             TableThreadsAccess access = new TableThreadsAccess((String)Application["MainBD"], this);
 
             access.Thread_ID = long.Parse(threadId);
-
             access.User_ID = (Int64)Session["USER_ID"];
             access.Insert();
 
@@ -152,7 +151,6 @@ namespace TP1_Env.Graphique
                 }
             }
         }
-
         private void CheckInvitedUsers()
         {
             Table table = (Table)PN_User_Content.Controls[0];
@@ -163,7 +161,6 @@ namespace TP1_Env.Graphique
                 cb.Checked = HasAccess(cb.ID.Replace("CB_", ""), ((ListItem)Session["SelectedThread"]).Value);
             }
         }
-
         private void EditSelectedThread()
         {
             TableThreads thread = new TableThreads((String)Application["MainBD"], this);
@@ -188,7 +185,6 @@ namespace TP1_Env.Graphique
             ListThreads();
             ListUsers();
         }
-
         private void DeleteThread()
         {
             TableThreads thread = new TableThreads((String)Application["MainBD"], this);
@@ -198,12 +194,10 @@ namespace TP1_Env.Graphique
             access.NonQuerySQL("DELETE FROM " + access.SQLTableName + " WHERE THREAD_ID = " + (((ListItem)Session["SelectedThread"]).Value));
             thread.DeleteRecordByID(((ListItem)Session["SelectedThread"]).Value);
         }
-
         protected void BTN_New_Click(object sender, EventArgs e)
         {
             ClearForm();
         }
-
         protected void BTN_Edit_Click(object sender, EventArgs e)
         {
             if (Session["SelectedThread"] == null)
@@ -213,7 +207,6 @@ namespace TP1_Env.Graphique
 
             ClearForm();
         }
-
         protected void BTN_Delete_Click(object sender, EventArgs e)
         {
             if (Session["SelectedThread"] != null)
@@ -222,12 +215,10 @@ namespace TP1_Env.Graphique
                 ClearForm();
             }
         }
-
         protected void BTN_Retour_Click(object sender, EventArgs e)
         {
             Response.Redirect("Room.aspx");
         }
-
         protected void LBL_ListDiscussions_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Session["SelectedThread"] != null)
@@ -237,7 +228,6 @@ namespace TP1_Env.Graphique
                 BTN_Edit.Text = "Modifier";
             }
         }
-
         protected void CBX_All_CheckedChanged(object sender, EventArgs e)
         {
             Table table = (Table)PN_User_Content.Controls[0];
