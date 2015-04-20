@@ -37,6 +37,16 @@ namespace TP1_Env.Graphique
                 Email = FieldsValues[3];
                 Avatar = FieldsValues[4];
             }
+            else if (Page.Session["PAGE"].ToString() == "ChatRoom")
+            {
+                ID = long.Parse(FieldsValues[0]);
+                Fullname = FieldsValues[1];
+                Username = FieldsValues[2];
+                Password = FieldsValues[3];
+                Email = FieldsValues[4];
+                Avatar = FieldsValues[5];
+                Enligne = Convert.ToBoolean(FieldsValues[6]);
+            }
             else
             {
                 ID = long.Parse(FieldsValues[0]);

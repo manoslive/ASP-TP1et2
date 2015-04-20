@@ -72,7 +72,6 @@ namespace TP1_Env.Graphique
 
                 table.Rows.Add(tr);
             }
-            thread.EndQuerySQL();
             access.EndQuerySQL();
             PN_Threads.Controls.Clear();
             PN_Threads.Controls.Add(table);
@@ -192,7 +191,7 @@ namespace TP1_Env.Graphique
                     td = new TableCell();
 
                     user.SelectByID(messages.User_ID.ToString());
-
+                    user.EndQuerySQL();
                     // Ajoute l'avatar
                     Image img = new Image();
                     img.ImageUrl = user.Avatar != "" ?user.Avatar : "~/Images/Anonymous.png";
@@ -224,6 +223,7 @@ namespace TP1_Env.Graphique
                     table.Rows.Add(tr);
                 } while (messages.Next());
 
+                user.EndQuerySQL();
                 PN_Messages.Controls.Clear();
                 PN_Messages.Controls.Add(table);
             }
@@ -240,6 +240,7 @@ namespace TP1_Env.Graphique
             message.Date_Of_Creation = DateTime.Now;
             message.Message = TB_Message.Text;
             message.Insert();
+            message.EndQuerySQL();
         }
         private void AfficherBoutonSujet()
         {
@@ -274,7 +275,7 @@ namespace TP1_Env.Graphique
 
 
             access.EndQuerySQL();
-
+            thread.EndQuerySQL();
             access.SelectByFieldName("USER_ID", 0);
 
             do
@@ -295,6 +296,7 @@ namespace TP1_Env.Graphique
                 table.Rows.Add(tr);
             } while (access.Next());
 
+            thread.EndQuerySQL();
             access.EndQuerySQL();
             PN_Threads.Controls.Clear();
             PN_Threads.Controls.Add(table);

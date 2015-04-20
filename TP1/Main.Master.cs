@@ -36,11 +36,11 @@ namespace TP1_Env.Graphique
                     seconds = seconds - 60;
                 }
             }
-            if (lesMinutes == 1 || lesMinutes == 2)
+            if (lesMinutes == 2 || lesMinutes == 3)
             {
                 return (2 - lesMinutes).ToString() + " minutes " + (60 - seconds).ToString() + " secondes";
             }
-            else if(lesMinutes >= 3)
+            else if(lesMinutes >= 4)
             {
                 return "TIMEOUT";
             }

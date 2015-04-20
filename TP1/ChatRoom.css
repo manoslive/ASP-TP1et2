@@ -140,17 +140,26 @@
     border: 5px double #120096;
     margin-left:27%;
     background-color:lightgray;
+    overflow:auto;
 }
 .divUsers{
-    width:25%;
+    width:22%;
     float:right;
     border-radius: 11px 11px 11px 11px;
     -moz-border-radius: 11px 11px 11px 11px;
     -webkit-border-radius: 11px 11px 11px 11px;
     border: 5px double #120096;
     background-color:lightgray;
+    top:19.6%;
+    left:75%;
+    position:absolute;
 }
 .TB_Message{
     width:80%;
     height:20%;
+}
+.scrollmsg{
+    overflow:scroll;
+    height:80% !important;
+    max-height:450px;
 }

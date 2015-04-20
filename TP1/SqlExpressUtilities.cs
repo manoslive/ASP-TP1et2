@@ -282,14 +282,22 @@ namespace SqlExpressUtilities
         public bool SelectByFieldName(String FieldName, object value)
         {
             string SQL = "SELECT * FROM " + SQLTableName + " WHERE " + FieldName + " = ";
-            Type type = value.GetType();
-            if (SQLHelper.IsNumericType(type))
-                SQL += value.ToString().Replace(',', '.');
+            if(Page.Session["PAGE"].ToString() == "Threads")
+            {
+                SQL += "'" + SQLHelper.PrepareForSql(value.ToString()) + "'";
+            }
             else
-                if (type == typeof(DateTime))
-                    SQL += "'" + SQLHelper.DateSQLFormat((DateTime)value) + "'";
+            {
+                Type type = value.GetType();
+                if (SQLHelper.IsNumericType(type))
+                    SQL += value.ToString().Replace(',', '.');
                 else
-                    SQL += "'" + SQLHelper.PrepareForSql(value.ToString()) + "'";
+                    if (type == typeof(DateTime))
+                        SQL += "'" + SQLHelper.DateSQLFormat((DateTime)value) + "'";
+                    else
+                        SQL += "'" + SQLHelper.PrepareForSql(value.ToString()) + "'";
+            }
+
             QuerySQL(SQL);
             if (reader.HasRows)
                 Next();

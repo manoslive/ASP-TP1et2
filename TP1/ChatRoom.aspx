@@ -18,17 +18,11 @@
     </style>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script lang="javascript" type="text/javascript">
-        //var Quit = 1;
-        //function VeutQuitter() {
-        //    Quit = 0;
-        //}
-
-        //$(document).ready(function () {
-        //    $(window).bind("beforeunload", function () {
-        //        if (Quit == 1)
-        //            return "Êtes-vous sur de vouloir quitter la page?";
-        //    });
-        //});
+        function submitButton(event) {
+            if (event.which == 13) {
+                $('#BTN_Send').trigger('click');
+            }
+        }
     </script>
 </asp:Content>
 <%--<asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
@@ -112,7 +106,7 @@
                 </div>
                 <div class="divMessages">
                     <asp:Label ID="LBL_Title" CssClass="Title" runat="server" Text="Aucune discussion selectionée"></asp:Label>
-                    <div>
+                    <div class="scrollmsg">
                         <asp:Panel ID="PN_Messages" runat="server"></asp:Panel>
                     </div>
                 </div>
