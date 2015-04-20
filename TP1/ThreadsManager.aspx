@@ -35,7 +35,7 @@
                         <h3>Titre de la discussion</h3>
                         <asp:TextBox ID="TBX_NewThread" runat="server" Width="200px"></asp:TextBox>
                         <br />
-                        <h4>Sélection des invités</h4>
+                        <h4>Selection des invités</h4>
                         <div class="users">
                         <asp:CheckBox ID="CBX_All"  runat="server" CssClass="CBItem_Tous" OnCheckedChanged="CBX_All_CheckedChanged"
                             AutoPostBack="true"/>
