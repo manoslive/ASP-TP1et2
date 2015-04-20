@@ -33,7 +33,6 @@ namespace TP1_Env.Graphique
             //if (access.SelectByFieldName("USER_ID", ((TableUsers)Session["User"]).ID))
             if (access.SelectByFieldName("USER_ID", ((Int64)Session["User_ID"])))
             {
-
                 do
                 {
                     thread.SelectByID(access.Thread_ID.ToString());
@@ -58,7 +57,7 @@ namespace TP1_Env.Graphique
 
             access.SelectByFieldName("USER_ID", 0);
 
-            do
+            while (access.Next())
             {
                 thread.SelectByID(access.Thread_ID.ToString());
                 thread.EndQuerySQL();
@@ -74,7 +73,7 @@ namespace TP1_Env.Graphique
                 tr.Cells.Add(td);
 
                 table.Rows.Add(tr);
-            } while (access.Next());
+            }
 
             access.EndQuerySQL();
             PN_Threads.Controls.Clear();
@@ -161,7 +160,7 @@ namespace TP1_Env.Graphique
                 td = new TableCell();
                 img = new Image();
                 img.Height = img.Width = 25;
-                img.ImageUrl = users.Avatar != "" ? "~/Images/" + users.Avatar + ".png" : "~/Images/Anonymous.png";
+                img.ImageUrl = users.Avatar != "" ? users.Avatar : "~/Images/Anonymous.png";
                 td.Controls.Add(img);
                 tr.Cells.Add(td);
 
@@ -197,7 +196,7 @@ namespace TP1_Env.Graphique
 
                     // Avatar
                     Image img = new Image();
-                    img.ImageUrl = user.Avatar != "" ? "~/Images/" + user.Avatar + ".png" : "~/Images/Anonymous.png";
+                    img.ImageUrl = user.Avatar != "" ?user.Avatar : "~/Images/Anonymous.png";
                     img.Width = img.Height = 40;
                     td.Controls.Add(img);
                     tr.Cells.Add(td);
@@ -211,7 +210,7 @@ namespace TP1_Env.Graphique
 
                     // Edit buttons
                     td = new TableCell();
-                    if (user.ID == ((TableUsers)Session["User"]).ID)
+                    if (user.ID == (((Int64)Session["User_ID"])))
                     {
                         td.Controls.Add(CreerBoutonDelete(messages.ID.ToString()));
                     }
@@ -233,7 +232,7 @@ namespace TP1_Env.Graphique
         {
             TableThreadsMessages message = new TableThreadsMessages((String)Application["MainBD"], this);
             message.Threads_ID = long.Parse((String)Session["CurrentThread"]);
-            message.User_ID = ((TableUsers)Session["User"]).ID;
+            message.User_ID = ((Int64)Session["User_ID"]);
             message.Date_Of_Creation = DateTime.Now;
             message.Message = TB_Message.Text;
             message.Insert();
@@ -247,7 +246,7 @@ namespace TP1_Env.Graphique
             TableRow tr;
             TableCell td;
 
-            if (access.SelectByFieldName("USER_ID", ((TableUsers)Session["User"]).ID))
+            if (access.SelectByFieldName("USER_ID", ((Int64)Session["User_ID"])))
             {
 
                 do

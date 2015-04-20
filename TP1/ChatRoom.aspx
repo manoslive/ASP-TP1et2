@@ -1,6 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ChatRoom.aspx.cs" Inherits="TP1_Env.Graphique.ChatRoom" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        /*#PN_Messages {
+            overflow: auto;
+            height: 80%;
+            position: absolute;
+            width: 90%;
+        }*/
+
+        /*.Msg {
+            position: absolute;
+            width: 90%;
+            height: 90%;
+        }*/
+    </style>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script lang="javascript" type="text/javascript">
         //var Quit = 1;
@@ -20,7 +34,7 @@
     <asp:Timer ID="TimerChatroom" runat="server" Interval="3000" OnTick="TimerChatroom_Tick"></asp:Timer>
     <asp:UpdatePanel ID="UPN_Chatroom" runat="server">
         <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="TimerChatroom" EventName="Tick"/>
+            <asp:AsyncPostBackTrigger ControlID="TimerChatroom" EventName="Tick" />
         </Triggers>
         <ContentTemplate>
             <table>
@@ -32,8 +46,7 @@
                             <tr>
                                 <td>
                                     <asp:Label ID="LBL_Title" runat="server" Text="Aucune discussion selectionée"></asp:Label></td>
-                                <td style="text-align: right">
-                                    <asp:Label ID="LBL_Creator" runat="server" Text="..."></asp:Label></td>
+                                <td style="text-align: right">&nbsp;</td>
                             </tr>
                         </table>
                     </td>
@@ -44,8 +57,10 @@
                     <td>
                         <asp:Panel ID="PN_Threads" runat="server"></asp:Panel>
                     </td>
-                    <td>
-                        <asp:Panel ID="PN_Messages" runat="server"></asp:Panel>
+                    <td class="Msg">
+                        <div style="overflow: auto; width: 60%; height: 60%">
+                            <asp:Panel ID="PN_Messages" runat="server"></asp:Panel>
+                        </div>
                     </td>
                     <td>
                         <asp:Panel ID="PN_Users" runat="server"></asp:Panel>

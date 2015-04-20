@@ -49,15 +49,6 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.Label LBL_Title;
         
         /// <summary>
-        /// Contrôle LBL_Creator.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBL_Creator;
-        
-        /// <summary>
         /// Contrôle LBL_Users.
         /// </summary>
         /// <remarks>
