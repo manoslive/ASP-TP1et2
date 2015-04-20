@@ -30,7 +30,6 @@ namespace TP1_Env.Graphique
             TableRow tr;
             TableCell td;
 
-            //if (access.SelectByFieldName("USER_ID", ((TableUsers)Session["User"]).ID))
             if (access.SelectByFieldName("USER_ID", ((Int64)Session["User_ID"])))
             {
                 do
@@ -52,9 +51,7 @@ namespace TP1_Env.Graphique
                 } while (access.Next());
             }
 
-
             access.EndQuerySQL();
-
             access.SelectByFieldName("USER_ID", 0);
 
             while (access.Next())
@@ -154,6 +151,7 @@ namespace TP1_Env.Graphique
                 Image img = new Image();
                 img.Height = img.Width = 25;
                 img.ImageUrl = users.Enligne != false ? "~/Images/OnLine.png" : "~/Images/OffLine.png";
+                //td.Text = users.Enligne != false ? "<img src=\"/Images/OnLine.png\" alt=\"Enligne\" style=\"width:25px;height:25px\">" : "<img src=\"/Images/OffLine.png\" alt=\"HorsLigne\" style=\"width:25px;height:25px\">";
                 td.Controls.Add(img);
                 tr.Cells.Add(td);
 
@@ -347,7 +345,10 @@ namespace TP1_Env.Graphique
         protected void BTN_Send_Click(object sender, EventArgs e)
         {
             if (TB_Message.Text != "")
+            {
                 EnvoyerMessage();
+                Session["StartTime"] = DateTime.Now;
+            }
 
             TB_Message.Text = "";
         }
