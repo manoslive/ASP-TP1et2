@@ -83,14 +83,5 @@ namespace TP1_Env.Graphique {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList CBX_Users;
-        
-        /// <summary>
-        /// Contrôle BTN_Retour.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTN_Retour;
     }
 }
