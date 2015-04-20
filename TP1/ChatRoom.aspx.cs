@@ -72,7 +72,7 @@ namespace TP1_Env.Graphique
 
                 table.Rows.Add(tr);
             }
-
+            thread.EndQuerySQL();
             access.EndQuerySQL();
             PN_Threads.Controls.Clear();
             PN_Threads.Controls.Add(table);

@@ -40,24 +40,6 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.Label LBL_Threads;
         
         /// <summary>
-        /// Contrôle LBL_Title.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBL_Title;
-        
-        /// <summary>
-        /// Contrôle LBL_Users.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBL_Users;
-        
-        /// <summary>
         /// Contrôle PN_Threads.
         /// </summary>
         /// <remarks>
@@ -67,6 +49,15 @@ namespace TP1_Env.Graphique {
         protected global::System.Web.UI.WebControls.Panel PN_Threads;
         
         /// <summary>
+        /// Contrôle LBL_Title.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBL_Title;
+        
+        /// <summary>
         /// Contrôle PN_Messages.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace TP1_Env.Graphique {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel PN_Messages;
+        
+        /// <summary>
+        /// Contrôle LBL_Users.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBL_Users;
         
         /// <summary>
         /// Contrôle PN_Users.
@@ -110,14 +110,5 @@ namespace TP1_Env.Graphique {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BTN_Send;
-        
-        /// <summary>
-        /// Contrôle BTN_Back.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTN_Back;
     }
 }
