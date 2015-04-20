@@ -44,6 +44,7 @@ namespace TP1_Env.Graphique
                     Button btn = new Button();
                     btn.ID = "ThreadButton_" + thread.ID.ToString();
                     btn.Text = thread.Title;
+                    btn.CssClass = "BTNThread";
                     btn.Click += BTN_Thread_Click;
                     td.Controls.Add(btn);
                     tr.Cells.Add(td);
