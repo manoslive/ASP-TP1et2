@@ -13,24 +13,25 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
 
-    <div>
+    <div class="mainDiv">
         <table>
             <tbody>
                 <tr>
-                    <td class="auto-style2">
+                    <td class="leftDiv">
                         <h3>Liste de mes discussions</h3>
                         <asp:ListBox ID="LBL_ListDiscussions" runat="server" Width="200px" Height="268px"
                             AutoPostBack="true" OnSelectedIndexChanged="LBL_ListDiscussions_SelectedIndexChanged"></asp:ListBox>
                         <br />
-                        <asp:Button ID="BTN_New" runat="server" Text="Nouveau" OnClick="BTN_New_Click" />
                         <br />
-                        <asp:Button ID="BTN_Edit" runat="server" Text="Créer" OnClick="BTN_Edit_Click" />
+                        <asp:Button ID="BTN_New" runat="server" Text="Nouveau" CssClass="discussBTN" OnClick="BTN_New_Click" />
                         <br />
-                        <asp:Button ID="BTN_Delete" runat="server" Text="Supprimer" OnClick="BTN_Delete_Click" />
                         <br />
-                        <asp:Button ID="BTN_Retour" runat="server" Text="Retour" OnClick="BTN_Retour_Click" />
+                        <asp:Button ID="BTN_Edit" runat="server" Text="Créer" CssClass="discussBTN" OnClick="BTN_Edit_Click" />
+                        <br />
+                        <br />
+                        <asp:Button ID="BTN_Delete" runat="server" Text="Supprimer" CssClass="discussBTN" OnClick="BTN_Delete_Click" /> 
                     </td>
-                    <td>
+                    <td class="rightDiv">
                         <h3>Titre de la discussion</h3>
                         <asp:TextBox ID="TBX_NewThread" runat="server" Width="200px"></asp:TextBox>
                         <br />
@@ -38,13 +39,18 @@
                         <asp:CheckBox ID="CBX_All" runat="server" OnCheckedChanged="CBX_All_CheckedChanged"
                             AutoPostBack="true"/>
                         Tous les usagers
+                        <div class="users">
                         <asp:Panel ID="PN_User_Content" runat="server">
-                            <asp:CheckBoxList ID="CBX_Users" runat="server"></asp:CheckBoxList>
+                            
+                                <asp:CheckBoxList ID="CBX_Users" runat="server"></asp:CheckBoxList>
+                            
                         </asp:Panel>
+                            </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <asp:Button ID="BTN_Retour" runat="server" Text="Retour" CssClass="returnBTN" OnClick="BTN_Retour_Click" />
     </div>
     </asp:Content>
 <%--<asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">

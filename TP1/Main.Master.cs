@@ -62,6 +62,7 @@ namespace TP1_Env.Graphique
                 TableUsers users = (TableUsers)Session["User"];
                 users.Enligne = false;
                 users.userEnligne();
+                Session.Abandon();
                 Response.Redirect("TimeOut.aspx");
             }
             else
