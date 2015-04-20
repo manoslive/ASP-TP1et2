@@ -1,3 +1,73 @@
 ﻿.message{
-    
+    overflow: auto; 
+    width: 80%; 
+    height: 80%;
+    border-radius: 11px 11px 11px 11px;
+    -moz-border-radius: 11px 11px 11px 11px;
+    -webkit-border-radius: 11px 11px 11px 11px;
+    border: 5px double #120096;
+    margin-left:10%;
+}
+.message_Sortant{
+    width: 50%; 
+    height: 80%;
+    border-radius: 11px 11px 11px 11px;
+    -moz-border-radius: 11px 11px 11px 11px;
+    -webkit-border-radius: 11px 11px 11px 11px;
+    border: 5px double #120096;
+    margin-left:15%;
+}
+.threads{
+    border-radius: 11px 11px 11px 11px;
+    -moz-border-radius: 11px 11px 11px 11px;
+    -webkit-border-radius: 11px 11px 11px 11px;
+    border: 5px double #120096;
+    text-align:center;
+    padding-left:5%;
+}
+.users{
+    border-radius: 11px 11px 11px 11px;
+    -moz-border-radius: 11px 11px 11px 11px;
+    -webkit-border-radius: 11px 11px 11px 11px;
+    border: 5px double #120096;
+}
+.Title{
+    font:bold 16px arial, verdana;
+    margin-left:52%;
+    text-decoration:underline;
+}
+.BTNThread {
+	-moz-box-shadow: 0px 0px 0px 2px #5873bf;
+	-webkit-box-shadow: 0px 0px 0px 2px #5873bf;
+	box-shadow: 0px 0px 0px 2px #5873bf;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #619de6), color-stop(1, #033ea3));
+	background:-moz-linear-gradient(top, #619de6 5%, #033ea3 100%);
+	background:-webkit-linear-gradient(top, #619de6 5%, #033ea3 100%);
+	background:-o-linear-gradient(top, #619de6 5%, #033ea3 100%);
+	background:-ms-linear-gradient(top, #619de6 5%, #033ea3 100%);
+	background:linear-gradient(to bottom, #619de6 5%, #033ea3 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#619de6', endColorstr='#033ea3',GradientType=0);
+	background-color:#619de6;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	border:1px solid #00238c;
+  font-family: Arial;
+  color: #000000;
+  font-size: 14px;
+  padding: 5px 25px 5px 25px;
+  border: solid #00085c 2px;
+  text-decoration: none;
+  width:90%;
+}
+
+.BTNThread:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+  width:90%;
 }

@@ -40,37 +40,45 @@
         <ContentTemplate>
             <table>
                 <tr>
+                    
                     <td style="width: 15%">
-                        <asp:Label ID="LBL_Threads" runat="server" Text="Vos discussions"></asp:Label></td>
+                        <asp:Label ID="LBL_Threads" CssClass="Title" runat="server" Text="Vos discussions"></asp:Label></td>
                     <td style="width: 70%">
+
                         <table>
                             <tr>
                                 <td>
-                                    <asp:Label ID="LBL_Title" runat="server" Text="Aucune discussion selectionée"></asp:Label></td>
-                                <td style="text-align: right">&nbsp;</td>
+                                    <asp:Label ID="LBL_Title" CssClass="Title" runat="server" Text="Aucune discussion selectionée"></asp:Label>
+
+                                </td>
+                                
                             </tr>
                         </table>
                     </td>
                     <td style="width: 15%">
-                        <asp:Label ID="LBL_Users" runat="server" Text="Invités"></asp:Label></td>
+                        <asp:Label ID="LBL_Users" CssClass="Title" runat="server" Text="Invités"></asp:Label></td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Panel ID="PN_Threads" runat="server"></asp:Panel>
+                        <div class="threads">
+                            <asp:Panel ID="PN_Threads" runat="server"></asp:Panel>
+                        </div>
                     </td>
-                    <td class="Msg">
-                        <div style="overflow: auto; width: 60%; height: 60%">
+                    <td>
+                        <div class="message">
                             <asp:Panel ID="PN_Messages" runat="server"></asp:Panel>
                         </div>
                     </td>
                     <td>
-                        <asp:Panel ID="PN_Users" runat="server"></asp:Panel>
+                        <div class="users">
+                            <asp:Panel ID="PN_Users" runat="server"></asp:Panel>
+                        </div>
                     </td>
                 </tr>
             </table>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <div class="message">
+    <div class="message_Sortant">
     <asp:Panel ID="PN_Message" runat="server">
         <table>
             <tr>
