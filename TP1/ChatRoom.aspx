@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ChatRoom.aspx.cs" Inherits="TP1_Env.Graphique.ChatRoom" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="ChatRoom.css" />
     <style>
         /*#PN_Messages {
             overflow: auto;
@@ -69,19 +70,21 @@
             </table>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <asp:Panel ID="PN_Message" runat="server">
-        <table>
-            <tr>
-                <td id="empty" class="auto-style2"></td>
-                <td class="auto-style1">
-                    <asp:TextBox ID="TB_Message" runat="server" TextMode="MultiLine" Width="536px" ClientIDMode="Static"
-                        onkeydown="char = (event.which || event.keyCode); if (char == 13) document.getElementById(&quot;BTN_Send&quot;).click();"></asp:TextBox></td>
-                <td>
-                    <asp:Button ID="BTN_Send" runat="server" Text="Envoyer" CssClass="SubmitButton" OnClick="BTN_Send_Click" ClientIDMode="Static" />
-                    <br />
-                    <asp:Button ID="BTN_Back" runat="server" Text="Retour" OnClientClick="VeutQuitter()" CssClass="SubmitButton" OnClick="BTN_Back_Click" />
-                </td>
-            </tr>
-        </table>
-    </asp:Panel>
+    <div class="message">
+        <asp:Panel ID="PN_Message" runat="server">
+            <table>
+                <tr>
+                    <td id="empty" class="auto-style2"></td>
+                    <td class="auto-style1">
+                        <asp:TextBox ID="TB_Message" runat="server" TextMode="MultiLine" Width="536px" ClientIDMode="Static"
+                            onkeydown="char = (event.which || event.keyCode); if (char == 13) document.getElementById(&quot;BTN_Send&quot;).click();"></asp:TextBox></td>
+                    <td>
+                        <asp:Button ID="BTN_Send" runat="server" Text="Envoyer" CssClass="SubmitButton" OnClick="BTN_Send_Click" ClientIDMode="Static" />
+                        <br />
+                        <asp:Button ID="BTN_Back" runat="server" Text="Retour" OnClientClick="VeutQuitter()" CssClass="SubmitButton" OnClick="BTN_Back_Click" />
+                    </td>
+                </tr>
+            </table>
+        </asp:Panel>
+    </div>
 </asp:Content>
