@@ -194,29 +194,30 @@ namespace TP1_Env.Graphique
 
                     user.SelectByID(messages.User_ID.ToString());
 
-                    // Avatar
+                    // Ajoute l'avatar
                     Image img = new Image();
                     img.ImageUrl = user.Avatar != "" ?user.Avatar : "~/Images/Anonymous.png";
                     img.Width = img.Height = 40;
                     td.Controls.Add(img);
                     tr.Cells.Add(td);
 
-                    // Nom et Date
+                    // Ajoute le nom et la date
                     td = new TableCell();
                     string date = messages.Date_Of_Creation.ToShortDateString() + " " + messages.Date_Of_Creation.ToShortTimeString();
                     string content = user.Fullname + "<br/>" + date + "<br/>";
                     td.Controls.Add(new LiteralControl(content));
                     tr.Cells.Add(td);
 
-                    // Edit buttons
+                    // Ajoute les boutons
                     td = new TableCell();
                     if (user.ID == (((Int64)Session["User_ID"])))
                     {
+                        td.Controls.Add(CreerBoutonModifier(messages.ID.ToString()));
                         td.Controls.Add(CreerBoutonDelete(messages.ID.ToString()));
                     }
                     tr.Cells.Add(td);
 
-                    // Message
+                    // Nouveau msg
                     td = new TableCell();
                     td.Text = messages.Message;
                     tr.Cells.Add(td);
@@ -227,6 +228,10 @@ namespace TP1_Env.Graphique
                 PN_Messages.Controls.Clear();
                 PN_Messages.Controls.Add(table);
             }
+        }
+        private void ModifierMessage()
+        {
+            // TODO
         }
         private void EnvoyerMessage()
         {
@@ -309,6 +314,16 @@ namespace TP1_Env.Graphique
 
             return btn;
         }
+        private ImageButton CreerBoutonModifier(String messageId)
+        {
+            ImageButton btn = new ImageButton();
+            btn.ID = "BTN_Modifier_" + messageId;
+            btn.ImageUrl = @"~/Images/Edit.bmp";
+            btn.Width = btn.Height = 26;
+            btn.Click += BTN_Modifier_Click;
+
+            return btn;
+        }
         protected void BTN_Thread_Click(object sender, EventArgs e)
         {
             String threadId = ((Button)sender).ID;
@@ -335,6 +350,10 @@ namespace TP1_Env.Graphique
                 EnvoyerMessage();
 
             TB_Message.Text = "";
+        }
+        protected void BTN_Modifier_Click(object sender, EventArgs e)
+        {
+            ModifierMessage();
         }
         protected void BTN_Delete_Click(object sender, ImageClickEventArgs e)
         {
