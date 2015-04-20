@@ -19,6 +19,14 @@ namespace TP1_Env.Graphique
         {
             SQLTableName = "THREADS_MESSAGES";
         }
+        public override void GetValues()
+        {
+            ID = long.Parse(FieldsValues[0]);
+            Threads_ID = long.Parse(FieldsValues[1]);
+            User_ID = long.Parse(FieldsValues[2]);
+            Date_Of_Creation = DateTime.Parse(FieldsValues[3]);
+            Message = FieldsValues[4];
+        }
         public override void Insert()
         {
             InsertRecord(Threads_ID, User_ID, Date_Of_Creation, Message);
